@@ -12,7 +12,8 @@
     "registry:build": "pnpm run registry:source && shadcn build registry.json --output public/r",
     "registry:test": "node --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/registry/*.test.mjs",
     "registry:check": "node --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/registry/generate.mjs --check && shadcn registry validate ./registry.json",
-    "check": "pnpm run lint && pnpm run typecheck && pnpm run registry:test && pnpm run registry:check"
+    "check": "pnpm run lint && pnpm run typecheck && pnpm run test:components && pnpm run registry:test && pnpm run registry:check",
+    "test:components": "node --import ./scripts/testing/setup.mjs --test scripts/components/*.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -25,7 +26,6 @@
     "motion": "^13.4.3",
     "next": "16.3.3",
     "next-themes": "^0.4.6",
-    "radix-ui": "^1.8.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "shadcn": "^4.19.0",
@@ -40,6 +40,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.3",
+    "jsdom": "^26.1.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

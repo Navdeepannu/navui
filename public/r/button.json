@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "title": "Button",
+  "description": "A neutral UI SDK action with native form behavior, pending feedback, and composable rendering.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/button.tsx",
+      "content": "\"use client\";\n\nimport { Button as SdkButton } from \"@ui-sdk/react/button\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"cn\";\n\nconst variants = {\n  default:\n    \"border-primary bg-primary text-primary-foreground hover:bg-primary/90\",\n  secondary:\n    \"border-transparent bg-secondary text-secondary-foreground hover:bg-accent\",\n  outline: \"border-input bg-background text-foreground hover:bg-accent\",\n  ghost: \"border-transparent bg-transparent text-foreground hover:bg-accent\",\n};\nconst sizes = {\n  sm: \"min-h-9 px-3\",\n  default: \"min-h-10 px-4\",\n  lg: \"min-h-11 px-5\",\n  icon: \"size-10 p-0\",\n};\n\nexport type ButtonProps = ComponentProps<typeof SdkButton> & {\n  variant?: keyof typeof variants;\n  size?: keyof typeof sizes;\n};\n\nexport function Button({\n  variant = \"default\",\n  size = \"default\",\n  className,\n  ...props\n}: ButtonProps) {\n  return (\n    <SdkButton\n      {...props}\n      className={(state) =>\n        cn(\n          \"inline-flex shrink-0 items-center justify-center gap-2 rounded-md border text-sm font-medium outline-none motion-safe:transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-disabled:cursor-not-allowed data-disabled:opacity-50 data-pending:cursor-wait data-pending:opacity-70 [&_svg]:size-4 [&_svg]:shrink-0\",\n          variants[variant],\n          sizes[size],\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/navui/button.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -70,7 +70,7 @@ export type ComponentCatalogEntry = {
     description: string;
     source: string;
   }[];
-  provenance: { repository: string; commit: string; path: string };
+  provenance?: { repository: string; commit: string; path: string };
   registry: {
     type: "registry:ui";
     dependencies: readonly string[];

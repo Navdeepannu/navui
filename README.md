@@ -1,13 +1,15 @@
 # NavUI
 
-Polished, customizable React components and blocks on one neutral foundation,
-with light and dark modes. UI SDK is the preferred foundation for new interactive
-work. Existing Motion, Radix, and Base UI implementations remain supported while
-we migrate the collection without discarding their visual character or APIs.
+NavUI is an open-source collection of polished, customizable React components
+built primarily on UI SDK, on one neutral foundation with light and dark modes.
 
-The development direction is styled reusable components first, larger composed
-blocks afterward. Distribution uses the **shadcn CLI and NavUI registry**, not a
-separate NavUI CLI. Phase 1 adds no AI components, agents, or model connections.
+UI SDK owns standard control behavior. Distinctive visual and data components
+remain custom where that adds value. We build finished reusable components and
+examples first, then compose marketing blocks later. The 45 existing blocks remain
+available without redesign in this foundation pass.
+
+Distribution uses the **shadcn CLI and NavUI registry**. There is no separate NavUI
+CLI, model connection, agent bridge, or backend.
 
 ## Develop and preview
 
@@ -17,8 +19,8 @@ pnpm dev
 ```
 
 - `/components`: searchable component collection.
-- `/components/animated-tabs`: preview, source, install, usage, props, and notes.
-- `/preview/components/animated-tabs`: isolated interactive preview.
+- `/components/tabs`: preview, source, install, usage, props, and notes.
+- `/preview/components/tabs`: isolated interactive preview.
 - `/blocks` or `/blocks/base`: retained 45-block collection.
 - `/playground/project-settings`: existing local UI SDK form.
 
@@ -40,18 +42,18 @@ consumer’s `components.json`:
 ```
 
 ```bash
-npx shadcn@latest add @navui/animated-tabs
+npx shadcn@latest add @navui/tabs
 ```
 
 Production URLs are intended deployment endpoints, not a claim that this local
 migration is deployed. With NavUI running locally, test installation using:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/animated-tabs.json
+npx shadcn@latest add http://localhost:3000/r/tabs.json
 ```
 
 Consumers need React 19, Tailwind CSS 4, and a configured shadcn project with
-semantic theme tokens. Proximity Nav is currently Next.js App Router-specific.
+semantic theme tokens. Proximity Nav uses native links; pass activeHref from your application router.
 Each item declares its npm dependencies and required supporting files. Demos and
 website code are excluded; migrated items include the original MIT notice.
 
@@ -72,3 +74,13 @@ The existing pipeline produces `registry.json` and `public/r/*.json`; checks cov
 inventory, collisions, declared files/dependencies, portable imports, and output
 consistency. See [contributor guidance](docs/block-authoring.md) and the
 [Phase 1 migration inventory](docs/phase-1-migration.md).
+
+## Component foundation
+
+Canonical `button`, `tabs`, and `dialog` entries use UI SDK 0.1.0-beta.17. Rebuilt
+compositions depend on those exact NavUI components through the registry, not on
+similarly named generic shadcn controls. `animated-tabs` is consolidated into `tabs`;
+its documentation/preview URLs redirect, and its old registry payload is retired.
+
+See [authoring guidance](docs/component-authoring.md) for visual rules and SDK
+composition, and [component decisions and breaking changes](docs/component-migration.md).

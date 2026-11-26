@@ -11,7 +11,7 @@ import {
   type SpringOptions,
 } from 'motion/react'
 
-import { Button } from './primitives/radix/button'
+import { Button } from './button'
 import { cn } from 'cn'
 
 type MagneticButtonProps = React.ComponentProps<typeof Button> & {
@@ -86,7 +86,7 @@ function MagneticButton({
   return (
     <motion.span
       data-slot="magnetic-button-wrapper"
-      style={{ x: springX, y: springY }}
+      style={{ x: disabled || prefersReducedMotion ? 0 : springX, y: disabled || prefersReducedMotion ? 0 : springY }}
       whileTap={disabled || prefersReducedMotion ? undefined : { scale: 0.98 }}
       className={cn(
         'inline-flex will-change-transform motion-reduce:transform-none',
@@ -99,9 +99,9 @@ function MagneticButton({
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         onPointerCancel={handlePointerCancel}
-        className={cn(
+        className={(state) => cn(
           'relative isolate overflow-hidden transition-shadow duration-300 ease-out hover:shadow-md motion-reduce:transition-none',
-          className,
+          typeof className === 'function' ? className(state) : className,
         )}
         {...props}
       >

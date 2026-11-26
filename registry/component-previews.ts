@@ -1,7 +1,10 @@
 import type { ComponentType } from "react";
 
 import AnimatedNumbers from "@/components/examples/animated-numbers";
-import AnimatedTabs from "@/components/examples/animated-tabs";
+import Tabs from "@/components/examples/tabs";
+import TabsVariants from "@/components/examples/tabs-variants";
+import Button from "@/components/examples/button";
+import Dialog from "@/components/examples/dialog";
 import ContributionGraph from "@/components/examples/contribution-graph";
 import ExpandableCard from "@/components/examples/expandable-card";
 import KeyboardShortcut from "@/components/examples/keyboard-shortcut";
@@ -20,7 +23,10 @@ type PreviewSource = CatalogItem["preview"] | CatalogItem["examples"][number]["s
 
 const previews = {
   "components/examples/animated-numbers.tsx": AnimatedNumbers,
-  "components/examples/animated-tabs.tsx": AnimatedTabs,
+  "components/examples/tabs.tsx": Tabs,
+  "components/examples/tabs-variants.tsx": TabsVariants,
+  "components/examples/button.tsx": Button,
+  "components/examples/dialog.tsx": Dialog,
   "components/examples/contribution-graph.tsx": ContributionGraph,
   "components/examples/expandable-card.tsx": ExpandableCard,
   "components/examples/keyboard-shortcut.tsx": KeyboardShortcut,

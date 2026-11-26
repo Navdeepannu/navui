@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "title": "Dialog",
+  "description": "A focused UI SDK modal with named content, focus return, scroll containment, and SDK-owned transition presence.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/dialog.tsx",
+      "content": "\"use client\";\n\nimport {\n  DialogBackdrop as SdkBackdrop,\n  DialogContent as SdkContent,\n  DialogTitle as SdkTitle,\n  DialogDescription as SdkDescription,\n} from \"@ui-sdk/react/dialog\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"cn\";\n\nexport { Dialog, DialogTrigger, DialogClose } from \"@ui-sdk/react/dialog\";\n\nexport function DialogBackdrop({\n  className,\n  ...props\n}: ComponentProps<typeof SdkBackdrop>) {\n  return (\n    <SdkBackdrop\n      {...props}\n      className={(state) =>\n        cn(\n          \"fixed inset-0 bg-foreground/25 motion-safe:transition-opacity motion-safe:duration-150 data-starting-style:opacity-0 data-ending-style:opacity-0\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\nexport function DialogContent({\n  className,\n  ...props\n}: ComponentProps<typeof SdkContent>) {\n  return (\n    <SdkContent\n      {...props}\n      className={(state) =>\n        cn(\n          \"fixed inset-0 m-auto h-fit max-h-[min(90dvh,48rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto overscroll-contain rounded-xl border border-border bg-background p-6 text-foreground shadow-xl outline-none motion-safe:transition-opacity motion-safe:duration-150 data-starting-style:opacity-0 data-ending-style:opacity-0\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\nexport function DialogTitle({\n  className,\n  ...props\n}: ComponentProps<typeof SdkTitle>) {\n  return (\n    <SdkTitle\n      {...props}\n      className={(state) =>\n        cn(\n          \"text-lg font-semibold tracking-tight\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\nexport function DialogDescription({\n  className,\n  ...props\n}: ComponentProps<typeof SdkDescription>) {\n  return (\n    <SdkDescription\n      {...props}\n      className={(state) =>\n        cn(\n          \"text-sm leading-6 text-muted-foreground\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/navui/dialog.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

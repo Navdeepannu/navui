@@ -85,6 +85,8 @@ export function createContributionGraphData(
   for (const day of inputDays) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(day.date) || !Number.isFinite(day.count)) continue
 
+    const parsed = new Date(`${day.date}T00:00:00Z`)
+    if (!Number.isFinite(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== day.date) continue
     const previous = countsByDate.get(day.date)
     const count = Math.max(0, Math.round(day.count)) + (previous?.count ?? 0)
     countsByDate.set(day.date, {

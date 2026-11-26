@@ -5,7 +5,7 @@ import path from "node:path";
 import { cache } from "react";
 import { codeToHtml, type BundledLanguage } from "shiki";
 
-import type { BlockDefinition, BlockSourceFile } from "@/registry/types";
+import type { RegistryCatalogEntry, BlockSourceFile } from "@/registry/types";
 
 const languageByExtension = {
   ".css": "css",
@@ -36,19 +36,23 @@ function normalizeSourceTarget(target: string) {
 }
 
 export const readBlockSource = cache(async (sourcePath: string) => {
-  const root = process.cwd();
-  const absolutePath = path.resolve(root, sourcePath);
-  const relativePath = path.relative(root, absolutePath);
+  const normalized = path.posix.normalize(sourcePath.replaceAll("\\", "/"));
+  if (path.isAbsolute(sourcePath)) throw new Error(`Source must stay inside the project: ${sourcePath}`);
 
-  if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
-    throw new Error(`Block source must stay inside the project: ${sourcePath}`);
+  if (normalized.startsWith("registry/")) {
+    return readFile(path.join(process.cwd(), "registry", normalized.slice("registry/".length)), "utf8");
   }
-
-  return readFile(absolutePath, "utf8");
+  if (normalized.startsWith("components/examples/")) {
+    return readFile(path.join(process.cwd(), "components/examples", normalized.slice("components/examples/".length)), "utf8");
+  }
+  if (normalized.startsWith("components/ui/")) {
+    return readFile(path.join(process.cwd(), "components/ui", normalized.slice("components/ui/".length)), "utf8");
+  }
+  throw new Error(`Source must belong to the registry, examples, or shared primitives: ${sourcePath}`);
 });
 
 export const readBlockSources = cache(
-  async (block: BlockDefinition): Promise<BlockSourceFile[]> =>
+  async (block: Pick<RegistryCatalogEntry, "registry">): Promise<BlockSourceFile[]> =>
     Promise.all(
       block.registry.files.map(async (file) => {
         const target = normalizeSourceTarget(file.target);

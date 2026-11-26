@@ -15,8 +15,6 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { GitHubIcon } from "@/components/icons/github-icon";
 import { siteConfig } from "@/config/site";
 import { cn } from "cn";
-import { BlocksSearchButton } from "@/components/blocks/blocks-search-button";
-import { BlocksStyleSwitcher } from "@/components/blocks/blocks-style-switcher";
 
 type DesignSystemLayoutProps = {
   children: ReactNode;
@@ -92,11 +90,9 @@ export default async function DesignSystemLayout({
                     {/* Only visible when sidebar is collapsed */}
                     <BlocksSidebarReopen />
 
-                    {/* Search */}
-                    <BlocksSearchButton />
 
-                    {/* Style switcher */}
-                    <BlocksStyleSwitcher activeSystem={system.id} />
+
+                    <Link href="/components" className="rounded-md px-2 py-1 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring">Components</Link>
                   </div>
 
                   {/* RIGHT CONTROLS */}

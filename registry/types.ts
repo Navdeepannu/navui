@@ -9,12 +9,14 @@ export type RegistryFileType =
   | "registry:component"
   | "registry:ui"
   | "registry:lib"
-  | "registry:hook";
+  | "registry:hook"
+  | "registry:file";
 
 export type RegistryFile = {
   source: string;
   target: string;
   type: RegistryFileType;
+  shared?: boolean;
 };
 
 export type BlockSourceFile = {
@@ -43,3 +45,38 @@ export type BlockCatalogEntry = {
 export type BlockDefinition = BlockCatalogEntry & {
   component: ComponentType;
 };
+
+export type ComponentCatalogEntry = {
+  id: `components/${string}`;
+  registryName: string;
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+  status: BlockStatus;
+  tags: readonly string[];
+  usageExample: string;
+  api: readonly {
+    prop: string;
+    type: string;
+    default: string;
+    description: string;
+  }[];
+  notes: readonly string[];
+  preview: string;
+  examples: readonly {
+    id: string;
+    title: string;
+    description: string;
+    source: string;
+  }[];
+  provenance: { repository: string; commit: string; path: string };
+  registry: {
+    type: "registry:ui";
+    dependencies: readonly string[];
+    registryDependencies: readonly string[];
+    files: readonly [RegistryFile, ...RegistryFile[]];
+  };
+};
+
+export type RegistryCatalogEntry = BlockCatalogEntry | ComponentCatalogEntry;

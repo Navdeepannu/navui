@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import type { BlockDefinition } from "@/registry/types";
+type InstallableItem = { registryName: string };
 
 export const packageManagerIds = ["npm", "pnpm", "yarn", "bun"] as const;
 
@@ -14,18 +14,18 @@ const shadcnExecutors: BlockInstallCommands = {
   bun: "bunx --bun shadcn@latest add",
 };
 
-export function getBlockRegistryUrl(block: BlockDefinition) {
+export function getBlockRegistryUrl(block: InstallableItem) {
   return new URL(`/r/${block.registryName}.json`, siteConfig.url).toString();
 }
 
-export function getBlockInstallCommand(block: BlockDefinition) {
+export function getBlockInstallCommand(block: InstallableItem) {
   return getBlockInstallCommands(block).npm;
 }
 
 export function getBlockInstallCommands(
-  block: BlockDefinition,
+  block: InstallableItem,
 ): BlockInstallCommands {
-  const registryUrl = getBlockRegistryUrl(block);
+  const registryUrl = `@navui/${block.registryName}`;
 
   return {
     npm: `${shadcnExecutors.npm} ${registryUrl}`,

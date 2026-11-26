@@ -53,10 +53,6 @@ export default async function DesignSystemPage({
   if (!system) notFound();
 
   const categories = getBlockCategorySummaries(system.id);
-  const blockCount = categories.reduce(
-    (total, category) => total + category.count,
-    0,
-  );
   const availableCategories = categories.filter(
     (category) => category.count > 0,
   );
@@ -66,7 +62,8 @@ export default async function DesignSystemPage({
       designSystem={system.id}
       className="flex min-h-0 flex-1 flex-col"
     >
-      <div className="w-full md:px-4 px-2">
+      <main className="w-full md:px-4 px-2 pb-6">
+        <header className="px-1 py-8"><h1 className="text-2xl font-semibold tracking-tight">NavUI blocks</h1><p className="mt-2 text-sm text-muted-foreground">Reusable sections built on a neutral foundation. Light and dark by default.</p></header>
         {availableCategories.length > 0 ? (
           <section aria-labelledby="category-heading" className="mt-2">
             <h2 id="category-heading" className="sr-only">
@@ -106,7 +103,7 @@ export default async function DesignSystemPage({
             </EmptyHeader>
           </Empty>
         )}
-      </div>
+      </main>
     </DesignSystemRoot>
   );
 }

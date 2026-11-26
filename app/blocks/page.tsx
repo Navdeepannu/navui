@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 export const metadata: Metadata = {
   title: "Blocks",
   description:
-    "Browse reusable NavUI blocks across the free Base and Iris systems and the paid Pro system.",
+    "Browse reusable NavUI blocks on one neutral foundation with light and dark modes.",
 };
 
 export default function BlocksPage() {

@@ -14,8 +14,8 @@ export function HeroSection() {
             <div className="flex max-w-lg flex-col gap-4 md:mx-auto">
               <p className="text-sm text-balance text-muted-foreground md:text-base">
                 A growing collection of polished React components and blocks
-                built with shadcn/ui, Tailwind CSS, and modern frontend
-                patterns.
+                with one neutral foundation and light and dark modes.
+                Customize the source and install through the shadcn registry.
               </p>
 
               <div className="flex items-center gap-2">
@@ -23,17 +23,17 @@ export function HeroSection() {
                   className="rounded-full border-0 shadow-sm ring-1 ring-foreground/6.5"
                   variant="default"
                   nativeButton={false}
-                  render={<Link href="/blocks" />}
+                  render={<Link href="/components" />}
                 >
-                  Browse Blocks
+                  Browse Components
                 </Button>
                 <Button
                   className="w-fit rounded-full shadow-sm"
                   variant="outline"
                   nativeButton={false}
-                  render={<Link href="/components" />}
+                  render={<Link href="/blocks" />}
                 >
-                  View Components
+                  Explore Blocks
                 </Button>
               </div>
             </div>

@@ -1,9 +1,9 @@
+@layer ui-sdk;
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@import "../components/shared/iris.css";
-@import "../components/shared/Atelier.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

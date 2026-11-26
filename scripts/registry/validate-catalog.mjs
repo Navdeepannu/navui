@@ -37,15 +37,16 @@ export function validateBlockCatalog(
 
   for (const block of blocks) {
     const owner = block.id || block.registryName || block.slug || "Unknown block";
-    const expectedId = `${block.designSystem}/${block.slug}`;
-    const expectedRegistryName = `${block.designSystem}-${block.slug}`;
-    const expectedSource =
+    const isComponent = block.registry.type === "registry:ui";
+    const expectedId = isComponent ? `components/${block.slug}` : `${block.designSystem}/${block.slug}`;
+    const expectedRegistryName = isComponent ? block.slug : `${block.designSystem}-${block.slug}`;
+    const expectedSource = isComponent ? `registry/components/${block.slug}.tsx` :
       `registry/blocks/${block.designSystem}/${block.category}/` +
       `${block.slug}/${block.slug}.tsx`;
-    const expectedTarget =
+    const expectedTarget = isComponent ? `components/navui/${block.slug}.tsx` :
       `components/blocks/${block.designSystem}/${block.category}/` +
       `${block.slug}.tsx`;
-    const routeKey = `${block.designSystem}/${block.slug}`;
+    const routeKey = expectedId;
     const primaryFile = block.registry.files[0];
 
     addDuplicateError(errors, ids, "catalog id", block.id, owner);
@@ -58,11 +59,11 @@ export function validateBlockCatalog(
     );
     addDuplicateError(errors, routes, "preview route", routeKey, owner);
 
-    if (!knownDesignSystems.has(block.designSystem)) {
+    if (!isComponent && !knownDesignSystems.has(block.designSystem)) {
       errors.push(`${owner}: unknown design system "${block.designSystem}".`);
     }
 
-    if (!knownCategories.has(block.category)) {
+    if (!isComponent && !knownCategories.has(block.category)) {
       errors.push(`${owner}: unknown block category "${block.category}".`);
     }
 
@@ -76,7 +77,7 @@ export function validateBlockCatalog(
       );
     }
 
-    if (block.registry.type !== "registry:block") {
+    if (!isComponent && block.registry.type !== "registry:block") {
       errors.push(`${owner}: registry.type must be "registry:block".`);
     }
 
@@ -93,8 +94,8 @@ export function validateBlockCatalog(
       errors.push(`${owner}: primary target must be "${expectedTarget}".`);
     }
 
-    if (primaryFile.type !== "registry:component") {
-      errors.push(`${owner}: primary file type must be "registry:component".`);
+    if (primaryFile.type !== (isComponent ? "registry:ui" : "registry:component")) {
+      errors.push(`${owner}: primary file type must be "${isComponent ? "registry:ui" : "registry:component"}".`);
     }
 
     const duplicateSources = findDuplicates(
@@ -113,13 +114,13 @@ export function validateBlockCatalog(
     }
 
     for (const file of block.registry.files) {
-      addDuplicateError(
-        errors,
-        installTargets,
-        "install target",
-        file.target,
-        owner,
-      );
+      const previous = installTargets.get(file.target);
+      if (previous && file.shared && previous.shared && previous.source === file.source) continue;
+      if (!previous) {
+        installTargets.set(file.target, { source: file.source, shared: file.shared, owner });
+        continue;
+      }
+      errors.push(`${owner}: duplicate install target "${file.target}" already belongs to ${previous.owner}. Shared files must have the same source and target.`);
     }
 
     for (const dependency of findDuplicates(block.registry.dependencies)) {

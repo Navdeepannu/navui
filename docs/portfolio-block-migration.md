@@ -3,7 +3,7 @@
 This inventory maps the active `blockItems` from the Portfolio repository to the standalone NavUI catalog. The target catalog, not this document, remains the executable source of truth.
 
 - Source: `Navdeepannu/Portfolio`, branch `main`, commit `c4fcc26d0fb10293cf549398e331cb5cc7ec350c`
-- Target design system: Base
+- Target foundation: neutral NavUI; `base` source paths and public names are retained for compatibility
 - Active source blocks: 45
 - Included target blocks: 45
 - Primitive variants: the source inventory did not declare block-level primitive variants. Migrated blocks use the target project's Base UI primitives without inventing Radix or React Aria variants.

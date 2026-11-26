@@ -83,14 +83,11 @@ export default async function BlockCategoryPage({
   if (!system || !category) notFound();
 
   const blocks = getBlocksByCategory(system.id, category.id);
-  const publicSources =
-    system.access === "free"
-      ? await Promise.all(
+  const publicSources = await Promise.all(
           blocks.map(
             async (block) => [block.id, await readBlockSources(block)] as const,
           ),
-        )
-      : [];
+        );
   const sourceById = new Map(publicSources);
 
   return (
@@ -100,7 +97,7 @@ export default async function BlockCategoryPage({
     >
       <div className="w-full px-4 pb-4">
         <header className="mb-[calc(var(--ui-spacing)*15-0.25px)] flex gap-x-8 gap-y-5 pt-16 max-md:flex-col md:items-end lg:h-[calc(var(--ui-spacing)*33+0.5px)] lg:pt-17">
-          <h1 className="min-w-sm text-2xl leading-tight tracking-tight text-balance text-muted-foreground">
+          <h1 className="min-w-0 text-2xl leading-tight tracking-tight text-balance text-muted-foreground">
             <div className="flex items-start flex-col">
               <span className="captalize text-sm pb-0.5">{system.name}</span>
               <span className="text-foreground">

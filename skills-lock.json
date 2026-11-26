@@ -1,11 +1,18 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
     "shadcn": {
       "source": "shadcn/ui",
       "sourceType": "github",
       "skillPath": "skills/shadcn/SKILL.md",
-      "computedHash": "a86630dd9b32722a4ea6846abc6756d5da8f06bdc2343dbc625923cc5c7a758b"
+      "computedHash": ""
+    },
+    "ui-sdk": {
+      "source": "vercel-labs/ui",
+      "commit": "0da01a3e8c7b679666c801c53ea175a0c528d93c",
+      "sourceType": "github",
+      "skillPath": "packages/core/skills/ui-sdk/SKILL.md",
+      "computedHash": "1af8b09475fd1c8784489c4c1099eb167e28297c344e1102fb017ca07ce74d00"
     }
   }
 }

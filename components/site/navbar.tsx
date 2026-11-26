@@ -13,8 +13,6 @@ import { Logo } from "./logo";
 const menuItems = [
   { name: "Blocks", href: "/blocks" },
   { name: "Components", href: "/components" },
-  { name: "Illustrations", href: "/illustrations" },
-  { name: "Docs", href: "/docs" },
 ];
 
 export function Navbar() {

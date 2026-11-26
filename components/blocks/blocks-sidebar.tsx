@@ -38,8 +38,6 @@ type BlocksSidebarProps = {
 const mainNavigation = [
   { name: "Blocks", href: "/blocks" },
   { name: "Components", href: "/components" },
-  { name: "Illustrations", href: "/illustrations" },
-  { name: "Docs", href: "/docs" },
 ] as const;
 
 const categoryItemStyles = cn(

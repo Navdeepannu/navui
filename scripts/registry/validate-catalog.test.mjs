@@ -4,7 +4,7 @@ import test from "node:test";
 import { validateBlockCatalog } from "./validate-catalog.mjs";
 
 const options = {
-  designSystemIds: ["base", "iris", "pro"],
+  designSystemIds: ["base"],
   categoryIds: ["blog", "hero"],
 };
 

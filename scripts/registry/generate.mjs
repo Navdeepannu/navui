@@ -1,8 +1,8 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, readdir, unlink } from "node:fs/promises";
 import path from "node:path";
 
 import { designSystems } from "../../config/design-systems.ts";
-import { blockCatalog } from "../../registry/catalog.ts";
+import { registryCatalog } from "../../registry/catalog.ts";
 import { blockCategories } from "../../registry/categories.ts";
 import { validateBlockCatalog } from "./validate-catalog.mjs";
 
@@ -10,25 +10,19 @@ const root = process.cwd();
 const outputPath = path.join(root, "registry.json");
 const checkOnly = process.argv.includes("--check");
 
-validateBlockCatalog(blockCatalog, {
+validateBlockCatalog(registryCatalog, {
   designSystemIds: designSystems.map((designSystem) => designSystem.id),
   categoryIds: blockCategories.map((category) => category.id),
 });
-
-const publicSystems = new Set(
-  designSystems
-    .filter((designSystem) => designSystem.access === "free")
-    .map((designSystem) => designSystem.id),
-);
 
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
   name: "navui",
   homepage: "https://navui.dev",
-  items: blockCatalog
+  items: registryCatalog
     .filter(
       (block) =>
-        block.status === "published" && publicSystems.has(block.designSystem),
+        block.status === "published",
     )
     .map((block) => ({
       name: block.registryName,
@@ -63,6 +57,12 @@ if (checkOnly) {
     process.exitCode = 1;
   }
 } else {
+  const publishedNames = new Set(registry.items.map((item) => `${item.name}.json`));
+  for (const filename of await readdir(path.join(root, "public/r"))) {
+    if (filename.endsWith(".json") && filename !== "registry.json" && !publishedNames.has(filename)) {
+      await unlink(path.join(root, "public/r", filename));
+    }
+  }
   await writeFile(outputPath, nextContents);
   console.log(`Generated ${path.relative(root, outputPath)}.`);
 }

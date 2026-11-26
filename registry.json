@@ -944,6 +944,279 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "animated-numbers",
+      "type": "registry:ui",
+      "title": "Animated Numbers",
+      "description": "An accessible number counter that animates into view with locale-aware formatting, prefixes, suffixes, decimals, delays, and reduced-motion support.",
+      "dependencies": [
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/animated-numbers.tsx",
+          "target": "components/navui/animated-numbers.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "animated-tabs",
+      "type": "registry:ui",
+      "title": "Animated Tabs",
+      "description": "A tab component with a moving active pill and directional content transitions.",
+      "dependencies": [
+        "@radix-ui/react-use-controllable-state",
+        "cn",
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/animated-tabs.tsx",
+          "target": "components/navui/animated-tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/primitives/radix/tabs.tsx",
+          "target": "components/navui/primitives/radix/tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "contribution-graph",
+      "type": "registry:ui",
+      "title": "Contribution Graph",
+      "description": "A clean, accessible contribution calendar with built-in data normalization, keyboard navigation, day tooltips, and responsive latest-day visibility.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/contribution-graph.tsx",
+          "target": "components/navui/contribution-graph.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "expandable-card",
+      "type": "registry:ui",
+      "title": "Expandable Card",
+      "description": "A compound card-dialog component for composing a compact trigger and a fully custom expanded experience with shared-layout motion.",
+      "dependencies": [
+        "@radix-ui/react-use-controllable-state",
+        "class-variance-authority",
+        "cn",
+        "lucide-react",
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/expandable-card.tsx",
+          "target": "components/navui/expandable-card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/primitives/radix/button.tsx",
+          "target": "components/navui/primitives/radix/button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "keyboard-shortcut",
+      "type": "registry:ui",
+      "title": "Keyboard Shortcut",
+      "description": "A keyboard shortcut display that reacts to each pressed key, triggers a callback when the full chord is held, and optionally plays key sounds.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/keyboard-shortcut.tsx",
+          "target": "components/navui/keyboard-shortcut.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "components/ui/kbd.tsx",
+          "target": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "magnetic-button",
+      "type": "registry:ui",
+      "title": "Magnetic Button",
+      "description": "A shadcn-compatible button that subtly follows the cursor using spring-based motion.",
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/magnetic-button.tsx",
+          "target": "components/navui/magnetic-button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/primitives/radix/button.tsx",
+          "target": "components/navui/primitives/radix/button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "package-manager-command",
+      "type": "registry:ui",
+      "title": "Package Manager Command",
+      "description": "An accessible package-manager selector and copy command bar with controlled state and inline copy-status icons.",
+      "dependencies": [
+        "@radix-ui/react-use-controllable-state",
+        "class-variance-authority",
+        "cn",
+        "lucide-react",
+        "radix-ui"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/package-manager-command.tsx",
+          "target": "components/navui/package-manager-command.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/primitives/radix/button.tsx",
+          "target": "components/navui/primitives/radix/button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/primitives/radix/dropdown-menu.tsx",
+          "target": "components/navui/primitives/radix/dropdown-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "proximity-nav",
+      "type": "registry:ui",
+      "title": "Proximity Nav",
+      "description": "A route-aware sidebar navigation whose guide lines stretch toward the pointer, with controlled active state and a navigation-free preview mode.",
+      "dependencies": [
+        "cn",
+        "motion",
+        "next"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/proximity-nav.tsx",
+          "target": "components/navui/proximity-nav.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "rail-nav",
+      "type": "registry:ui",
+      "title": "Rail Nav",
+      "description": "A compact motion rail that preserves its line-to-link reveal while supporting anchors, application routes, custom observer targets, and controlled state.",
+      "dependencies": [
+        "@radix-ui/react-use-controllable-state",
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/rail-nav.tsx",
+          "target": "components/navui/rail-nav.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "segment-spotlight",
+      "type": "registry:ui",
+      "title": "Segment Spotlight",
+      "description": "A composable spotlight canvas for connecting floating content with an interactive toolbar in product tours, filters, workflows, and feature sections.",
+      "dependencies": [
+        "@radix-ui/react-use-controllable-state",
+        "cn",
+        "motion",
+        "radix-ui"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/segment-spotlight.tsx",
+          "target": "components/navui/segment-spotlight.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
     }
   ]
 }

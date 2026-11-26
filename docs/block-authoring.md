@@ -1,88 +1,55 @@
-# Block authoring
+# NavUI contributor guide
 
-The catalog is organized by design system, category, and block slug:
+NavUI has one neutral foundation with light/dark modes. Prefer UI SDK for new
+interactive components. Preserve the behavior of existing Motion, Radix, and
+Base UI items during migration. Build reusable styled components first and
+compose blocks afterward. No separate CLI or AI connection belongs in Phase 1.
 
-```text
-registry/blocks/
-  base/
-    blog/
-      blog-section-one/
-        blog-section-one.tsx
-  iris/
-  pro/
-```
+## Source and catalog
 
-Keep each block self-contained and consumer-safe. A registry block must not
-import documentation-site components or data. It may use normal shadcn aliases
-such as `cn` and must declare every npm and registry dependency in the
-catalog.
+`registry/catalog.ts` is the canonical metadata and install manifest for both
+collections. Use the existing registry pipeline; do not add a parallel generator.
 
-## Add a block
+- Components: `registry/components/<slug>.tsx` → `components/navui/<slug>.tsx`.
+- Existing blocks: `registry/blocks/base/<category>/<slug>/<slug>.tsx` →
+  `components/blocks/base/<category>/<slug>.tsx`.
+- Demos: `components/examples`, connected through `registry/component-previews.ts`.
+- Existing block import map: `registry/components.ts`.
 
-1. Add the component at
-   `registry/blocks/<system>/<category>/<slug>/<slug>.tsx`.
-2. Add one metadata entry to `registry/catalog.ts`.
-3. Import the component and map its catalog ID in `registry/components.ts`.
-4. Run `pnpm run registry:build`.
-5. Run `pnpm run check`.
-6. Inspect the system category page at
-   `/blocks/<system>/<category>` on mobile and desktop, in light and dark mode.
+Preserve public item names and Base source paths. A registry implementation must
+never import website data, examples, preview infrastructure, or application state.
+Use semantic tokens. Keep generic components framework-independent; explicitly
+label any framework-specific item and declare its framework dependency.
 
-Published catalog entries automatically appear in navigation, category counts,
-isolated previews, Preview/Code tabs, responsive viewport controls, CLI commands,
-source-file navigation, static routes, and generated registry files. Draft and
-archived entries remain out of the public catalog.
+Each catalog entry declares title, description, status, category, source files,
+consumer targets, npm dependencies, and registry dependencies. Components also
+declare usage, props, accessibility notes, demo sources, and source provenance.
+Keep demo data outside installable files. Never create a second metadata list for
+navigation, docs, installation, or source browsing.
 
-## Showcase data flow
+Required primitive helpers are declared files. Shared files must use the same
+source and consumer target with `shared: true`; never duplicate helper source.
+The migrated Radix helpers are isolated from the site’s Base UI primitives.
+The existing Kbd implementation is reused directly. Preserve license notices and
+include the original MIT license with migrated components.
 
-`registry/catalog.ts` is the canonical metadata and install manifest. Keep the
-runtime component import in `registry/components.ts`; everything else is derived:
-
-```text
-catalog entry + component map
-  -> category listing and counts
-  -> /preview/<system>/<slug>
-  -> Preview / Code showcase
-  -> registry.json and public/r/*.json
-```
-
-The preview route is intentionally isolated in an iframe. A block can use its
-own links, sticky positioning, and responsive layout without interfering with
-the documentation shell. The frame reports its content height to the showcase,
-while the toolbar supplies desktop, tablet, mobile, reload, and full-screen
-controls.
-
-Every file declared in `registry.files` is loaded into the Code tab and is
-included in the generated shadcn item. A block must declare at least one file;
-use `registry:component` for the primary block component and add supporting
-`registry:ui`, `registry:lib`, or `registry:hook` files to the same array rather
-than building a second source-preview list.
-
-The registry check also rejects duplicate IDs, preview routes, registry names,
-install targets, dependencies, and source entries. Primary source and install
-paths must follow the directory contract above, so catalog mistakes fail before
-they reach the site or a consumer project.
-
-## Free and Pro boundaries
-
-Base and Iris are public systems. Their published blocks receive source panels
-and public shadcn registry payloads.
-
-Pro is a paid system. Its public pages can render previews, but the catalog does
-not expose source or install commands and the registry generator excludes Pro
-items. Authentication and paid delivery can be attached later without changing
-the block directory contract.
-
-## Consumer install command
-
-Every public block exposes npm, pnpm, Yarn, and Bun commands from the same
-registry URL. The npm form is:
+## Verify
 
 ```bash
-npx shadcn@latest add https://navui.dev/r/base-blog-section-one.json
+pnpm run registry:build
+pnpm run check
+pnpm run build
 ```
 
-Consumers may also configure the registry namespace in `components.json`:
+Inspect `/components/<slug>` and `/preview/components/<slug>` in light/dark mode,
+on narrow and desktop screens, with keyboard and reduced-motion settings.
+Check examples, source selection/copy, installation controls, and console errors.
+For blocks, inspect `/blocks/base/<category>` and `/preview/base/<slug>`.
+Smoke-test installation in a disposable configured shadcn consumer. Compile the
+installed files without imports from the NavUI website. Never edit `registry.json`
+or `public/r/*.json` by hand; `registry:build` regenerates and prunes stale items.
+
+## Consumer configuration
 
 ```json
 {
@@ -92,4 +59,11 @@ Consumers may also configure the registry namespace in `components.json`:
 }
 ```
 
-Then install with `npx shadcn@latest add @navui/base-blog-section-one`.
+```bash
+npx shadcn@latest add @navui/animated-tabs
+npx shadcn@latest add @navui/base-blog-section-one
+```
+
+Deployment must be verified separately. For local testing, use an absolute
+`http://localhost:3000/r/<name>.json` URL. Use `docs/phase-1-migration.md` for the
+source inventory, known limitations, and later UI SDK migration candidates.

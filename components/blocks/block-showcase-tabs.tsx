@@ -5,7 +5,6 @@ import { useState } from "react";
 import {
   Code2,
   Eye,
-  LockKeyhole,
   Maximize,
   Monitor,
   RotateCcw,
@@ -18,7 +17,7 @@ import {
   type BlockPreviewWidth,
 } from "@/components/blocks/block-preview-frame";
 import { BlockSourceExplorer } from "@/components/blocks/block-source-explorer";
-import { PackageManagerCommand } from "@/components/blocks/package-manager-command";
+import { PackageManagerCommand } from "@/registry/components/package-manager-command";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "cn";
@@ -41,7 +40,7 @@ type BlockShowcaseTabsProps = {
   blockId: string;
   title: string;
   previewPath: string;
-  commands?: BlockInstallCommands;
+  commands: BlockInstallCommands;
   sourceFiles: BlockSourceFile[];
 };
 
@@ -55,7 +54,6 @@ export function BlockShowcaseTabs({
   const [activeTab, setActiveTab] = useState<BlockTab>("preview");
   const [previewWidth, setPreviewWidth] = useState<BlockPreviewWidth>("full");
   const [reloadKey, setReloadKey] = useState(0);
-  const isPublic = Boolean(commands && sourceFiles.length > 0);
 
   function selectPreviewWidth(width: BlockPreviewWidth) {
     setPreviewWidth(width);
@@ -76,11 +74,7 @@ export function BlockShowcaseTabs({
               Preview
             </TabsTrigger>
             <TabsTrigger value="code">
-              {isPublic ? (
-                <Code2 aria-hidden="true" data-icon="inline-start" />
-              ) : (
-                <LockKeyhole aria-hidden="true" data-icon="inline-start" />
-              )}
+              <Code2 aria-hidden="true" data-icon="inline-start" />
               Code
             </TabsTrigger>
           </TabsList>
@@ -117,14 +111,7 @@ export function BlockShowcaseTabs({
         </div>
 
         <div className="flex min-w-0 items-center gap-2">
-          {commands ? (
-            <PackageManagerCommand commands={commands} />
-          ) : (
-            <div className="inline-flex h-9 flex-1 items-center gap-2 rounded-lg border border-dashed px-3 text-xs font-medium text-muted-foreground sm:flex-none">
-              <LockKeyhole aria-hidden="true" className="size-3.5" />
-              Pro access
-            </div>
-          )}
+          <PackageManagerCommand commands={commands} />
 
           <div className="flex h-9 shrink-0 items-center gap-0.5 rounded-lg bg-muted p-0.75">
             <Button
@@ -173,24 +160,7 @@ export function BlockShowcaseTabs({
         value="code"
         className="flex min-h-0 min-w-0 flex-col overflow-hidden"
       >
-        {isPublic ? (
-          <BlockSourceExplorer files={sourceFiles} />
-        ) : (
-          <div className="flex min-h-112 items-center justify-center rounded-xl border border-dashed bg-muted/20 px-6 py-16 text-center">
-            <div className="max-w-sm">
-              <span className="mx-auto flex size-10 items-center justify-center rounded-full border bg-background shadow-xs">
-                <LockKeyhole aria-hidden="true" className="size-4" />
-              </span>
-              <h3 className="mt-4 font-semibold">
-                Source is included with Pro
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                The preview stays public so you can evaluate the design. Code
-                and registry installation are reserved for Pro customers.
-              </p>
-            </div>
-          </div>
-        )}
+        <BlockSourceExplorer files={sourceFiles} />
       </TabsContent>
     </Tabs>
   );

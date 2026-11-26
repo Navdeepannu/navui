@@ -11,7 +11,6 @@ export function BlockShowcase({
   block,
   sourceFiles = [],
 }: BlockShowcaseProps) {
-  const isPublic = sourceFiles.length > 0;
   const previewPath = `/preview/${block.designSystem}/${block.slug}`;
 
   return (
@@ -20,7 +19,7 @@ export function BlockShowcase({
         blockId={block.id}
         title={block.title}
         previewPath={previewPath}
-        commands={isPublic ? getBlockInstallCommands(block) : undefined}
+        commands={getBlockInstallCommands(block)}
         sourceFiles={sourceFiles}
       />
     </article>

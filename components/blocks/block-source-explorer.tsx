@@ -199,7 +199,7 @@ export function BlockSourceExplorer({ files }: BlockSourceExplorerProps) {
             </span>
           </div>
           <nav
-            aria-label="Block source files"
+            aria-label="Source files"
             className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2.5"
           >
             <FileTree

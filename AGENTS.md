@@ -2,7 +2,7 @@
 
 ## Project purpose
 
-NavUI is a production-quality collection of reusable React components, landing-page blocks, and design systems built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, and accessible UI primitives.
+NavUI is a production-quality collection of polished, customizable React components and blocks built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, and accessible UI primitives.
 
 Every public component should be:
 
@@ -36,32 +36,28 @@ For substantial UI work, establish a clear design direction before implementatio
 - Content density.
 - Responsive behavior.
 - Interaction and accessibility requirements.
-- How the result fits the selected NavUI design kit.
+- How the result fits NavUI’s neutral visual foundation.
 
 If requirements materially conflict or a decision would change the public component API, ask before proceeding.
 
 ## NavUI design architecture
 
-NavUI has two separate customization axes:
+NavUI has one neutral visual foundation with light and dark modes. Existing
+`base-*` registry names, Base block source paths, and `/blocks/base` links are
+compatibility contracts, not a separate product offering.
 
-1. Design kit: visual language, tokens, typography, radius, color, and elevation.
-2. Primitive implementation: Radix UI, Base UI, or React Aria behavior.
+UI SDK is the preferred foundation for new interactive components. Read the
+installed skill and version-matched documentation before implementing new behavior.
+Existing Motion, Radix, and Base UI components remain supported during migration;
+do not change their public APIs or primitive behavior merely to standardize them.
+Keep primitive-specific helpers isolated and share neutral semantic tokens.
 
-Keep these axes independent.
+Build styled, reusable components first; compose larger blocks from those
+components afterward. Distribution uses the shadcn CLI and the NavUI registry.
+Do not create a separate NavUI CLI. Phase 1 includes no new AI components, agent
+integrations, model connections, or backend services.
 
-- A design-kit change must not accidentally change component behavior.
-- A primitive change must preserve the intended visual design and public API.
-- Do not import one primitive library into another primitive variation unless explicitly required.
-- Prefer the native accessibility and composition patterns of the selected primitive.
-- Do not create a large abstraction merely to hide meaningful differences between primitive libraries.
-
-### Design kits
-
-- **Base:** neutral, restrained, and close to the default shadcn visual language.
-- **Iris:** modern SaaS styling with cool neutrals and controlled indigo or violet accents.
-- **Pro:** refined editorial styling using warm neutrals, black, off-white, olive accents, and restrained elevation.
-
-Treat the design-kit CSS and semantic tokens as the source of truth. Do not duplicate token values inside components.
+Treat the neutral foundation CSS and semantic tokens as the source of truth. Do not duplicate token values inside components.
 
 Components should consume semantic values such as:
 
@@ -224,7 +220,7 @@ Distributable registry components must be self-contained and consumer-safe.
 - Do not expose internal implementation details unnecessarily.
 - Verify that copied components render correctly outside the documentation shell.
 - Keep primitive-specific implementations isolated.
-- Ensure design-kit styling is token-driven instead of duplicated per block.
+- Ensure styling is token-driven instead of duplicated per block.
 
 Intentional duplication is acceptable when it keeps a registry item portable and easy to copy. Do not extract shared code if doing so creates hidden coupling for consumers.
 
@@ -258,7 +254,7 @@ When the necessary tooling is available:
 1. Run the relevant page.
 2. Inspect mobile, tablet, and desktop layouts.
 3. Check light and dark themes when supported.
-4. Check each affected design kit.
+4. Check the neutral foundation in light and dark modes.
 5. Check each affected primitive implementation.
 6. Test keyboard navigation and visible focus.
 7. Check hover, active, disabled, loading, empty, and error states when relevant.
@@ -274,7 +270,7 @@ Never state that a change is complete if it was not verified. If verification wa
 A task is complete only when:
 
 - The requested behavior works.
-- The result fits the selected NavUI design language.
+- The result fits NavUI’s neutral design language.
 - Mobile and desktop layouts are intentional.
 - Accessibility requirements are satisfied.
 - React and TypeScript code is maintainable.
@@ -288,6 +284,14 @@ In the final handoff, briefly explain:
 - Important design or architectural decisions.
 - What was validated.
 - Any remaining limitations or follow-up work.
+
+Before using UI SDK:
+
+- Follow the ui-sdk skill when available.
+- Read node_modules/@ui-sdk/react/docs/llms.txt.
+- For custom components, consult core.md and rendering.md
+  in that documentation directory.
+- Reuse the project's existing design tokens.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

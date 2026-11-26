@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "title": "Field",
+  "description": "Labels, descriptions, errors and field sets connected by UI SDK.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/field.tsx",
+      "content": "\"use client\";\n\nimport * as Sdk from \"@ui-sdk/react/field\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"cn\";\n\nexport function Field({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.Field>) {\n  return (\n    <Sdk.Field\n      {...props}\n      className={(state) =>\n        cn(\n          \"flex min-w-0 flex-col gap-2\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n\nexport function FieldGroup({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.FieldGroup>) {\n  return (\n    <Sdk.FieldGroup\n      {...props}\n      className={(state) =>\n        cn(\n          \"flex min-w-0 flex-col gap-6\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n\nexport function FieldLabel({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.FieldLabel>) {\n  return (\n    <Sdk.FieldLabel\n      {...props}\n      className={(state) =>\n        cn(\n          \"w-fit text-sm font-medium leading-5 data-disabled:opacity-50\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n\nexport function FieldDescription({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.FieldDescription>) {\n  return (\n    <Sdk.FieldDescription\n      {...props}\n      className={(state) =>\n        cn(\n          \"text-sm leading-6 text-muted-foreground\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n\nexport function FieldError({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.FieldError>) {\n  return (\n    <Sdk.FieldError\n      {...props}\n      className={(state) =>\n        cn(\n          \"text-sm leading-6 text-destructive\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n\nexport function FieldSet({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.FieldSet>) {\n  return (\n    <Sdk.FieldSet\n      {...props}\n      className={(state) =>\n        cn(\n          \"flex min-w-0 flex-col gap-6\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n\nexport function FieldLegend({\n  className,\n  ...props\n}: ComponentProps<typeof Sdk.FieldLegend>) {\n  return (\n    <Sdk.FieldLegend\n      {...props}\n      className={(state) =>\n        cn(\n          \"mb-4 text-base font-semibold\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/navui/field.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

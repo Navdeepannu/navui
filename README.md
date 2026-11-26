@@ -84,3 +84,17 @@ its documentation/preview URLs redirect, and its old registry payload is retired
 
 See [authoring guidance](docs/component-authoring.md) for visual rules and SDK
 composition, and [component decisions and breaking changes](docs/component-migration.md).
+
+## Styled forms
+
+Field, Input, Select, Checkbox and Switch share the SDK foundation. Try them together
+at `/playground/project-settings`, or browse `/components/field`, `/components/input`,
+`/components/select`, `/components/checkbox` and `/components/switch`. Each includes
+minimal and practical state examples. Package Manager Command and component search
+reuse the canonical controls.
+
+Run `pnpm run consumer:verify` under the same Node 22.17 runtime as NavUI, with the
+local registry server running. It compares baseline and installed builds in a fresh
+consumer and verifies production HTTP rendering. See [form collection guidance and
+consumer diagnosis](docs/form-components.md); the earlier consumer failure was a
+Node runtime mismatch, reproduced before NavUI imports.

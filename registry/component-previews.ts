@@ -1,3 +1,13 @@
+import Field from "@/components/examples/field";
+import FieldStates from "@/components/examples/field-states";
+import Input from "@/components/examples/input";
+import InputStates from "@/components/examples/input-states";
+import Select from "@/components/examples/select";
+import SelectStates from "@/components/examples/select-states";
+import Checkbox from "@/components/examples/checkbox";
+import CheckboxStates from "@/components/examples/checkbox-states";
+import Switch from "@/components/examples/switch";
+import SwitchStates from "@/components/examples/switch-states";
 import type { ComponentType } from "react";
 
 import AnimatedNumbers from "@/components/examples/animated-numbers";
@@ -22,6 +32,17 @@ type CatalogItem = (typeof componentCatalog)[number];
 type PreviewSource = CatalogItem["preview"] | CatalogItem["examples"][number]["source"];
 
 const previews = {
+  "components/examples/field.tsx": Field,
+  "components/examples/field-states.tsx": FieldStates,
+  "components/examples/input.tsx": Input,
+  "components/examples/input-states.tsx": InputStates,
+  "components/examples/select.tsx": Select,
+  "components/examples/select-states.tsx": SelectStates,
+  "components/examples/checkbox.tsx": Checkbox,
+  "components/examples/checkbox-states.tsx": CheckboxStates,
+  "components/examples/switch.tsx": Switch,
+  "components/examples/switch-states.tsx": SwitchStates,
+
   "components/examples/animated-numbers.tsx": AnimatedNumbers,
   "components/examples/tabs.tsx": Tabs,
   "components/examples/tabs-variants.tsx": TabsVariants,

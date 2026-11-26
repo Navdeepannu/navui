@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "A styled checkbox with checked, mixed, required and native form states.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/checkbox.tsx",
+      "content": "\"use client\";\nimport {\n  Checkbox as SdkCheckbox,\n  CheckboxIndicator,\n} from \"@ui-sdk/react/checkbox\";\nimport type { ComponentProps } from \"react\";\nimport { CheckIcon, MinusIcon } from \"lucide-react\";\nimport { cn } from \"cn\";\nexport type { CheckedState } from \"@ui-sdk/react/checkbox\";\nexport type CheckboxProps = ComponentProps<typeof SdkCheckbox>;\nexport function Checkbox({ className, children, ...props }: CheckboxProps) {\n  return (\n    <SdkCheckbox\n      {...props}\n      className={(state) =>\n        cn(\n          \"relative inline-flex size-5 shrink-0 items-center justify-center rounded border border-input bg-background text-primary-foreground before:absolute before:-inset-2.5 data-checked:border-primary data-checked:bg-primary data-indeterminate:border-primary data-indeterminate:bg-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-disabled:cursor-not-allowed data-disabled:opacity-50 data-invalid:border-destructive motion-safe:transition-colors\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    >\n      {children ?? (\n        <CheckboxIndicator>\n          {(state) =>\n            state.indeterminate ? (\n              <MinusIcon aria-hidden=\"true\" className=\"size-3.5\" />\n            ) : (\n              <CheckIcon aria-hidden=\"true\" className=\"size-3.5\" />\n            )\n          }\n        </CheckboxIndicator>\n      )}\n    </SdkCheckbox>\n  );\n}\n\nexport { CheckboxIndicator } from \"@ui-sdk/react/checkbox\";\n",
+      "type": "registry:ui",
+      "target": "components/navui/checkbox.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

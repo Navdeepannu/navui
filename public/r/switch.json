@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "description": "A compact on/off setting with labelled, disabled and native form behavior.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/switch.tsx",
+      "content": "\"use client\";\nimport { Switch as SdkSwitch, SwitchThumb } from \"@ui-sdk/react/switch\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"cn\";\nexport type SwitchProps = ComponentProps<typeof SdkSwitch>;\nexport function Switch({ className, children, ...props }: SwitchProps) {\n  return (\n    <SdkSwitch\n      {...props}\n      className={(state) =>\n        cn(\n          \"group relative inline-flex h-6 w-11 shrink-0 items-center rounded-full border border-input bg-muted-foreground before:absolute before:-inset-y-2 before:inset-x-0 data-checked:border-primary data-checked:bg-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-disabled:cursor-not-allowed data-disabled:opacity-50 data-invalid:border-destructive motion-safe:transition-colors\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    >\n      {children ?? (\n        <SwitchThumb className=\"pointer-events-none ms-0.5 block size-4 rounded-full bg-background shadow-xs motion-safe:transition-transform motion-safe:duration-150 group-data-checked:translate-x-5 rtl:group-data-checked:-translate-x-5\" />\n      )}\n    </SdkSwitch>\n  );\n}\n\nexport { SwitchThumb } from \"@ui-sdk/react/switch\";\n",
+      "type": "registry:ui",
+      "target": "components/navui/switch.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

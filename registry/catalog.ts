@@ -473,7 +473,7 @@ export const componentCatalog = [
       "statistics",
       "accessibility"
     ],
-    "usageExample": "import { AnimatedNumber } from '@/components/navui/animated-numbers'\n\nexport function Example() {\n  return (\n    <div className=\"flex gap-8 text-4xl font-semibold\">\n      <AnimatedNumber value={38} suffix=\"%\" />\n      <AnimatedNumber value={3.2} suffix=\"×\" decimalPlaces={1} />\n      <AnimatedNumber value={125000} prefix=\"$\" duration={1.4} />\n    </div>\n  )\n}",
+    "usageExample": "import { AnimatedNumber } from '@/components/navui/animated-numbers'\n\nexport function Example() {\n  return (\n    <div className=\"flex gap-8 text-4xl font-semibold\">\n      <AnimatedNumber value={38} suffix=\"%\" />\n      <AnimatedNumber value={3.2} suffix=\"\u00d7\" decimalPlaces={1} />\n      <AnimatedNumber value={125000} prefix=\"$\" duration={1.4} />\n    </div>\n  )\n}",
     "api": [
       {
         "prop": "value",
@@ -583,7 +583,7 @@ export const componentCatalog = [
         "prop": "render / ref / onClick",
         "type": "UI SDK Button props",
         "description": "Use render to compose another element; return a Promise for pending feedback. Native type, disabled, and focusableWhenDisabled are forwarded.",
-        "default": "—"
+        "default": "\u2014"
       }
     ],
     "notes": [
@@ -713,25 +713,25 @@ export const componentCatalog = [
         "prop": "Dialog",
         "type": "UI SDK Dialog props",
         "description": "Controlled/uncontrolled open state; onOpenChange(open, details) supports cancellation.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "DialogContent",
         "type": "UI SDK content props",
         "description": "initialFocus, finalFocus, keepMounted, inline, container, refs, and render are forwarded.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "DialogTitle / DialogDescription",
         "type": "UI SDK part props",
         "description": "Required contextual name and description.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "DialogClose",
         "type": "UI SDK close props",
         "description": "Supports action and asynchronous pending dismissal.",
-        "default": "—"
+        "default": "\u2014"
       }
     ],
     "notes": [
@@ -781,25 +781,25 @@ export const componentCatalog = [
         "prop": "ExpandableCard",
         "type": "UI SDK Dialog props",
         "description": "Controlled/uncontrolled open state and cancelable onOpenChange(open, details).",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "ExpandableCardTrigger / Content",
         "type": "UI SDK trigger/content props",
         "description": "Card styling and shared-layout motion with SDK-owned dialog lifecycle. Content also takes showCloseButton, closeLabel, overlayClassName.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "ExpandableCardMedia",
         "type": "Motion span props",
         "description": "Optional shared media paired by the root, disabled under reduced motion.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "Header / Title / Description / Body / Footer / Close",
         "type": "Composable part props",
         "description": "Name and describe every dialog. Close uses SDK render and action.",
-        "default": "—"
+        "default": "\u2014"
       }
     ],
     "notes": [
@@ -816,7 +816,7 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-          "cn",
+        "cn",
         "lucide-react",
         "motion",
         "@ui-sdk/core@0.1.0-beta.17",
@@ -855,7 +855,7 @@ export const componentCatalog = [
       "interaction",
       "accessibility"
     ],
-    "usageExample": "'use client'\n\nimport { KeyboardShortcut } from '@/components/navui/keyboard-shortcut'\n\nconst commandKeys = [\n  { key: 'Meta', label: '⌘' },\n  { key: 'k', label: 'K' },\n]\n\nexport function NavbarShortcut({ onOpenCommand }: { onOpenCommand: () => void }) {\n  return (\n    <button onClick={onOpenCommand} className=\"flex items-center gap-3 rounded-lg border px-3 py-2\">\n      Open command menu\n      <KeyboardShortcut keys={commandKeys} onTrigger={onOpenCommand} />\n    </button>\n  )\n}\n\nexport function RaisedShortcut() {\n  return (\n    <KeyboardShortcut\n      keys={[\n        { key: 'Shift', label: '⇧' },\n        { key: 'p', label: 'P' },\n      ]}\n      sound=\"/sounds/key-press.mp3\"\n      keyClassName=\"size-10 rounded-md shadow-sm\"\n    />\n  )\n}",
+    "usageExample": "'use client'\n\nimport { KeyboardShortcut } from '@/components/navui/keyboard-shortcut'\n\nconst commandKeys = [\n  { key: 'Meta', label: '\u2318' },\n  { key: 'k', label: 'K' },\n]\n\nexport function NavbarShortcut({ onOpenCommand }: { onOpenCommand: () => void }) {\n  return (\n    <button onClick={onOpenCommand} className=\"flex items-center gap-3 rounded-lg border px-3 py-2\">\n      Open command menu\n      <KeyboardShortcut keys={commandKeys} onTrigger={onOpenCommand} />\n    </button>\n  )\n}\n\nexport function RaisedShortcut() {\n  return (\n    <KeyboardShortcut\n      keys={[\n        { key: 'Shift', label: '\u21e7' },\n        { key: 'p', label: 'P' },\n      ]}\n      sound=\"/sounds/key-press.mp3\"\n      keyClassName=\"size-10 rounded-md shadow-sm\"\n    />\n  )\n}",
     "api": [
       {
         "prop": "keys",
@@ -1012,7 +1012,7 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-          "cn",
+        "cn",
         "motion",
         "@ui-sdk/core@0.1.0-beta.17",
         "@ui-sdk/react@0.1.0-beta.17"
@@ -1103,13 +1103,14 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-          "cn",
+        "cn",
         "lucide-react",
         "@ui-sdk/core@0.1.0-beta.17",
         "@ui-sdk/react@0.1.0-beta.17"
       ],
       "registryDependencies": [
-        "@navui/button"
+        "@navui/button",
+        "@navui/select"
       ],
       "files": [
         {
@@ -1430,25 +1431,25 @@ export const componentCatalog = [
         "prop": "Tabs",
         "type": "UI SDK Tabs props",
         "description": "value/defaultValue are string or null; onValueChange(value, details) supports cancellation. activation replaces the legacy activationMode prop.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "TabsList / TabsTab",
         "type": "UI SDK part props",
         "description": "Name the list; pair each tab and panel by value. Supports disabled tabs and vertical orientation.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "TabsIndicator",
         "type": "UI SDK indicator props",
         "description": "Optional measured indicator; uses SDK position variables, including RTL.",
-        "default": "—"
+        "default": "\u2014"
       },
       {
         "prop": "TabsPanel",
         "type": "UI SDK panel props",
         "description": "Use keepMounted to preserve panel state. SDK owns hidden/inert and exit presence.",
-        "default": "—"
+        "default": "\u2014"
       }
     ],
     "notes": [
@@ -1466,6 +1467,391 @@ export const componentCatalog = [
         {
           "source": "registry/components/tabs.tsx",
           "target": "components/navui/tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "components/field",
+    "registryName": "field",
+    "slug": "field",
+    "title": "Field",
+    "description": "Labels, descriptions, errors and field sets connected by UI SDK.",
+    "category": "forms",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "forms",
+      "field",
+      "accessibility"
+    ],
+    "usageExample": "\"use client\";\nimport {\n  Field,\n  FieldLabel,\n  FieldDescription,\n} from \"@/components/navui/field\";\nimport { Input } from \"@/components/navui/input\";\nexport default function Example() {\n  return (\n    <Field className=\"w-full max-w-sm p-6\" name=\"field-email\">\n      <FieldLabel>Email address</FieldLabel>\n      <Input type=\"email\" placeholder=\"you@example.com\" />\n      <FieldDescription>Used for project updates.</FieldDescription>\n    </Field>\n  );\n}\n",
+    "api": [
+      {
+        "prop": "name / disabled / invalid",
+        "type": "FieldOptions",
+        "default": "SDK default",
+        "description": "Connect one SDK control per Field. Set invalid only when the consuming application owns validation."
+      },
+      {
+        "prop": "FieldLabel / FieldDescription / FieldError",
+        "type": "SDK parts",
+        "default": "SDK default",
+        "description": "SDK manages IDs and error associations. FieldError match accepts native validity keys or a boolean."
+      },
+      {
+        "prop": "FieldGroup / FieldSet / FieldLegend",
+        "type": "SDK parts",
+        "default": "SDK default",
+        "description": "Group layout; use a field set and first-child legend for related controls."
+      }
+    ],
+    "notes": [
+      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
+      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
+      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+    ],
+    "preview": "components/examples/field.tsx",
+    "examples": [
+      {
+        "id": "states",
+        "title": "Practical states",
+        "description": "Validation, reset and useful control states.",
+        "source": "components/examples/field-states.tsx"
+      }
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/field.tsx",
+          "target": "components/navui/field.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "components/input",
+    "registryName": "input",
+    "slug": "input",
+    "title": "Input",
+    "description": "A native text input with consistent focus, invalid and disabled styling.",
+    "category": "forms",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "forms",
+      "input",
+      "accessibility"
+    ],
+    "usageExample": "\"use client\";\nimport {\n  Field,\n  FieldLabel,\n  FieldDescription,\n} from \"@/components/navui/field\";\nimport { Input } from \"@/components/navui/input\";\nexport default function Example() {\n  return (\n    <Field className=\"w-full max-w-sm p-6\" name=\"input-email\">\n      <FieldLabel>Email address</FieldLabel>\n      <Input type=\"email\" placeholder=\"you@example.com\" />\n      <FieldDescription>Used for project updates.</FieldDescription>\n    </Field>\n  );\n}\n",
+    "api": [
+      {
+        "prop": "value / defaultValue / onValueChange",
+        "type": "string / (value, details) => void",
+        "default": "SDK default",
+        "description": "Controlled or uncontrolled. Reset controlled text in the consuming form reset handler. details.cancel() rejects edits."
+      },
+      {
+        "prop": "ref / type / required / disabled / readOnly",
+        "type": "Native input props",
+        "default": "SDK default",
+        "description": "Native form participation and forwarded input ref."
+      },
+      {
+        "prop": "className / render",
+        "type": "SDK part callbacks",
+        "default": "SDK default",
+        "description": "Callbacks receive SDK input state; render forwards native props and ref."
+      }
+    ],
+    "notes": [
+      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
+      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
+      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+    ],
+    "preview": "components/examples/input.tsx",
+    "examples": [
+      {
+        "id": "states",
+        "title": "Practical states",
+        "description": "Validation, reset and useful control states.",
+        "source": "components/examples/input-states.tsx"
+      }
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/input.tsx",
+          "target": "components/navui/input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "components/select",
+    "registryName": "select",
+    "slug": "select",
+    "title": "Select",
+    "description": "Composable typed single and multiple selection with SDK keyboard and form behavior.",
+    "category": "forms",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "forms",
+      "select",
+      "accessibility"
+    ],
+    "usageExample": "\"use client\";\nimport {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectItemIndicator,\n} from \"@/components/navui/select\";\nimport {\n  Field,\n  FieldLabel,\n} from \"@/components/navui/field\";\nimport { CheckIcon, ChevronDownIcon } from \"lucide-react\";\nconst regions = [\"Canada\", \"Europe\", \"United States\"];\nexport default function Example() {\n  return (\n    <Field className=\"w-full max-w-sm p-6\">\n      <FieldLabel>Region</FieldLabel>\n      <Select items={regions} defaultValue=\"Canada\">\n        <SelectTrigger>\n          <SelectValue />\n          <ChevronDownIcon aria-hidden=\"true\" />\n        </SelectTrigger>\n        <SelectContent sideOffset={6}>\n          <SelectGroup>\n            {regions.map((value) => (\n              <SelectItem key={value} value={value}>\n                {value}\n                <SelectItemIndicator>\n                  <CheckIcon aria-hidden=\"true\" />\n                </SelectItemIndicator>\n              </SelectItem>\n            ))}\n          </SelectGroup>\n        </SelectContent>\n      </Select>\n    </Field>\n  );\n}\n",
+    "api": [
+      {
+        "prop": "Select<T, Multiple>",
+        "type": "SDK SelectProps<T, Multiple>",
+        "default": "SDK default",
+        "description": "Original generic root: single value T | null; multiple values T[]. Keep items on root for SSR labels."
+      },
+      {
+        "prop": "value / defaultValue / onValueChange",
+        "type": "T | null or T[] / change callback",
+        "default": "SDK default",
+        "description": "SDK owns selection, cancellation and reset; reset controlled values in the consuming form."
+      },
+      {
+        "prop": "SelectTrigger / SelectValue",
+        "type": "SDK part props",
+        "default": "SDK default",
+        "description": "Name via FieldLabel. Value supports placeholder, maxLabels and state callbacks."
+      },
+      {
+        "prop": "SelectContent / SelectGroup / SelectItem<T>",
+        "type": "SDK part props",
+        "default": "SDK default",
+        "description": "Scrollable popup and wrapped options. Disabled items are skipped. Content supports positioning and presence props."
+      },
+      {
+        "prop": "SelectItemIndicator / SelectGroupLabel",
+        "type": "SDK parts",
+        "default": "SDK default",
+        "description": "Compose indicators and named groups. Indicators accept children and state callbacks."
+      }
+    ],
+    "notes": [
+      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
+      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
+      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+    ],
+    "preview": "components/examples/select.tsx",
+    "examples": [
+      {
+        "id": "states",
+        "title": "Practical states",
+        "description": "Validation, reset and useful control states.",
+        "source": "components/examples/select-states.tsx"
+      }
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/select.tsx",
+          "target": "components/navui/select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "components/checkbox",
+    "registryName": "checkbox",
+    "slug": "checkbox",
+    "title": "Checkbox",
+    "description": "A styled checkbox with checked, mixed, required and native form states.",
+    "category": "forms",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "forms",
+      "checkbox",
+      "accessibility"
+    ],
+    "usageExample": "\"use client\";\nimport { Checkbox } from \"@/components/navui/checkbox\";\nimport {\n  Field,\n  FieldLabel,\n} from \"@/components/navui/field\";\nexport default function Example() {\n  return (\n    <Field className=\"flex-row items-center gap-3 p-6\">\n      <Checkbox />\n      <FieldLabel>Deployment notifications</FieldLabel>\n    </Field>\n  );\n}\n",
+    "api": [
+      {
+        "prop": "checked / defaultChecked",
+        "type": "boolean | \"indeterminate\"",
+        "default": "SDK default",
+        "description": "SDK-supported mixed state; a press checks it. Reset controlled values in the consuming form."
+      },
+      {
+        "prop": "onCheckedChange",
+        "type": "(checked, details) => void",
+        "default": "SDK default",
+        "description": "Cancellation and reset reasons are forwarded."
+      },
+      {
+        "prop": "name / value / required / disabled / readOnly",
+        "type": "SDK form props",
+        "default": "SDK default",
+        "description": "Only checked, enabled controls submit. Label and describe through Field."
+      },
+      {
+        "prop": "children / className / render / ref",
+        "type": "SDK part props",
+        "default": "SDK default",
+        "description": "Default indicator includes check/mixed icons. Custom children replace it; CheckboxIndicator is exported."
+      }
+    ],
+    "notes": [
+      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
+      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
+      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+    ],
+    "preview": "components/examples/checkbox.tsx",
+    "examples": [
+      {
+        "id": "states",
+        "title": "Practical states",
+        "description": "Validation, reset and useful control states.",
+        "source": "components/examples/checkbox-states.tsx"
+      }
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/checkbox.tsx",
+          "target": "components/navui/checkbox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
+  },
+  {
+    "id": "components/switch",
+    "registryName": "switch",
+    "slug": "switch",
+    "title": "Switch",
+    "description": "A compact on/off setting with labelled, disabled and native form behavior.",
+    "category": "forms",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "forms",
+      "switch",
+      "accessibility"
+    ],
+    "usageExample": "\"use client\";\nimport { Switch } from \"@/components/navui/switch\";\nimport {\n  Field,\n  FieldLabel,\n} from \"@/components/navui/field\";\nexport default function Example() {\n  return (\n    <Field className=\"flex-row items-center gap-3 p-6\">\n      <Switch />\n      <FieldLabel>Preview deployments</FieldLabel>\n    </Field>\n  );\n}\n",
+    "api": [
+      {
+        "prop": "checked / defaultChecked",
+        "type": "boolean",
+        "default": "SDK default",
+        "description": "Controlled or uncontrolled. Reset controlled values in the consuming form."
+      },
+      {
+        "prop": "onCheckedChange",
+        "type": "(checked, details) => void",
+        "default": "SDK default",
+        "description": "SDK cancellation and reset reasons are forwarded."
+      },
+      {
+        "prop": "name / value / required / disabled / readOnly",
+        "type": "SDK form props",
+        "default": "SDK default",
+        "description": "Checked controls submit; disabled controls are omitted. Use a stable setting label."
+      },
+      {
+        "prop": "children / className / render / ref",
+        "type": "SDK part props",
+        "default": "SDK default",
+        "description": "Default thumb respects RTL and reduced motion; SwitchThumb is exported for custom composition."
+      }
+    ],
+    "notes": [
+      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
+      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
+      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+    ],
+    "preview": "components/examples/switch.tsx",
+    "examples": [
+      {
+        "id": "states",
+        "title": "Practical states",
+        "description": "Validation, reset and useful control states.",
+        "source": "components/examples/switch-states.tsx"
+      }
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/switch.tsx",
+          "target": "components/navui/switch.tsx",
           "type": "registry:ui"
         },
         {

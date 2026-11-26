@@ -86,3 +86,16 @@ test("shared targets reject conflicting source and missing shared declarations",
   helper.shared = false;
   assert.throws(() => validateBlockCatalog([first, second], options), /duplicate install target/);
 });
+
+test('form batch publishes canonical SDK dependencies and reuses Select in commands', () => {
+  for (const name of ['field', 'input', 'select', 'checkbox', 'switch']) {
+    const item = componentCatalog.find(item => item.registryName === name);
+    assert.equal(item?.status, 'published', `${name} must be discoverable and distributable`);
+    assert.ok(item.registry.dependencies.includes('@ui-sdk/react@0.1.0-beta.17'));
+    assert.ok(item.registry.dependencies.includes('@ui-sdk/core@0.1.0-beta.17'));
+    assert.ok(item.examples.length > 0, `${name} needs a useful state example`);
+  }
+  const command = componentCatalog.find(item => item.slug === 'package-manager-command');
+  assert.ok(command.registry.registryDependencies.includes('@navui/select'));
+  assert.ok(!command.registry.registryDependencies.includes('select'));
+});

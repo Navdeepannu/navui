@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "description": "A native text input with consistent focus, invalid and disabled styling.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/input.tsx",
+      "content": "\"use client\";\nimport { Input as SdkInput } from \"@ui-sdk/react/input\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"cn\";\nexport type InputProps = ComponentProps<typeof SdkInput>;\nexport function Input({ className, ...props }: InputProps) {\n  return (\n    <SdkInput\n      {...props}\n      className={(state) =>\n        cn(\n          \"min-h-10 w-full min-w-0 rounded-md border border-input bg-background px-3 py-2 text-base text-foreground shadow-xs outline-none placeholder:text-muted-foreground motion-safe:transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-disabled:cursor-not-allowed data-disabled:opacity-50 data-invalid:border-destructive aria-invalid:border-destructive sm:text-sm\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/navui/input.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

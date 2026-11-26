@@ -13,7 +13,8 @@
     "registry:test": "node --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types --test scripts/registry/*.test.mjs",
     "registry:check": "node --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/registry/generate.mjs --check && shadcn registry validate ./registry.json",
     "check": "pnpm run lint && pnpm run typecheck && pnpm run test:components && pnpm run registry:test && pnpm run registry:check",
-    "test:components": "node --import ./scripts/testing/setup.mjs --test scripts/components/*.test.mjs"
+    "test:components": "node --import ./scripts/testing/setup.mjs --test scripts/components/*.test.mjs",
+    "consumer:verify": "node scripts/consumer/verify.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

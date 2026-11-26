@@ -72,3 +72,30 @@ index/quality gates; retrieved Interfaces accessibility, layout, typography, mot
 and interface-review instructions with focused keyboard, motion/zoom, adaptivity,
 layout-animation and review-scope references. These extend the repository's tokens
 and conventions; they do not authorize unrelated work or override installed SDK APIs.
+
+## Form collection (beta.17)
+
+Use canonical Field/Input/Select/Checkbox/Switch from `registry/components`. Field
+owns label, description and error associations; one control belongs to each Field.
+FieldGroup supplies spacing, while FieldSet and its first-child FieldLegend give
+related controls a native group. Keep validation messages and policy in examples.
+Inputs retain 16px text on narrow screens to avoid iOS focus zoom, and 14px on desktop.
+Checkbox/Switch have an enlarged pointer area without changing their visual size.
+
+Select's generic root is re-exported directly; SelectItem retains its value generic.
+Single selection uses `T | null`, multiple uses `T[]`. Keep items on the root for
+server-rendered labels and render styled items in SelectGroup. Content bounds its
+height to available space and 20rem; long labels wrap in options and truncate only
+in the trigger. Canonical parts also power Package Manager Command.
+
+A focused reproduction found a beta.17 documentation/runtime mismatch: the Forms
+page recommends controlled `checked` plus `defaultChecked`, but development runtime
+warns when both are supplied (same for Select value/defaultValue). Input also causes
+React's controlled/defaultValue warning. Our wrappers preserve SDK public props;
+examples pass one state mode, reset controlled React state in the consuming form's
+onReset, and leave the native reset event uncanceled. Uncontrolled defaults reset
+through SDK. Do not suppress these warnings or invent another reset engine.
+
+See `docs/form-components.md` and `pnpm run consumer:verify` for the runtime-controlled
+baseline/install comparison. Browser reduced-motion verification is distinct from
+the jsdom matchMedia stub; report a missing browser preference check explicitly.

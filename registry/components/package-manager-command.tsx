@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectItem,
   SelectItemIndicator,
-} from "@ui-sdk/react/select";
+} from "./select";
 import { Button } from "./button";
 import { cn } from "cn";
 import { Check, ChevronDown, CircleX, Copy } from "lucide-react";
@@ -152,7 +152,9 @@ export function PackageManagerCommand({
     <Select
       items={managers.map(({ id, name }) => ({ value: id, label: name }))}
       value={value}
-      defaultValue={defaultValue ?? managers[0].id}
+      defaultValue={
+        value === undefined ? (defaultValue ?? managers[0].id) : undefined
+      }
       onValueChange={onValueChange}
     >
       <SelectValue
@@ -200,7 +202,7 @@ export function PackageManagerCommand({
               </Button>
               <SelectTrigger
                 aria-label="Package manager"
-                className="flex min-h-10 shrink-0 items-center gap-2 rounded-e-md border-s border-input px-3 text-sm outline-none hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                className="w-auto shrink-0 rounded-s-none border-0 border-s shadow-none"
               >
                 <span>{manager?.name ?? "Choose"}</span>
                 <ChevronDown aria-hidden="true" className="size-4" />
@@ -216,17 +218,9 @@ export function PackageManagerCommand({
           );
         }}
       </SelectValue>
-      <SelectContent
-        align={align}
-        sideOffset={6}
-        className="max-h-(--available-height) min-w-44 overflow-auto rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md"
-      >
+      <SelectContent align={align} sideOffset={6} className="min-w-44">
         {managers.map(({ id, name, Icon }) => (
-          <SelectItem
-            key={id}
-            value={id}
-            className="flex min-h-10 items-center gap-2 rounded-sm px-3 py-2 text-sm outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
-          >
+          <SelectItem key={id} value={id}>
             <Icon aria-hidden="true" className="size-4" />
             <span className="flex-1">{name}</span>
             <SelectItemIndicator>

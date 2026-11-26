@@ -1133,7 +1133,8 @@
         "@ui-sdk/react@0.1.0-beta.17"
       ],
       "registryDependencies": [
-        "@navui/button"
+        "@navui/button",
+        "@navui/select"
       ],
       "files": [
         {
@@ -1236,6 +1237,127 @@
         {
           "path": "registry/components/tabs.tsx",
           "target": "components/navui/tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Labels, descriptions, errors and field sets connected by UI SDK.",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/field.tsx",
+          "target": "components/navui/field.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A native text input with consistent focus, invalid and disabled styling.",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/input.tsx",
+          "target": "components/navui/input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Composable typed single and multiple selection with SDK keyboard and form behavior.",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/select.tsx",
+          "target": "components/navui/select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A styled checkbox with checked, mixed, required and native form states.",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/checkbox.tsx",
+          "target": "components/navui/checkbox.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A compact on/off setting with labelled, disabled and native form behavior.",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/switch.tsx",
+          "target": "components/navui/switch.tsx",
           "type": "registry:ui"
         },
         {

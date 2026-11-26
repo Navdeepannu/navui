@@ -1,0 +1,68 @@
+import type { ComponentProps } from 'react'
+import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
+
+import { Button } from '@/components/ui/button'
+import { cn } from 'cn'
+
+const ctaSectionOneData = {
+  heading: 'Build your next product with confidence.',
+  description:
+    'Start building today or talk with our team to find the right plan for your business.',
+  primaryAction: {
+    label: 'Get started',
+    href: '#',
+  },
+  secondaryAction: {
+    label: 'Contact sales',
+    href: '#',
+  },
+}
+
+type CtaSectionOneProps = ComponentProps<'section'>
+
+export default function CtaSectionOne({ className, ...props }: CtaSectionOneProps) {
+  return (
+    <section
+      data-slot="cta-section-one"
+      className={cn('bg-background px-4 py-20 sm:px-6 sm:py-28', className)}
+      {...props}
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="relative isolate overflow-hidden rounded-3xl bg-card px-6 py-16 text-center shadow-xl ring shadow-black/12 ring-foreground/10 sm:px-12 sm:py-20">
+          <div className="relative mx-auto max-w-3xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-balance text-foreground sm:text-5xl">
+              {ctaSectionOneData.heading}
+            </h2>
+
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-balance text-muted-foreground sm:text-lg">
+              {ctaSectionOneData.description}
+            </p>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button
+                render={<Link href={ctaSectionOneData.primaryAction.href} />}
+                nativeButton={false}
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                {ctaSectionOneData.primaryAction.label}
+                <ArrowRight data-icon="inline-end" aria-hidden className="size-4" />
+              </Button>
+
+              <Button
+                render={<Link href={ctaSectionOneData.secondaryAction.href} />}
+                nativeButton={false}
+                size="lg"
+                variant="outline"
+                className="w-full bg-background/70 shadow-sm backdrop-blur-sm sm:w-auto"
+              >
+                {ctaSectionOneData.secondaryAction.label}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

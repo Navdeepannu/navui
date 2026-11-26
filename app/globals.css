@@ -2,129 +2,387 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+@import "../components/shared/iris.css";
+@import "../components/shared/Atelier.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================
+   TAILWIND SEMANTIC TOKEN MAPPING
+   ========================================================== */
 
 @theme inline {
+  /* Core */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+
+  /* Surfaces */
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+
+  /* Actions */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  /* Controls */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-line: var(--line);
+
+  /* Selection */
+  --color-selection: var(--selection);
+  --color-selection-foreground: var(--selection-foreground);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--design-font-sans);
+  --font-heading: var(--design-font-heading);
+  --font-mono: var(--design-font-mono);
+  --font-serif: var(--design-font-serif);
+
+  /* Radius */
+  --radius-sm: var(--design-radius-sm);
+  --radius-md: var(--design-radius-md);
+  --radius-lg: var(--design-radius-lg);
+  --radius-xl: var(--design-radius-xl);
+  --radius-2xl: var(--design-radius-2xl);
+  --radius-3xl: var(--design-radius-3xl);
+
+  /* Shadows */
+  --shadow-2xs: var(--design-shadow-2xs);
+  --shadow-xs: var(--design-shadow-xs);
+  --shadow-sm: var(--design-shadow-sm);
+  --shadow: var(--design-shadow);
+  --shadow-md: var(--design-shadow-md);
+  --shadow-lg: var(--design-shadow-lg);
+  --shadow-xl: var(--design-shadow-xl);
+  --shadow-2xl: var(--design-shadow-2xl);
+
+  /*
+   * Optional shadcn chart compatibility.
+   * Remove only when nothing in the project uses chart-*.
+   */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 }
+
+/* ==========================================================
+   LIGHT THEME
+   ========================================================== */
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* --------------------------------------------------------
+     Core canvas
+     -------------------------------------------------------- */
+
+  --background: oklch(0.995 0 0);
+  --foreground: oklch(0.17 0 0);
+
+  /* --------------------------------------------------------
+     Elevated surfaces
+     -------------------------------------------------------- */
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: var(--foreground);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: var(--foreground);
+
+  /*
+   * Secondary application surface.
+   *
+   * Use for app chrome, grouped areas, secondary panels,
+   * toolbar backgrounds etc.
+   *
+   * Do NOT use this inside previewed design-system blocks
+   * unless that block explicitly belongs to the base system.
+   */
+  --surface: oklch(0.975 0 0);
+  --surface-foreground: var(--foreground);
+
+  /* --------------------------------------------------------
+     Actions
+     -------------------------------------------------------- */
+
+  --primary: oklch(0.17 0 0);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary: oklch(0.965 0 0);
+  --secondary-foreground: oklch(0.22 0 0);
+
+  /*
+   * Muted is for low-emphasis UI, not major application
+   * surfaces like the sidebar.
+   */
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+
+  /*
+   * Accent is primarily interactive:
+   * hover, selected, highlighted controls.
+   */
+  --accent: oklch(0.94 0 0);
+  --accent-foreground: oklch(0.18 0 0);
+
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* --------------------------------------------------------
+     Borders / focus
+     -------------------------------------------------------- */
+
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.62 0 0);
+
+  --line: color-mix(in oklab, var(--border) 72%, var(--background));
+
+  /* --------------------------------------------------------
+     Selection
+     -------------------------------------------------------- */
+
+  --selection: var(--foreground);
+  --selection-foreground: var(--background);
+
+  /* --------------------------------------------------------
+     Sidebar
+     -------------------------------------------------------- */
+
+  /*
+   * Distinct from the white content surface,
+   * but still very subtle.
+   */
+  --sidebar: oklch(0.965 0 0);
+  --sidebar-foreground: oklch(0.2 0 0);
+
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+
+  /*
+   * Active/hover row.
+   */
+  --sidebar-accent: oklch(0.925 0 0);
+  --sidebar-accent-foreground: oklch(0.16 0 0);
+
+  --sidebar-border: oklch(0.89 0 0);
+  --sidebar-ring: oklch(0.62 0 0);
+
+  /* --------------------------------------------------------
+     Shape
+     -------------------------------------------------------- */
+
+  --radius: 0.5rem;
+
+  --design-radius-sm: calc(var(--radius) * 0.6);
+  --design-radius-md: calc(var(--radius) * 0.8);
+  --design-radius-lg: var(--radius);
+  --design-radius-xl: calc(var(--radius) * 1.4);
+  --design-radius-2xl: calc(var(--radius) * 1.8);
+  --design-radius-3xl: calc(var(--radius) * 2.2);
+
+  /* --------------------------------------------------------
+     Typography
+     -------------------------------------------------------- */
+
+  --design-font-sans: var(--font-inter);
+  --design-font-heading: var(--font-inter);
+  --design-font-mono: var(--font-geist-mono);
+
+  --design-font-serif:
+    ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* --------------------------------------------------------
+     Elevation
+     -------------------------------------------------------- */
+
+  --design-shadow-2xs: 0 1px rgb(0 0 0 / 0.04);
+
+  --design-shadow-xs: 0 1px 2px rgb(0 0 0 / 0.05);
+
+  --design-shadow-sm:
+    0 1px 3px rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+
+  --design-shadow: var(--design-shadow-sm);
+
+  --design-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+
+  --design-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+
+  --design-shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+
+  --design-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.18);
+
+  /* --------------------------------------------------------
+     Application layout
+     -------------------------------------------------------- */
+
+  --site-max-width: 90rem;
+  --site-gutter: clamp(1rem, 3vw, 2rem);
+  --header-height: 4rem;
+
+  /* --------------------------------------------------------
+     Optional: shadcn chart compatibility
+     -------------------------------------------------------- */
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
 }
+
+/* ==========================================================
+   DARK THEME
+   ========================================================== */
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  /* Core canvas */
+
+  --background: oklch(0.115 0 0);
+  --foreground: oklch(0.95 0 0);
+
+  /* Elevated surfaces */
+
+  --card: oklch(0.145 0 0);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(0.155 0 0);
+  --popover-foreground: var(--foreground);
+
+  --surface: oklch(0.14 0 0);
+  --surface-foreground: var(--foreground);
+
+  /* Actions */
+
+  --primary: oklch(0.95 0 0);
+  --primary-foreground: oklch(0.13 0 0);
+
+  --secondary: oklch(0.18 0 0);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.64 0 0);
+
+  --accent: oklch(0.21 0 0);
+  --accent-foreground: oklch(0.96 0 0);
+
   --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Borders / focus */
+
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.56 0 0);
+
+  --line: color-mix(in oklab, var(--border) 72%, var(--background));
+
+  /* Selection */
+
+  --selection: var(--foreground);
+  --selection-foreground: var(--background);
+
+  /* Sidebar */
+
+  /*
+   * Slightly lighter than the application canvas.
+   * This gives the left rail definition without looking blue,
+   * brown or green.
+   */
+  --sidebar: oklch(0.145 0 0);
+  --sidebar-foreground: oklch(0.9 0 0);
+
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+
+  --sidebar-accent: oklch(0.205 0 0);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.56 0 0);
+
+  /* Optional charts */
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
 }
 
+/* ==========================================================
+   BASE
+   ========================================================== */
+
 @layer base {
-  * {
+  *,
+  ::before,
+  ::after,
+  ::backdrop,
+  ::file-selector-button {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  ::selection {
+    @apply bg-selection text-selection-foreground;
   }
+
   html {
     @apply font-sans;
   }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+/* ==========================================================
+   UTILITIES
+   ========================================================== */
+
+@utility site-container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
 }

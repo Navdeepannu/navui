@@ -1,0 +1,149 @@
+/* eslint-disable @next/next/no-img-element */
+
+import Link from 'next/link'
+import type { SVGProps } from 'react'
+
+function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.54V9H7.1v11.45Z" />
+    </svg>
+  )
+}
+
+const members = [
+  {
+    name: 'Liam Brown',
+    role: 'Founder - CEO',
+    avatar: 'https://p1r7j2dwef.ufs.sh/f/nrPqHGLL1RTlH4NUrIqHjv3VPCtBSMksEJOn7pmfxyc9IoU5',
+    link: '#',
+  },
+  {
+    name: 'Elijah Jones',
+    role: 'Co-Founder - CTO',
+    avatar: 'https://p1r7j2dwef.ufs.sh/f/nrPqHGLL1RTl81tMhO4dwU2oJkmKaujTg9FMAr3QiGROq5bE',
+    link: '#',
+  },
+  {
+    name: 'Isabella Garcia',
+    role: 'Sales Manager',
+    avatar: 'https://p1r7j2dwef.ufs.sh/f/nrPqHGLL1RTlnj8ad4LL1RTlFOStU5Vx6bKDsZupeXgyGkhM',
+    link: '#',
+  },
+  {
+    name: 'Henry Lee',
+    role: 'UX Engineer',
+    avatar: 'https://p1r7j2dwef.ufs.sh/f/nrPqHGLL1RTlKywRt8Sa4eSEgVXynrIRWAk3NL9mFjvOTM0B',
+    link: '#',
+  },
+  {
+    name: 'Ava Williams',
+    role: 'Interaction Designer',
+    avatar: 'https://p1r7j2dwef.ufs.sh/f/nrPqHGLL1RTlh433XXK0RlaETPbLcZQjyfg2StNvuB13w8rI',
+    link: '#',
+  },
+  {
+    name: 'Olivia Miller',
+    role: 'Visual Designer',
+    avatar: 'https://p1r7j2dwef.ufs.sh/f/nrPqHGLL1RTlCsjkx0nF5BMj7T0uXqWGgbANfhcdeI8P3x9v',
+    link: '#',
+  },
+]
+
+function MemberGrid({ data }: { data: typeof members }) {
+  if (data.length === 0) {
+    return (
+      <div className="rounded-lg border border-dashed p-8 text-center">
+        <h3 className="text-sm font-medium">No team members available</h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          New team profiles will appear here when they are published.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+      {data.map((member) => (
+        <div key={member.name} className="group overflow-hidden">
+          <img
+            src={member.avatar}
+            alt={member.name}
+            className="h-64 w-full rounded-md object-cover object-top grayscale transition-[filter] duration-300 group-hover:grayscale-0 motion-reduce:transition-none"
+          />
+
+          <div className="pt-3">
+            <div className="flex justify-between">
+              <h3 className="text-sm font-medium">{member.name}</h3>
+            </div>
+
+            <div className="mt-1 flex items-center justify-between transition-[transform,opacity] duration-200 motion-reduce:transition-none sm:translate-y-2 sm:opacity-0 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
+              <span className="text-sm text-muted-foreground">{member.role}</span>
+              <Link
+                href={member.link}
+                aria-label={`View ${member.name} on LinkedIn`}
+                className="text-sm"
+              >
+                <LinkedInIcon aria-hidden="true" className="size-4.5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default function TeamSectionOne() {
+  const firstGroup = members.slice(0, 3)
+  const secondGroup = members.slice(3, 6)
+
+  return (
+    <section className="bg-gray-50 py-16 md:py-32 dark:bg-transparent">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-12 grid grid-cols-1 gap-4 border-b pb-4 md:mb-16 md:grid-cols-2">
+          <h1 className="font-times-heading text-4xl sm:text-5xl">Our team</h1>
+          <p className="text-sm font-medium md:mt-6 md:text-base">
+            Our diverse team brings together expertise from various financial disciplines to provide
+            comprehensive and personalized solutions for our clients.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <h2 className="font-times-heading text-3xl font-medium sm:text-4xl">
+              Founders & Partners
+            </h2>
+
+            <p className="mt-4 max-w-md text-sm leading-relaxed">
+              During the working process, we perform regular fitting with the client because he is
+              the only person who can feel whether a new suit fits or not.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8 lg:pl-10">
+            <MemberGrid data={firstGroup} />
+          </div>
+        </div>
+
+        <div className="my-16 border-t" />
+
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <h2 className="font-times-heading text-3xl font-medium sm:text-4xl">
+              Design & Experience Team
+            </h2>
+
+            <p className="mt-4 max-w-md text-sm leading-relaxed">
+              Our design and experience team focuses on creating intuitive, accessible and visually
+              strong products that work seamlessly across platforms and devices.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8 lg:pl-10">
+            <MemberGrid data={secondGroup} />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

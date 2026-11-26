@@ -1,0 +1,949 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "navui",
+  "homepage": "https://navui.dev",
+  "items": [
+    {
+      "name": "base-blog-section-one",
+      "type": "registry:block",
+      "title": "Blog Section One",
+      "description": "A semantic blog archive grouped by year, with aligned dates, useful metadata, and accessible row links.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/blog/blog-section-one/blog-section-one.tsx",
+          "target": "components/blocks/base/blog/blog-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-contact-section-one",
+      "type": "registry:block",
+      "title": "Contact Section One",
+      "description": "A contact directory that routes visitors to sales, support, community, documentation, and developer resources.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/contact/contact-section-one/contact-section-one.tsx",
+          "target": "components/blocks/base/contact/contact-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-contact-section-two",
+      "type": "registry:block",
+      "title": "Contact Section Two",
+      "description": "A split contact section with a consultation summary and detailed project inquiry form.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/contact/contact-section-two/contact-section-two.tsx",
+          "target": "components/blocks/base/contact/contact-section-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-contact-section-three",
+      "type": "registry:block",
+      "title": "Contact Section Three",
+      "description": "A compact project contact form paired with a concise service introduction.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/contact/contact-section-three/contact-section-three.tsx",
+          "target": "components/blocks/base/contact/contact-section-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-contact-section-four",
+      "type": "registry:block",
+      "title": "Contact Section Four",
+      "description": "A focused project-inquiry form with contact details and a large editorial heading.",
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/contact/contact-section-four/contact-section-four.tsx",
+          "target": "components/blocks/base/contact/contact-section-four.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-content-section-one",
+      "type": "registry:block",
+      "title": "Content Section One",
+      "description": "A restrained principles section with a clear introduction and a responsive set of supporting ideas.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/content/content-section-one/content-section-one.tsx",
+          "target": "components/blocks/base/content/content-section-one.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/content/content-section-one/content-section-one-designed-for-focus-illustration.tsx",
+          "target": "components/blocks/base/content/content-section-one-designed-for-focus-illustration.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/content/content-section-one/content-section-one-fast-by-default-illustration.tsx",
+          "target": "components/blocks/base/content/content-section-one-fast-by-default-illustration.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/content/content-section-one/content-section-one-flexible-at-scale-illustration.tsx",
+          "target": "components/blocks/base/content/content-section-one-flexible-at-scale-illustration.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-content-section-two",
+      "type": "registry:block",
+      "title": "Content Section Two",
+      "description": "An editorial product story with balanced copy, configurable local media, and optional caption metadata.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/content/content-section-two/content-section-two.tsx",
+          "target": "components/blocks/base/content/content-section-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-content-section-three",
+      "type": "registry:block",
+      "title": "Content Section Three",
+      "description": "A structured feature grid with one dominant narrative and two focused supporting ideas.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/content/content-section-three/content-section-three.tsx",
+          "target": "components/blocks/base/content/content-section-three.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/content/content-section-three/content-section-three-release-workflow-illustration.tsx",
+          "target": "components/blocks/base/content/content-section-three-release-workflow-illustration.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-content-section-four",
+      "type": "registry:block",
+      "title": "Content Section Four",
+      "description": "A connected-publishing story with an animated revision metric, trend visualization, and output checklist.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/content/content-section-four/content-section-four.tsx",
+          "target": "components/blocks/base/content/content-section-four.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/content/content-section-four/content-section-four-revision-cycles-illustration.tsx",
+          "target": "components/blocks/base/content/content-section-four-revision-cycles-illustration.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-content-section-five",
+      "type": "registry:block",
+      "title": "Content Section Five",
+      "description": "A sticky editorial narrative with a normal mobile flow and a sequence of image-led content panels.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/content/content-section-five/content-section-five.tsx",
+          "target": "components/blocks/base/content/content-section-five.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-cta-section-one",
+      "type": "registry:block",
+      "title": "CTA Section One",
+      "description": "A polished call to action with primary and secondary links for clear next steps.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/cta/cta-section-one/cta-section-one.tsx",
+          "target": "components/blocks/base/cta/cta-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-cta-section-two",
+      "type": "registry:block",
+      "title": "CTA Section Two",
+      "description": "A split call to action with primary and secondary actions over a signal-line field.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/cta/cta-section-two/cta-section-two.tsx",
+          "target": "components/blocks/base/cta/cta-section-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-cta-section-three",
+      "type": "registry:block",
+      "title": "CTA Section Three",
+      "description": "A centered product call to action over a restrained fading dot field.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/cta/cta-section-three/cta-section-three.tsx",
+          "target": "components/blocks/base/cta/cta-section-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-faq-section-one",
+      "type": "registry:block",
+      "title": "FAQ Section One",
+      "description": "A two-column FAQ layout with accessible accordion answers and a support prompt.",
+      "dependencies": [],
+      "registryDependencies": [
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/faqs/faq-section-one/faq-section-one.tsx",
+          "target": "components/blocks/base/faqs/faq-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-faqs-section-two",
+      "type": "registry:block",
+      "title": "FAQs Section Two",
+      "description": "A centered FAQ section with accessible accordions and a follow-up contact link.",
+      "dependencies": [],
+      "registryDependencies": [
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/faqs/faqs-section-two/faqs-section-two.tsx",
+          "target": "components/blocks/base/faqs/faqs-section-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-faq-section-three",
+      "type": "registry:block",
+      "title": "FAQ Section Three",
+      "description": "An editorial FAQ section with a large introduction and accessible accordion rows.",
+      "dependencies": [],
+      "registryDependencies": [
+        "accordion"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/faqs/faq-section-three/faq-section-three.tsx",
+          "target": "components/blocks/base/faqs/faq-section-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-feature-section-two",
+      "type": "registry:block",
+      "title": "Feature Section Two",
+      "description": "An expandable workflow feature section with autoplay, reduced-motion handling, and three interactive illustrations.",
+      "dependencies": [
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/features/feature-section-two/feature-section-two.tsx",
+          "target": "components/blocks/base/features/feature-section-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-footer-section-one",
+      "type": "registry:block",
+      "title": "Footer Section One",
+      "description": "A multi-column product footer with social links and an email newsletter form.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/footer/footer-section-one/footer-section-one.tsx",
+          "target": "components/blocks/base/footer/footer-section-one.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/footer/footer-section-one/footer-section-one-logo.tsx",
+          "target": "components/blocks/base/footer/footer-section-one-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-footer-section-two",
+      "type": "registry:block",
+      "title": "Footer Section Two",
+      "description": "A compact navigation footer with product links, social actions, and legal copy.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/footer/footer-section-two/footer-section-two.tsx",
+          "target": "components/blocks/base/footer/footer-section-two.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/footer/footer-section-two/footer-section-two-logo.tsx",
+          "target": "components/blocks/base/footer/footer-section-two-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-forgot-password-one",
+      "type": "registry:block",
+      "title": "Forgot Password One",
+      "description": "A compact password-recovery card with email input, submit action, and return link.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/forgot-password/forgot-password-one/forgot-password-one.tsx",
+          "target": "components/blocks/base/forgot-password/forgot-password-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-forgot-password-two",
+      "type": "registry:block",
+      "title": "Forgot Password Two",
+      "description": "A centered password-recovery form with a prominent heading and return action.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/forgot-password/forgot-password-two/forgot-password-two.tsx",
+          "target": "components/blocks/base/forgot-password/forgot-password-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-forgot-password-three",
+      "type": "registry:block",
+      "title": "Forgot Password Three",
+      "description": "A left-aligned password-recovery form with concise guidance and navigation back.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/forgot-password/forgot-password-three/forgot-password-three.tsx",
+          "target": "components/blocks/base/forgot-password/forgot-password-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-header-one",
+      "type": "registry:block",
+      "title": "Header One",
+      "description": "A responsive marketing header with animated mobile navigation and account actions.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/header/header-one/header-one.tsx",
+          "target": "components/blocks/base/header/header-one.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/header/header-one/header-one-logo.tsx",
+          "target": "components/blocks/base/header/header-one-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-header-two",
+      "type": "registry:block",
+      "title": "Header Two",
+      "description": "A responsive marketing header with a bordered shell and animated mobile menu.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/header/header-two/header-two.tsx",
+          "target": "components/blocks/base/header/header-two.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/header/header-two/header-two-logo.tsx",
+          "target": "components/blocks/base/header/header-two-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-header-three",
+      "type": "registry:block",
+      "title": "Header Three",
+      "description": "A payment-product header with grouped navigation menus and a responsive mobile drawer.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "navigation-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/header/header-three/header-three.tsx",
+          "target": "components/blocks/base/header/header-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-header-four",
+      "type": "registry:block",
+      "title": "Header Four",
+      "description": "A responsive header with animated multi-level desktop and mobile navigation menus.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "navigation-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/header/header-four/header-four.tsx",
+          "target": "components/blocks/base/header/header-four.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-hero-section-one",
+      "type": "registry:block",
+      "title": "Hero Section One",
+      "description": "A dark product hero with badges, dual actions, and the matching responsive header.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/hero/hero-section-one/hero-section-one.tsx",
+          "target": "components/blocks/base/hero/hero-section-one.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-one/hero-section-one-header.tsx",
+          "target": "components/blocks/base/hero/hero-section-one-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-one/hero-section-one-logo.tsx",
+          "target": "components/blocks/base/hero/hero-section-one-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-hero-section-two",
+      "type": "registry:block",
+      "title": "Hero Section Two",
+      "description": "A motion-led hero with animated copy, grouped reveals, and its matching header.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/hero/hero-section-two/hero-section-two.tsx",
+          "target": "components/blocks/base/hero/hero-section-two.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-two/hero-section-two-animated-group.tsx",
+          "target": "components/blocks/base/hero/hero-section-two-animated-group.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-two/hero-section-two-header.tsx",
+          "target": "components/blocks/base/hero/hero-section-two-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-two/hero-section-two-logo.tsx",
+          "target": "components/blocks/base/hero/hero-section-two-logo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-two/hero-section-two-text-effect.tsx",
+          "target": "components/blocks/base/hero/hero-section-two-text-effect.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-hero-section-three",
+      "type": "registry:block",
+      "title": "Hero Section Three",
+      "description": "An art-directed hero with shader-backed visuals and a focused primary action.",
+      "dependencies": [
+        "lucide-react",
+        "shaders"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/hero/hero-section-three/hero-section-three.tsx",
+          "target": "components/blocks/base/hero/hero-section-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-hero-section-four",
+      "type": "registry:block",
+      "title": "Hero Section Four",
+      "description": "A complete expense-workflow hero with responsive header, lead form, logo cloud, and supporting illustrations.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "label",
+        "navigation-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/hero/hero-section-four/hero-section-four.tsx",
+          "target": "components/blocks/base/hero/hero-section-four.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-four/hero-section-four-header.tsx",
+          "target": "components/blocks/base/hero/hero-section-four-header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-four/hero-section-four-illustration.tsx",
+          "target": "components/blocks/base/hero/hero-section-four-illustration.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/hero/hero-section-four/hero-section-four-logo-cloud.tsx",
+          "target": "components/blocks/base/hero/hero-section-four-logo-cloud.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-logo-cloud-one",
+      "type": "registry:block",
+      "title": "Logo Cloud One",
+      "description": "A compact monochrome logo strip for customer or partner proof.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/logo-cloud/logo-cloud-one/logo-cloud-one.tsx",
+          "target": "components/blocks/base/logo-cloud/logo-cloud-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-logo-cloud-two",
+      "type": "registry:block",
+      "title": "Logo Cloud Two",
+      "description": "A compact partner logo strip using a mixed icon and wordmark collection.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/logo-cloud/logo-cloud-two/logo-cloud-two.tsx",
+          "target": "components/blocks/base/logo-cloud/logo-cloud-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-logo-cloud-three",
+      "type": "registry:block",
+      "title": "Logo Cloud Three",
+      "description": "A horizontally framed customer logo strip with restrained typography.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/logo-cloud/logo-cloud-three/logo-cloud-three.tsx",
+          "target": "components/blocks/base/logo-cloud/logo-cloud-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-logo-cloud-four",
+      "type": "registry:block",
+      "title": "Logo Cloud Four",
+      "description": "A large animated company grid with a prominent trust statement.",
+      "dependencies": [
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/logo-cloud/logo-cloud-four/logo-cloud-four.tsx",
+          "target": "components/blocks/base/logo-cloud/logo-cloud-four.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-logo-cloud-five",
+      "type": "registry:block",
+      "title": "Logo Cloud Five",
+      "description": "A headline-led animated logo cloud with responsive brand cards.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/logo-cloud/logo-cloud-five/logo-cloud-five.tsx",
+          "target": "components/blocks/base/logo-cloud/logo-cloud-five.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-pricing-section-one",
+      "type": "registry:block",
+      "title": "Pricing Section One",
+      "description": "A responsive three-tier pricing section with a monthly and yearly billing switcher.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/pricing/pricing-section-one/pricing-section-one.tsx",
+          "target": "components/blocks/base/pricing/pricing-section-one.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/pricing/pricing-section-one/pricing-section-one-animated-number.tsx",
+          "target": "components/blocks/base/pricing/pricing-section-one-animated-number.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-sign-up-one",
+      "type": "registry:block",
+      "title": "Sign Up One",
+      "description": "A detailed account creation form with identity, password, consent, and sign-in actions.",
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/sign-up/sign-up-one/sign-up-one.tsx",
+          "target": "components/blocks/base/sign-up/sign-up-one.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/sign-up/sign-up-one/sign-up-one-logo.tsx",
+          "target": "components/blocks/base/sign-up/sign-up-one-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-sign-up-two",
+      "type": "registry:block",
+      "title": "Sign Up Two",
+      "description": "A split-screen account creation flow with social sign-in, product benefits, and an animated visual.",
+      "dependencies": [
+        "cn",
+        "lucide-react",
+        "shaders"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/sign-up/sign-up-two/sign-up-two.tsx",
+          "target": "components/blocks/base/sign-up/sign-up-two.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/base/sign-up/sign-up-two/sign-up-two-logo.tsx",
+          "target": "components/blocks/base/sign-up/sign-up-two-logo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-stats-section-one",
+      "type": "registry:block",
+      "title": "Stats Section One",
+      "description": "A business results section that combines measurable outcomes with a customer proof point.",
+      "dependencies": [
+        "cn",
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/stats/stats-section-one/stats-section-one.tsx",
+          "target": "components/blocks/base/stats/stats-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-teams-section-one",
+      "type": "registry:block",
+      "title": "Teams Section One",
+      "description": "A grouped leadership and team directory with social links and empty-state handling.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/teams/teams-section-one/teams-section-one.tsx",
+          "target": "components/blocks/base/teams/teams-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-teams-section-two",
+      "type": "registry:block",
+      "title": "Teams Section Two",
+      "description": "A simple responsive team grid with names, roles, and portrait imagery.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/teams/teams-section-two/teams-section-two.tsx",
+          "target": "components/blocks/base/teams/teams-section-two.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-teams-section-three",
+      "type": "registry:block",
+      "title": "Teams Section Three",
+      "description": "A centered team directory with portrait cards, roles, and profile links.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/blocks/base/teams/teams-section-three/teams-section-three.tsx",
+          "target": "components/blocks/base/teams/teams-section-three.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-teams-section-four",
+      "type": "registry:block",
+      "title": "Teams Section Four",
+      "description": "A global-team recruiting section with portrait cards and role badges.",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/teams/teams-section-four/teams-section-four.tsx",
+          "target": "components/blocks/base/teams/teams-section-four.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-teams-section-five",
+      "type": "registry:block",
+      "title": "Teams Section Five",
+      "description": "A dark editorial team grid with role badges and portrait-led member cards.",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/teams/teams-section-five/teams-section-five.tsx",
+          "target": "components/blocks/base/teams/teams-section-five.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "base-testimonial-section-one",
+      "type": "registry:block",
+      "title": "Testimonial Section One",
+      "description": "A customer-story hero with proof badges, a featured quote, and success-story action.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/base/testimonials/testimonial-section-one/testimonial-section-one.tsx",
+          "target": "components/blocks/base/testimonials/testimonial-section-one.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

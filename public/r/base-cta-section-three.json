@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-cta-section-three",
+  "title": "CTA Section Three",
+  "description": "A centered product call to action over a restrained fading dot field.",
+  "dependencies": [
+    "cn"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/blocks/base/cta/cta-section-three/cta-section-three.tsx",
+      "content": "import { Button } from '@/components/ui/button'\nimport { cn } from 'cn'\nimport Link from 'next/link'\n\nfunction FadedDotField({ className }: { className: string }) {\n  const mask =\n    'radial-gradient(ellipse 72% 68% at 50% 42%, black 0%, rgba(0,0,0,0.9) 38%, transparent 78%)'\n\n  return (\n    <div\n      aria-hidden=\"true\"\n      className={cn('pointer-events-none absolute text-foreground/13', className)}\n      style={{\n        backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1.2px)',\n        backgroundSize: '10px 10px',\n        maskImage: mask,\n        WebkitMaskImage: mask,\n      }}\n    />\n  )\n}\n\nexport default function CTASectionThree() {\n  return (\n    <section className=\"relative isolate overflow-hidden border-b bg-background\">\n      <FadedDotField className=\"-bottom-4 left-1/2 h-50 w-200 max-w-[140vw] -translate-x-1/2\" />\n\n      <div className=\"relative mx-auto flex max-w-6xl flex-col items-center justify-center px-5 py-24 text-center sm:px-8\">\n        <h2 className=\"max-w-4xl text-4xl font-semibold tracking-tighter text-balance sm:text-5xl md:text-6xl\">\n          Turn your next idea into a product people can use.\n        </h2>\n\n        <div className=\"mt-9 flex flex-row items-center gap-3\">\n          <Button\n            render={<Link href=\"#\" />}\n            nativeButton={false}\n            variant=\"default\"\n            size=\"lg\"\n            className=\"rounded-full\"\n          >\n            Explore components\n          </Button>\n\n          <Button\n            render={<Link href=\"#\" />}\n            nativeButton={false}\n            size=\"lg\"\n            variant=\"secondary\"\n            className=\"rounded-full border border-accent\"\n          >\n            Browse blocks\n          </Button>\n        </div>\n      </div>\n    </section>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/base/cta/cta-section-three.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

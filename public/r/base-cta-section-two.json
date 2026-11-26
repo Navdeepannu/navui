@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "base-cta-section-two",
+  "title": "CTA Section Two",
+  "description": "A split call to action with primary and secondary actions over a signal-line field.",
+  "dependencies": [
+    "cn"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/blocks/base/cta/cta-section-two/cta-section-two.tsx",
+      "content": "import { Button } from '@/components/ui/button'\nimport { cn } from 'cn'\nimport Link from 'next/link'\n\nconst signalLines = [\n  { width: '58%', x: '11%' },\n  { width: '78%', x: '4%' },\n  { width: '66%', x: '20%' },\n  { width: '88%', x: '0%' },\n  { width: '72%', x: '15%' },\n  { width: '92%', x: '5%' },\n  { width: '61%', x: '26%' },\n  { width: '82%', x: '9%' },\n  { width: '54%', x: '31%' },\n] as const\n\nfunction SignalField({ className }: { className: string }) {\n  const mask = 'linear-gradient(to right, transparent 0%, black 26%, black 72%, transparent 100%)'\n\n  return (\n    <div\n      aria-hidden=\"true\"\n      className={cn('pointer-events-none absolute flex flex-col justify-center gap-4', className)}\n      style={{\n        maskImage: mask,\n        WebkitMaskImage: mask,\n      }}\n    >\n      {signalLines.map((line, index) => (\n        <div\n          key={index}\n          className=\"relative h-px bg-border\"\n          style={{\n            width: line.width,\n            transform: `translateX(${line.x})`,\n          }}\n        >\n          <span\n            className=\"absolute top-1/2 h-px -translate-y-1/2 bg-foreground/50\"\n            style={{\n              left: `${18 + index * 5}%`,\n              width: `${16 + (index % 3) * 7}%`,\n            }}\n          />\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport default function CtaSectionTwo() {\n  return (\n    <section className=\"relative isolate overflow-hidden bg-background\">\n      <SignalField className=\"top-0 right-[-8%] h-full w-[54%] opacity-40 lg:flex\" />\n\n      <div className=\"relative mx-auto grid min-h-100 max-w-6xl items-center gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-20\">\n        <div className=\"max-w-2xl\">\n          <p className=\"mb-4 text-xs tracking-wide text-muted-foreground\">Built for momentum</p>\n\n          <h2 className=\"text-left text-4xl font-semibold tracking-tight text-balance sm:text-5xl\">\n            Bring clarity to every stage of your workflow.\n          </h2>\n\n          <p className=\"mt-5 max-w-xl text-base leading-7 text-muted-foreground\">\n            Give your team a focused system for planning, building, and delivering work without\n            unnecessary process.\n          </p>\n        </div>\n\n        <div className=\"relative z-10 flex flex-row items-start gap-3 lg:justify-end\">\n          <Button\n            render={<Link href=\"/get-started\" />}\n            nativeButton={false}\n            size=\"lg\"\n            className=\"rounded-full px-7\"\n          >\n            Start building\n          </Button>\n\n          <Button\n            render={<Link href=\"/contact\" />}\n            nativeButton={false}\n            size=\"lg\"\n            variant=\"secondary\"\n            className=\"rounded-full border px-7\"\n          >\n            Talk to us\n          </Button>\n        </div>\n      </div>\n    </section>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/blocks/base/cta/cta-section-two.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

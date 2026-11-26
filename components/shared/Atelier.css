@@ -1,0 +1,303 @@
+[data-design-system="pro"] {
+  /* ============================================================
+   * COLOR FOUNDATION
+   *
+   * Neutral canvas.
+   *
+   * Pro's forest/olive color is intentionally restrained but
+   * receives enough chroma to feel deliberate rather than gray.
+   * ============================================================ */
+
+  --background: oklch(0.992 0 0);
+  --foreground: oklch(0.19 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Deep forest / olive */
+  --primary: oklch(0.37 0.055 149);
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.965 0 0);
+  --muted-foreground: oklch(0.51 0 0);
+
+  --accent: oklch(0.945 0 0);
+  --accent-foreground: var(--foreground);
+
+  --destructive: oklch(0.56 0.19 27);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Slightly stronger borders than Iris */
+  --border: oklch(0.895 0 0);
+  --input: oklch(0.895 0 0);
+
+  --ring: oklch(0.42 0.055 149);
+
+  /* ============================================================
+   * CHARTS
+   *
+   * A controlled monochromatic green scale gives Pro a much
+   * more restrained data-visualization language.
+   * ============================================================ */
+
+  --chart-1: oklch(0.37 0.055 149);
+  --chart-2: oklch(0.49 0.05 149);
+  --chart-3: oklch(0.61 0.043 149);
+  --chart-4: oklch(0.72 0.033 151);
+  --chart-5: oklch(0.82 0.02 153);
+
+  /* ============================================================
+   * SIDEBAR
+   * ============================================================ */
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: var(--foreground);
+
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+
+  --sidebar-accent: oklch(0.945 0 0);
+  --sidebar-accent-foreground: var(--foreground);
+
+  --sidebar-border: oklch(0.9 0 0);
+  --sidebar-ring: var(--ring);
+
+  /* ============================================================
+   * TYPOGRAPHY
+   *
+   * One interface font: Geist.
+   * Geist Mono remains available for technical content.
+   * ============================================================ */
+
+  --design-font-sans: var(--font-geist);
+  --design-font-heading: var(--font-geist);
+  --design-font-serif: var(--font-geist);
+  --design-font-mono: var(--font-geist-mono);
+
+  /* ============================================================
+   * LETTER SPACING
+   *
+   * Slightly more disciplined than Iris.
+   * ============================================================ */
+
+  --tracking-normal: 0em;
+  --tracking-tighter: -0.035em;
+  --tracking-tight: -0.018em;
+  --tracking-wide: 0.018em;
+  --tracking-wider: 0.035em;
+  --tracking-widest: 0.07em;
+
+  /* ============================================================
+   * GEOMETRY
+   *
+   * Pro is deliberately tighter than Iris.
+   * ============================================================ */
+
+  --radius: 0.5rem;
+
+  --design-radius-sm: calc(var(--radius) - 3px);
+  --design-radius-md: calc(var(--radius) - 1px);
+  --design-radius-lg: var(--radius);
+  --design-radius-xl: calc(var(--radius) + 3px);
+  --design-radius-2xl: calc(var(--radius) + 6px);
+  --design-radius-3xl: calc(var(--radius) + 10px);
+
+  /* ============================================================
+   * SHADOW FOUNDATION
+   *
+   * Pro:
+   * - tighter
+   * - denser
+   * - more architectural
+   * - less atmospheric than Iris
+   *
+   * Contact shadows stay close to the element while secondary
+   * ambient shadows create controlled elevation.
+   * ============================================================ */
+
+  --shadow-x: 0px;
+  --shadow-y: 8px;
+  --shadow-blur: 20px;
+  --shadow-spread: -6px;
+  --shadow-opacity: 0.12;
+  --shadow-color: hsl(0 0% 0%);
+
+  --design-shadow-2xs:
+    0 1px 1px hsl(0 0% 0% / 0.04);
+
+  --design-shadow-xs:
+    0 1px 2px hsl(0 0% 0% / 0.05),
+    0 2px 4px -2px hsl(0 0% 0% / 0.05);
+
+  --design-shadow-sm:
+    0 1px 2px hsl(0 0% 0% / 0.055),
+    0 4px 10px -4px hsl(0 0% 0% / 0.085);
+
+  --design-shadow:
+    0 1px 3px hsl(0 0% 0% / 0.06),
+    0 8px 18px -6px hsl(0 0% 0% / 0.1);
+
+  --design-shadow-md:
+    0 2px 4px hsl(0 0% 0% / 0.07),
+    0 12px 26px -8px hsl(0 0% 0% / 0.12);
+
+  --design-shadow-lg:
+    0 3px 6px hsl(0 0% 0% / 0.075),
+    0 18px 36px -10px hsl(0 0% 0% / 0.14);
+
+  --design-shadow-xl:
+    0 4px 8px hsl(0 0% 0% / 0.08),
+    0 26px 48px -13px hsl(0 0% 0% / 0.17);
+
+  --design-shadow-2xl:
+    0 6px 12px hsl(0 0% 0% / 0.09),
+    0 36px 68px -18px hsl(0 0% 0% / 0.22);
+
+  /* ============================================================
+   * COMPOSITION TOKENS
+   * ============================================================ */
+
+  --surface: color-mix(
+    in oklab,
+    var(--muted) 46%,
+    var(--background)
+  );
+
+  --surface-foreground: var(--foreground);
+
+  --line: color-mix(
+    in oklab,
+    var(--border) 82%,
+    var(--background)
+  );
+
+  --selection: var(--primary);
+  --selection-foreground: var(--primary-foreground);
+
+  --spacing: 0.25rem;
+
+  font-family: var(--design-font-sans);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* ==============================================================
+ * DARK MODE
+ * ============================================================== */
+
+.dark [data-design-system="pro"],
+[data-design-system="pro"].dark {
+  /* ============================================================
+   * COLOR FOUNDATION
+   * ============================================================ */
+
+  --background: oklch(0.14 0 0);
+  --foreground: oklch(0.955 0 0);
+
+  --card: oklch(0.172 0 0);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(0.172 0 0);
+  --popover-foreground: var(--foreground);
+
+  /*
+   * Lighter olive/forest in dark mode for sufficient prominence
+   * without turning into neon green.
+   */
+  --primary: oklch(0.7 0.06 149);
+  --primary-foreground: oklch(0.145 0 0);
+
+  --secondary: oklch(0.21 0 0);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.21 0 0);
+  --muted-foreground: oklch(0.68 0 0);
+
+  --accent: oklch(0.225 0 0);
+  --accent-foreground: var(--foreground);
+
+  --destructive: oklch(0.55 0.18 27);
+  --destructive-foreground: oklch(0.97 0 0);
+
+  --border: oklch(0.255 0 0);
+  --input: oklch(0.255 0 0);
+
+  --ring: oklch(0.7 0.06 149);
+
+  /* ============================================================
+   * CHARTS
+   * ============================================================ */
+
+  --chart-1: oklch(0.7 0.06 149);
+  --chart-2: oklch(0.61 0.055 149);
+  --chart-3: oklch(0.52 0.05 149);
+  --chart-4: oklch(0.76 0.04 151);
+  --chart-5: oklch(0.42 0.04 149);
+
+  /* ============================================================
+   * SIDEBAR
+   * ============================================================ */
+
+  --sidebar: oklch(0.153 0 0);
+  --sidebar-foreground: var(--foreground);
+
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+
+  --sidebar-accent: oklch(0.21 0 0);
+  --sidebar-accent-foreground: var(--foreground);
+
+  --sidebar-border: oklch(0.245 0 0);
+  --sidebar-ring: var(--ring);
+
+  /* ============================================================
+   * DARK ELEVATION
+   *
+   * More compact than Iris.
+   * Surface contrast does most of the work, while elevated
+   * elements get controlled black shadows.
+   * ============================================================ */
+
+  --shadow-x: 0px;
+  --shadow-y: 10px;
+  --shadow-blur: 26px;
+  --shadow-spread: -8px;
+  --shadow-opacity: 0.4;
+  --shadow-color: hsl(0 0% 0%);
+
+  --design-shadow-2xs:
+    0 1px 2px hsl(0 0% 0% / 0.16);
+
+  --design-shadow-xs:
+    0 1px 2px hsl(0 0% 0% / 0.19),
+    0 3px 6px -4px hsl(0 0% 0% / 0.2);
+
+  --design-shadow-sm:
+    0 1px 3px hsl(0 0% 0% / 0.22),
+    0 6px 14px -6px hsl(0 0% 0% / 0.29);
+
+  --design-shadow:
+    0 2px 4px hsl(0 0% 0% / 0.24),
+    0 9px 20px -7px hsl(0 0% 0% / 0.32);
+
+  --design-shadow-md:
+    0 2px 5px hsl(0 0% 0% / 0.26),
+    0 13px 28px -9px hsl(0 0% 0% / 0.36);
+
+  --design-shadow-lg:
+    0 3px 7px hsl(0 0% 0% / 0.28),
+    0 19px 38px -11px hsl(0 0% 0% / 0.4);
+
+  --design-shadow-xl:
+    0 4px 9px hsl(0 0% 0% / 0.3),
+    0 27px 52px -15px hsl(0 0% 0% / 0.46);
+
+  --design-shadow-2xl:
+    0 6px 12px hsl(0 0% 0% / 0.32),
+    0 38px 72px -20px hsl(0 0% 0% / 0.54);
+}

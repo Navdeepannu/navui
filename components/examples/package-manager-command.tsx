@@ -3,10 +3,10 @@
 import { PackageManagerCommand } from '@/registry/components/package-manager-command'
 
 const commands = {
-  npm: 'npx shadcn@latest add @navui/animated-tabs',
-  pnpm: 'pnpm dlx shadcn@latest add @navui/animated-tabs',
-  yarn: 'yarn dlx shadcn@latest add @navui/animated-tabs',
-  bun: 'bunx --bun shadcn@latest add @navui/animated-tabs',
+  npm: 'npx shadcn@latest add @navui/tabs',
+  pnpm: 'pnpm dlx shadcn@latest add @navui/tabs',
+  yarn: 'yarn dlx shadcn@latest add @navui/tabs',
+  bun: 'bunx --bun shadcn@latest add @navui/tabs',
 }
 
 export default function PackageManagerCommandShowcase() {

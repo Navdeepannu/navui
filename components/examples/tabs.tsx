@@ -2,14 +2,14 @@
 
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { Button } from '@/registry/components/primitives/radix/button'
+import { Button } from '@/registry/components/button'
 import {
-  AnimatedTabs,
-  AnimatedTabsContent,
-  AnimatedTabsList,
-  AnimatedTabsTrigger,
-  AnimatedTabsViewport,
-} from '@/registry/components/animated-tabs'
+  Tabs,
+  TabsPanel,
+  TabsList,
+  TabsTab,
+  TabsIndicator,
+} from '@/registry/components/tabs'
 import { cn } from 'cn'
 
 const IMAGES = {
@@ -116,31 +116,32 @@ const TABS = [
   },
 ]
 
-export default function AnimatedTabsShowcase() {
+export default function TabsShowcase() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10">
-      <AnimatedTabs defaultValue="discover">
-        <AnimatedTabsList className="grid min-w-max grid-cols-3 sm:min-w-0">
+      <Tabs defaultValue="discover">
+        <TabsList aria-label="Workflow" className="grid min-w-max grid-cols-3 sm:min-w-0">
           {TABS.map((tab) => (
-            <AnimatedTabsTrigger key={tab.value} value={tab.value}>
+            <TabsTab className="data-selected:bg-transparent data-selected:shadow-none" key={tab.value} value={tab.value}>
               {tab.label}
-            </AnimatedTabsTrigger>
+            </TabsTab>
           ))}
-        </AnimatedTabsList>
+          <TabsIndicator />
+        </TabsList>
 
-        <AnimatedTabsViewport className="py-4">
+        <div className="py-4">
           {TABS.map((tab) => (
-            <AnimatedTabsContent key={tab.value} value={tab.value}>
+            <TabsPanel key={tab.value} value={tab.value}>
               <AgentFlowPanel
                 title={tab.title}
                 description={tab.description}
                 image={tab.image}
                 imageAlt={tab.imageAlt}
               />
-            </AnimatedTabsContent>
+            </TabsPanel>
           ))}
-        </AnimatedTabsViewport>
-      </AnimatedTabs>
+        </div>
+      </Tabs>
     </div>
   )
 }

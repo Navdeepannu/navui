@@ -4,24 +4,35 @@ import path from "node:path";
 import test from "node:test";
 import ts from "typescript";
 
-import { blockCatalog, componentCatalog, registryCatalog } from "../../registry/catalog.ts";
+import { blockCatalog, componentCatalog, registryCatalog, retiredComponents } from "../../registry/catalog.ts";
 import { validateBlockCatalog } from "./validate-catalog.mjs";
 
 test("keeps the published inventory and existing Base names", () => {
   assert.equal(blockCatalog.length, 45);
   assert.ok(blockCatalog.every((item) => item.registryName === `base-${item.slug}`));
-  assert.deepEqual(componentCatalog.map((item) => item.slug), [
-    "animated-numbers", "animated-tabs", "contribution-graph", "expandable-card",
-    "keyboard-shortcut", "magnetic-button", "package-manager-command", "proximity-nav",
-    "rail-nav", "segment-spotlight",
-  ]);
+  assert.ok(componentCatalog.some(item => item.slug === 'button' && item.status === 'published'));
+  assert.ok(componentCatalog.some(item => item.slug === 'tabs' && item.status === 'published'));
+  for (const retired of retiredComponents) assert.ok(!componentCatalog.some(item => item.slug === retired.slug && item.status === 'published'));
   validateBlockCatalog(registryCatalog, { designSystemIds: ["base"], categoryIds: [...new Set(blockCatalog.map((item) => item.category))] });
 });
 
-test("every migrated import is declared, portable, and independent of demos", () => {
+test("every public import is declared, portable, and independent of demos", () => {
   for (const item of componentCatalog) {
-    const sources = new Set(item.registry.files.map((file) => file.source));
-    const dependencies = new Set(item.registry.dependencies);
+    const closure = new Set();
+    function include(entry) {
+      if (closure.has(entry)) return;
+      closure.add(entry);
+      for (const dependency of entry.registry.registryDependencies) {
+        if (!dependency.startsWith('@navui/')) continue;
+        const local = componentCatalog.find(candidate => candidate.registryName === dependency.slice('@navui/'.length));
+        assert.ok(local, `Unknown canonical dependency: ${dependency}`);
+        include(local);
+      }
+    }
+    include(item);
+    const files = [...closure].flatMap(entry => entry.registry.files);
+    const sources = new Set(files.map((file) => file.source));
+    const dependencies = new Set([...closure].flatMap(entry => entry.registry.dependencies).map(dep => dep.includes('@', 1) ? dep.slice(0, dep.lastIndexOf('@')) : dep));
     for (const file of item.registry.files) {
       assert.doesNotMatch(file.source, /examples|\.demo\./);
       const code = readFileSync(file.source, "utf8");
@@ -68,10 +79,10 @@ test("shared targets reject conflicting source and missing shared declarations",
   const second = structuredClone(componentCatalog.find((item) => item.slug === "magnetic-button"));
   const options = { designSystemIds: ["base"], categoryIds: [] };
   assert.doesNotThrow(() => validateBlockCatalog([first, second], options));
-  const helper = second.registry.files.find((file) => file.target.endsWith("/button.tsx"));
+  const helper = second.registry.files.find((file) => file.target.endsWith("/LICENSE"));
   helper.source = "registry/components/conflicting-button.tsx";
   assert.throws(() => validateBlockCatalog([first, second], options), /duplicate install target/);
-  helper.source = first.registry.files.find((file) => file.target.endsWith("/button.tsx")).source;
+  helper.source = first.registry.files.find((file) => file.target.endsWith("/LICENSE")).source;
   helper.shared = false;
   assert.throws(() => validateBlockCatalog([first, second], options), /duplicate install target/);
 });

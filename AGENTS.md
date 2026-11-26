@@ -38,7 +38,7 @@ For substantial UI work, establish a clear design direction before implementatio
 - Interaction and accessibility requirements.
 - How the result fits NavUI’s neutral visual foundation.
 
-If requirements materially conflict or a decision would change the public component API, ask before proceeding.
+Resolve material requirement conflicts before proceeding. This foundation cleanup authorizes component replacement, consolidation, retirement, and necessary API changes; document breaking changes and update local consumers.
 
 ## NavUI design architecture
 
@@ -46,16 +46,23 @@ NavUI has one neutral visual foundation with light and dark modes. Existing
 `base-*` registry names, Base block source paths, and `/blocks/base` links are
 compatibility contracts, not a separate product offering.
 
-UI SDK is the preferred foundation for new interactive components. Read the
-installed skill and version-matched documentation before implementing new behavior.
-Existing Motion, Radix, and Base UI components remain supported during migration;
-do not change their public APIs or primitive behavior merely to standardize them.
-Keep primitive-specific helpers isolated and share neutral semantic tokens.
+UI SDK owns behavior for new standard interactive components. Useful existing
+components migrate where feasible. Unique visual/data components may remain custom;
+redundant public components should be consolidated or retired. Do not retain obsolete
+APIs through permanent compatibility layers. Use SDK's documented composition and
+public types; do not copy Radix/Base UI semantics into SDK wrappers.
 
-Build styled, reusable components first; compose larger blocks from those
-components afterward. Distribution uses the shadcn CLI and the NavUI registry.
-Do not create a separate NavUI CLI. Phase 1 includes no new AI components, agent
-integrations, model connections, or backend services.
+Read the installed ui-sdk and shadcn skills, relevant design guidance, and the
+version-matched docs before each interaction. Use public SDK subpaths; forward refs,
+render functions, callbacks and cancellation. SDK owns selection, focus, keyboard,
+modality and presence. Motion may enhance visuals without duplicating those states.
+See `docs/component-authoring.md` and `docs/component-migration.md`.
+
+Components come first; marketing blocks come later. Preserve all 45 existing Base
+blocks and their dependencies; do not redesign or migrate them in foundation work.
+Distribution uses the shadcn CLI and NavUI registry, with no separate CLI. No model
+connection, shipped agent bridge, generic plugin framework or backend belongs here.
+Agent-related SDK guidance is scoped to tests. Preserve SDK and package-manager pins.
 
 Treat the neutral foundation CSS and semantic tokens as the source of truth. Do not duplicate token values inside components.
 

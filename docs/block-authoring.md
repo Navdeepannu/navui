@@ -1,8 +1,8 @@
 # NavUI contributor guide
 
-NavUI has one neutral foundation with light/dark modes. Prefer UI SDK for new
-interactive components. Preserve the behavior of existing Motion, Radix, and
-Base UI items during migration. Build reusable styled components first and
+NavUI has one neutral foundation with light/dark modes. UI SDK owns new standard interactive behavior. See `component-authoring.md` for
+the canonical Button, Tabs and Dialog pattern. Unique custom components are retained
+on their merits; redundant public controls are consolidated. Build reusable styled components first and
 compose blocks afterward. No separate CLI or AI connection belongs in Phase 1.
 
 ## Source and catalog
@@ -29,7 +29,7 @@ navigation, docs, installation, or source browsing.
 
 Required primitive helpers are declared files. Shared files must use the same
 source and consumer target with `shared: true`; never duplicate helper source.
-The migrated Radix helpers are isolated from the site’s Base UI primitives.
+The public SDK foundation is isolated from the site’s retained Base UI primitives.
 The existing Kbd implementation is reused directly. Preserve license notices and
 include the original MIT license with migrated components.
 
@@ -60,7 +60,7 @@ or `public/r/*.json` by hand; `registry:build` regenerates and prunes stale item
 ```
 
 ```bash
-npx shadcn@latest add @navui/animated-tabs
+npx shadcn@latest add @navui/tabs
 npx shadcn@latest add @navui/base-blog-section-one
 ```
 

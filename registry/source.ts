@@ -5,6 +5,7 @@ import path from "node:path";
 import { cache } from "react";
 import { codeToHtml, type BundledLanguage } from "shiki";
 
+import { componentCatalog } from "@/registry/catalog";
 import type { RegistryCatalogEntry, BlockSourceFile } from "@/registry/types";
 
 const languageByExtension = {
@@ -54,7 +55,7 @@ export const readBlockSource = cache(async (sourcePath: string) => {
 export const readBlockSources = cache(
   async (block: Pick<RegistryCatalogEntry, "registry">): Promise<BlockSourceFile[]> =>
     Promise.all(
-      block.registry.files.map(async (file) => {
+      collectSourceFiles(block.registry).map(async (file) => {
         const target = normalizeSourceTarget(file.target);
         const code = await readBlockSource(file.source);
         const highlightedCode = await codeToHtml(code, {
@@ -69,3 +70,20 @@ export const readBlockSources = cache(
       }),
     ),
 );
+
+function collectSourceFiles(registry: RegistryCatalogEntry["registry"]) {
+  const files = new Map(registry.files.map((file) => [file.target, file]));
+  const visited = new Set<string>();
+  function visit(manifest: RegistryCatalogEntry["registry"]) {
+    for (const dependency of manifest.registryDependencies) {
+      if (!dependency.startsWith("@navui/") || visited.has(dependency)) continue;
+      visited.add(dependency);
+      const item = componentCatalog.find((item) => item.registryName === dependency.slice("@navui/".length));
+      if (!item) throw new Error(`Unknown NavUI source dependency: ${dependency}`);
+      for (const file of item.registry.files) files.set(file.target, file);
+      visit(item.registry);
+    }
+  }
+  visit(registry);
+  return [...files.values()];
+}

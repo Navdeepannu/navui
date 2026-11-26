@@ -246,6 +246,7 @@ export function RailNav({
                 onClick={(event) => {
                   item.onClick?.(event)
 
+                  if (event.defaultPrevented) return
                   if (preventNavigation) event.preventDefault()
 
                   if (preventNavigation || !event.defaultPrevented) {

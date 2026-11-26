@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "description": "Accessible UI SDK tabs with a measured moving indicator, horizontal or vertical layouts, and subtle panel transitions.",
+  "dependencies": [
+    "@ui-sdk/core@0.1.0-beta.17",
+    "@ui-sdk/react@0.1.0-beta.17",
+    "cn"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/components/tabs.tsx",
+      "content": "\"use client\";\n\nimport {\n  TabsList as SdkList,\n  TabsTab as SdkTab,\n  TabsPanel as SdkPanel,\n  TabsIndicator as SdkIndicator,\n} from \"@ui-sdk/react/tabs\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"cn\";\n\nexport { Tabs } from \"@ui-sdk/react/tabs\";\n\nexport function TabsList({\n  className,\n  children,\n  ...props\n}: ComponentProps<typeof SdkList>) {\n  return (\n    <SdkList\n      {...props}\n      className={(state) =>\n        cn(\n          \"relative isolate flex w-fit max-w-full gap-1 overflow-x-auto rounded-lg bg-muted p-1 data-[orientation=vertical]:flex-col\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    >\n      {children}\n    </SdkList>\n  );\n}\nexport function TabsTab({\n  className,\n  ...props\n}: ComponentProps<typeof SdkTab>) {\n  return (\n    <SdkTab\n      {...props}\n      className={(state) =>\n        cn(\n          \"relative z-10 inline-flex min-h-9 shrink-0 items-center justify-center rounded-md px-4 py-2 text-sm font-medium whitespace-nowrap text-muted-foreground outline-none hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-selected:bg-background data-selected:text-foreground data-selected:shadow-xs data-disabled:opacity-50\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\nexport function TabsIndicator({\n  className,\n  ...props\n}: ComponentProps<typeof SdkIndicator>) {\n  return (\n    <SdkIndicator\n      {...props}\n      className={(state) =>\n        cn(\n          \"pointer-events-none absolute left-0 top-0 -z-0 h-(--active-tab-height) w-(--active-tab-width) translate-x-(--active-tab-left) translate-y-(--active-tab-top) rounded-md bg-background shadow-xs motion-safe:transition-[translate,width,height] motion-safe:duration-200 motion-safe:ease-out\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\nexport function TabsPanel({\n  className,\n  ...props\n}: ComponentProps<typeof SdkPanel>) {\n  return (\n    <SdkPanel\n      {...props}\n      className={(state) =>\n        cn(\n          \"min-w-0 py-4 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring motion-safe:transition-opacity motion-safe:duration-150 data-starting-style:opacity-0 data-ending-style:opacity-0\",\n          typeof className === \"function\" ? className(state) : className,\n        )\n      }\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/navui/tabs.tsx"
+    },
+    {
+      "path": "registry/components/LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2026 Navdeep Singh\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "type": "registry:file",
+      "target": "components/navui/LICENSE"
+    }
+  ],
+  "type": "registry:ui"
+}

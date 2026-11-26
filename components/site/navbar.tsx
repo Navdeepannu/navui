@@ -11,8 +11,8 @@ import { cn } from "cn";
 import { Logo } from "./logo";
 
 const menuItems = [
-  { name: "Blocks", href: "/blocks" },
   { name: "Components", href: "/components" },
+  { name: "Blocks", href: "/blocks" },
 ];
 
 export function Navbar() {

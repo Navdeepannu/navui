@@ -36,7 +36,7 @@ export function ComponentDocumentation({ item }: { item: ComponentCatalogEntry }
       <section aria-labelledby="notes-heading" className="flex flex-col gap-4">
         <h2 id="notes-heading" className="text-xl font-semibold tracking-tight">Accessibility and dependencies</h2>
         <ul className="flex list-disc flex-col gap-2 pl-5 text-sm leading-6 text-muted-foreground">{item.notes.map((note) => <li key={note}>{note}</li>)}</ul>
-        <p className="text-xs leading-6 text-muted-foreground">Migrated from <a href={`${item.provenance.repository}/blob/${item.provenance.commit}/${item.provenance.path}`} className="rounded-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Portfolio’s original source</a>. Copyright © 2026 Navdeep Singh. MIT licensed.</p>
+        <p className="text-xs leading-6 text-muted-foreground">{item.provenance ? <>Adapted from <a href={`${item.provenance.repository}/blob/${item.provenance.commit}/${item.provenance.path}`} className="underline underline-offset-4">Portfolio’s original source</a>. </> : <>Original NavUI foundation built on UI SDK. </>}Copyright © 2026 Navdeep Singh. MIT licensed.</p>
       </section>
     </>
   );

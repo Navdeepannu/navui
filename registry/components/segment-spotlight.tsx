@@ -3,7 +3,7 @@
 // Copyright (c) 2026 Navdeep Singh. MIT license; see LICENSE.
 
 import * as React from 'react'
-import { Slot } from 'radix-ui'
+import { Toolbar, ToolbarButton, ToolbarSeparator } from '@ui-sdk/react/toolbar'
 import { motion, useReducedMotion } from 'motion/react'
 import { useControllableState } from '@radix-ui/react-use-controllable-state'
 
@@ -170,10 +170,10 @@ function SegmentSpotlightSegment({
       }
       animate={
         animate ?? {
-          opacity: isMuted ? 0.24 : 1,
-          y: isActive ? -4 : 0,
-          scale: isActive ? 1.06 : 1,
-          filter: isMuted ? 'blur(5px)' : 'blur(0px)',
+          opacity: isMuted ? 0.65 : 1,
+          y: !context.prefersReducedMotion && isActive ? -4 : 0,
+          scale: !context.prefersReducedMotion && isActive ? 1.06 : 1,
+          filter: !context.prefersReducedMotion && isMuted ? 'blur(2px)' : 'blur(0px)',
         }
       }
       transition={
@@ -195,153 +195,29 @@ function SegmentSpotlightSegment({
   )
 }
 
-function SegmentSpotlightToolbar({
-  className,
-  onPointerLeave,
-  onBlur,
-  initial,
-  animate,
-  transition,
-  ...props
-}: React.ComponentProps<typeof motion.div>) {
-  const context = useSegmentSpotlight()
-
-  function handlePointerLeave(event: React.PointerEvent<HTMLDivElement>) {
-    onPointerLeave?.(event)
-
-    if (
-      !event.defaultPrevented &&
-      context.activationMode === 'hover' &&
-      event.pointerType === 'mouse'
-    ) {
-      context.setActiveValue(null)
-    }
-  }
-
-  function handleBlur(event: React.FocusEvent<HTMLDivElement>) {
-    onBlur?.(event)
-
-    if (!event.defaultPrevented && !event.currentTarget.contains(event.relatedTarget)) {
-      context.setActiveValue(null)
-    }
-  }
-
-  return (
-    <motion.div
-      data-slot="segment-spotlight-toolbar"
-      role="toolbar"
-      initial={
-        initial ?? (context.prefersReducedMotion ? false : { opacity: 0, y: 10, scale: 0.96 })
-      }
-      animate={animate ?? { opacity: 1, y: 0, scale: 1 }}
-      transition={
-        transition ?? {
-          duration: context.prefersReducedMotion ? 0 : 0.35,
-          ease: [0.16, 1, 0.3, 1],
-        }
-      }
-      onPointerLeave={handlePointerLeave}
-      onBlur={handleBlur}
-      className={cn(
-        'flex items-center gap-1 rounded-full bg-zinc-950/95 p-2 shadow-2xl ring-1 shadow-black/20 ring-border backdrop-blur-xl',
-        className,
-      )}
-      {...props}
-    />
-  )
+function SegmentSpotlightToolbar({ className, onPointerLeave, onBlur, ...props }: React.ComponentProps<typeof Toolbar>) {
+  const context = useSegmentSpotlight();
+  return <Toolbar {...props}
+    onPointerLeave={(event) => { onPointerLeave?.(event); if (!event.defaultPrevented && context.activationMode === 'hover') context.setActiveValue(null); }}
+    onBlur={(event) => { onBlur?.(event); if (!event.defaultPrevented && !event.currentTarget.contains(event.relatedTarget)) context.setActiveValue(null); }}
+    className={(state) => cn('flex items-center gap-1 rounded-full bg-foreground p-2 text-background shadow-lg', typeof className === 'function' ? className(state) : className)} />;
 }
 
-type SegmentSpotlightTriggerProps = Omit<React.ComponentProps<'button'>, 'value'> & {
-  value: string
-  targets?: string[]
-  asChild?: boolean
+type SegmentSpotlightTriggerProps = React.ComponentProps<typeof ToolbarButton> & { value: string; targets?: string[] };
+function SegmentSpotlightTrigger({ value, targets, className, onPointerEnter, onFocus, onClick, ...props }: SegmentSpotlightTriggerProps) {
+  const context = useSegmentSpotlight();
+  const targetValues = React.useMemo(() => targets ?? [value], [targets, value]);
+  const register = context.registerTrigger;
+  React.useLayoutEffect(() => register(value, targetValues), [register, value, targetValues]);
+  const active = context.activeValue === value;
+  return <ToolbarButton {...props} aria-pressed={active}
+    onPointerEnter={(event) => { onPointerEnter?.(event); if (!event.defaultPrevented && context.activationMode === 'hover' && event.pointerType === 'mouse') context.setActiveValue(value); }}
+    onFocus={(event) => { onFocus?.(event); if (!event.defaultPrevented && context.activationMode === 'hover') context.setActiveValue(value); }}
+    onClick={(event) => { onClick?.(event); if (!event.defaultPrevented) context.setActiveValue(context.activationMode === 'click' && active ? null : value); }}
+    className={(state) => cn('relative grid size-10 shrink-0 place-items-center rounded-full border border-transparent text-background outline-none hover:border-background/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background aria-pressed:border-background aria-pressed:bg-background/15 data-disabled:opacity-50 [&_svg]:size-5', typeof className === 'function' ? className(state) : className)} />;
 }
-
-function SegmentSpotlightTrigger({
-  value,
-  targets,
-  asChild = false,
-  className,
-  onPointerEnter,
-  onFocus,
-  onClick,
-  children,
-  ...props
-}: SegmentSpotlightTriggerProps) {
-  const context = useSegmentSpotlight()
-  const Comp = asChild ? Slot.Root : 'button'
-  const isActive = context.activeValue === value
-  const registerTrigger = context.registerTrigger
-  const targetValues = React.useMemo(() => targets ?? [value], [targets, value])
-
-  React.useLayoutEffect(
-    () => registerTrigger(value, targetValues),
-    [registerTrigger, targetValues, value],
-  )
-
-  function handlePointerEnter(event: React.PointerEvent<HTMLButtonElement>) {
-    onPointerEnter?.(event)
-
-    if (
-      !event.defaultPrevented &&
-      context.activationMode === 'hover' &&
-      event.pointerType !== 'touch'
-    ) {
-      context.setActiveValue(value)
-    }
-  }
-
-  function handleFocus(event: React.FocusEvent<HTMLButtonElement>) {
-    onFocus?.(event)
-    if (!event.defaultPrevented) context.setActiveValue(value)
-  }
-
-  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
-    onClick?.(event)
-
-    if (!event.defaultPrevented) {
-      context.setActiveValue(context.activationMode === 'click' && isActive ? null : value)
-    }
-  }
-
-  return (
-    <motion.div
-      whileHover={context.prefersReducedMotion ? undefined : { scale: 1.08 }}
-      whileTap={context.prefersReducedMotion ? undefined : { scale: 0.94 }}
-    >
-      <Comp
-        data-slot="segment-spotlight-trigger"
-        data-state={isActive ? 'active' : 'inactive'}
-        type={asChild ? undefined : 'button'}
-        aria-pressed={isActive}
-        onPointerEnter={handlePointerEnter}
-        onFocus={handleFocus}
-        onClick={handleClick}
-        className={cn(
-          'relative grid size-10 place-items-center rounded-full text-neutral-200 transition-colors outline-none',
-          'after:absolute after:inset-1 after:rounded-full after:bg-white/15 after:opacity-0 after:transition-opacity',
-          'hover:text-white focus-visible:ring-2 focus-visible:ring-white/70 data-[state=active]:text-white data-[state=active]:after:opacity-100',
-          '[&_svg]:relative [&_svg]:z-10',
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </Comp>
-    </motion.div>
-  )
-}
-
-function SegmentSpotlightSeparator({ className, ...props }: React.ComponentProps<'span'>) {
-  return (
-    <span
-      data-slot="segment-spotlight-separator"
-      role="separator"
-      aria-orientation="vertical"
-      className={cn('mx-1 h-6 w-px bg-white/15', className)}
-      {...props}
-    />
-  )
+function SegmentSpotlightSeparator({ className, ...props }: React.ComponentProps<typeof ToolbarSeparator>) {
+  return <ToolbarSeparator {...props} className={(state) => cn('mx-1 h-6 w-px shrink-0 bg-background/30', typeof className === 'function' ? className(state) : className)} />;
 }
 
 function SegmentSpotlightContent({ className, ...props }: React.ComponentProps<'div'>) {

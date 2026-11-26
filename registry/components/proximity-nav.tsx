@@ -3,8 +3,6 @@
 // Copyright (c) 2026 Navdeep Singh. MIT license; see LICENSE.
 
 import * as React from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import {
   motion,
   useMotionValue,
@@ -50,20 +48,17 @@ export function ProximityNav({
   label = 'Navigation',
   className,
 }: ProximityNavProps) {
-  const pathname = usePathname()
   const mouseY = useMotionValue(INACTIVE_POINTER_POSITION)
 
   const [internalActiveHref, setInternalActiveHref] = React.useState(
     defaultActiveHref ?? items[0]?.href ?? '',
   )
 
-  const currentHref = activeHref ?? (preventNavigation ? internalActiveHref : pathname)
+  const currentHref = activeHref ?? internalActiveHref
 
   function handleItemClick(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
-    if (preventNavigation) {
-      event.preventDefault()
-      setInternalActiveHref(href)
-    }
+    if (preventNavigation) event.preventDefault()
+    setInternalActiveHref(href)
 
     onActiveHrefChange?.(href)
   }
@@ -87,7 +82,6 @@ export function ProximityNav({
             isActive={normalizeHref(item.href) === normalizeHref(currentHref)}
             showTrailingLine={index < items.length - 1}
             mouseY={mouseY}
-            preventNavigation={preventNavigation}
             onClick={handleItemClick}
           />
         ))}
@@ -101,14 +95,12 @@ function ProximityNavItem({
   isActive,
   showTrailingLine,
   mouseY,
-  preventNavigation,
   onClick,
 }: {
   item: ProximityNavItem
   isActive: boolean
   showTrailingLine: boolean
   mouseY: MotionValue<number>
-  preventNavigation: boolean
   onClick: (event: React.MouseEvent<HTMLAnchorElement>, href: string) => void
 }) {
   const [isInteracting, setIsInteracting] = React.useState(false)
@@ -125,9 +117,8 @@ function ProximityNavItem({
         <ProximityBar mouseY={mouseY} isActive={isActive} idleOpacity={0.35} peakOpacity={0.85} />
       </span>
 
-      <Link
+      <a
         href={item.href}
-        prefetch={preventNavigation ? false : undefined}
         aria-current={isActive ? 'page' : undefined}
         onClick={(event) => onClick(event, item.href)}
         onPointerEnter={() => setIsInteracting(true)}
@@ -152,7 +143,7 @@ function ProximityNavItem({
         >
           {item.title}
         </motion.span>
-      </Link>
+      </a>
 
       {/* Smaller line between the current and next item. */}
       {showTrailingLine && (

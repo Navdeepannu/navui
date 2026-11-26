@@ -551,83 +551,57 @@ export const componentCatalog = [
     }
   },
   {
-    "id": "components/animated-tabs",
-    "registryName": "animated-tabs",
-    "slug": "animated-tabs",
-    "title": "Animated Tabs",
-    "description": "A tab component with a moving active pill and directional content transitions.",
-    "category": "interactive",
+    "id": "components/button",
+    "registryName": "button",
+    "slug": "button",
+    "category": "foundations",
     "status": "published",
     "tags": [
-      "interactive",
-      "motion",
-      "animation",
-      "tabs",
+      "ui-sdk",
+      "button",
       "accessibility"
     ],
-    "usageExample": "import {\n  AnimatedTabs,\n  AnimatedTabsContent,\n  AnimatedTabsList,\n  AnimatedTabsTrigger,\n  AnimatedTabsViewport,\n} from '@/components/navui/animated-tabs'\n\nexport function Example() {\n  return (\n    <AnimatedTabs defaultValue=\"overview\">\n      <AnimatedTabsList>\n        <AnimatedTabsTrigger value=\"overview\">Overview</AnimatedTabsTrigger>\n        <AnimatedTabsTrigger value=\"pricing\">Pricing</AnimatedTabsTrigger>\n      </AnimatedTabsList>\n\n      <AnimatedTabsViewport>\n        <AnimatedTabsContent value=\"overview\">Overview content</AnimatedTabsContent>\n        <AnimatedTabsContent value=\"pricing\">Pricing content</AnimatedTabsContent>\n      </AnimatedTabsViewport>\n    </AnimatedTabs>\n  )\n}",
+    "preview": "components/examples/button.tsx",
+    "examples": [],
+    "title": "Button",
+    "description": "A neutral UI SDK action with native form behavior, pending feedback, and composable rendering.",
+    "usageExample": "import { Button } from '@/components/navui/button'\n\nexport function Example() {\n  return <Button onClick={() => console.log('Pressed')}>Create project</Button>\n}",
     "api": [
       {
-        "prop": "AnimatedTabs",
-        "type": "React.ComponentProps<typeof Tabs>",
-        "default": "-",
-        "description": "Accessible root with the Radix Tabs controlled and uncontrolled state API, orientation, direction, and activationMode."
+        "prop": "variant",
+        "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\"",
+        "description": "Semantic appearance.",
+        "default": "\"default\""
       },
       {
-        "prop": "AnimatedTabsList",
-        "type": "React.ComponentProps<typeof TabsList>",
-        "default": "-",
-        "description": "Scrollable tab list. Accepts native Radix list props and custom layout classes."
+        "prop": "size",
+        "type": "\"sm\" | \"default\" | \"lg\" | \"icon\"",
+        "description": "Control size.",
+        "default": "\"default\""
       },
       {
-        "prop": "AnimatedTabsTrigger",
-        "type": "React.ComponentProps<typeof TabsTrigger>",
-        "default": "-",
-        "description": "Tab trigger with the shared animated active indicator."
-      },
-      {
-        "prop": "AnimatedTabsViewport",
-        "type": "React.ComponentProps<\"div\">",
-        "default": "-",
-        "description": "Grid viewport that layers outgoing and incoming panels during transitions."
-      },
-      {
-        "prop": "AnimatedTabsContent",
-        "type": "React.ComponentProps<typeof TabsContent>",
-        "default": "-",
-        "description": "Accessible tab panel with directional enter and exit motion. Children can be any React content."
+        "prop": "render / ref / onClick",
+        "type": "UI SDK Button props",
+        "description": "Use render to compose another element; return a Promise for pending feedback. Native type, disabled, and focusableWhenDisabled are forwarded.",
+        "default": "—"
       }
     ],
     "notes": [
-      "Retains Radix Tabs and Motion. Arrow keys move between tabs; inactive panels are inert during transitions. Respects reduced motion."
+      "UI SDK owns press, native form, pending, disabled, and render behavior. Icon-only controls require an accessible name."
     ],
-    "preview": "components/examples/animated-tabs.tsx",
-    "examples": [],
-    "provenance": {
-      "repository": "https://github.com/Navdeepannu/Portfolio",
-      "commit": "c4fcc26d0fb10293cf549398e331cb5cc7ec350c",
-      "path": "src/registry/components/animated-tabs/animated-tabs.tsx"
-    },
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-        "@radix-ui/react-use-controllable-state",
-        "cn",
-        "motion",
-        "radix-ui"
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
       ],
       "registryDependencies": [],
       "files": [
         {
-          "source": "registry/components/animated-tabs.tsx",
-          "target": "components/navui/animated-tabs.tsx",
+          "source": "registry/components/button.tsx",
+          "target": "components/navui/button.tsx",
           "type": "registry:ui"
-        },
-        {
-          "source": "registry/components/primitives/radix/tabs.tsx",
-          "target": "components/navui/primitives/radix/tabs.tsx",
-          "type": "registry:ui",
-          "shared": true
         },
         {
           "source": "registry/components/LICENSE",
@@ -719,6 +693,74 @@ export const componentCatalog = [
     }
   },
   {
+    "id": "components/dialog",
+    "registryName": "dialog",
+    "slug": "dialog",
+    "category": "foundations",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "dialog",
+      "accessibility"
+    ],
+    "preview": "components/examples/dialog.tsx",
+    "examples": [],
+    "title": "Dialog",
+    "description": "A focused UI SDK modal with named content, focus return, scroll containment, and SDK-owned transition presence.",
+    "usageExample": "import { Dialog, DialogTrigger, DialogBackdrop, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@/components/navui/dialog'\n\nexport function Example() {\n  return <Dialog>\n    <DialogTrigger>Project details</DialogTrigger>\n    <DialogBackdrop />\n    <DialogContent>\n      <DialogTitle>Project details</DialogTitle>\n      <DialogDescription>Review this project.</DialogDescription>\n      <DialogClose>Done</DialogClose>\n    </DialogContent>\n  </Dialog>\n}",
+    "api": [
+      {
+        "prop": "Dialog",
+        "type": "UI SDK Dialog props",
+        "description": "Controlled/uncontrolled open state; onOpenChange(open, details) supports cancellation.",
+        "default": "—"
+      },
+      {
+        "prop": "DialogContent",
+        "type": "UI SDK content props",
+        "description": "initialFocus, finalFocus, keepMounted, inline, container, refs, and render are forwarded.",
+        "default": "—"
+      },
+      {
+        "prop": "DialogTitle / DialogDescription",
+        "type": "UI SDK part props",
+        "description": "Required contextual name and description.",
+        "default": "—"
+      },
+      {
+        "prop": "DialogClose",
+        "type": "UI SDK close props",
+        "description": "Supports action and asynchronous pending dismissal.",
+        "default": "—"
+      }
+    ],
+    "notes": [
+      "SDK owns focus trapping, outside presses, Escape, modality, and exit presence. CSS uses data-starting-style and data-ending-style; reduced motion removes transitions."
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/dialog.tsx",
+          "target": "components/navui/dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
+  },
+  {
     "id": "components/expandable-card",
     "registryName": "expandable-card",
     "slug": "expandable-card",
@@ -737,49 +779,32 @@ export const componentCatalog = [
     "api": [
       {
         "prop": "ExpandableCard",
-        "type": "React.ComponentProps<typeof Dialog.Root>",
-        "default": "defaultOpen: false",
-        "description": "Accessible controlled or uncontrolled root. Supports open, defaultOpen, onOpenChange, and modal behavior."
+        "type": "UI SDK Dialog props",
+        "description": "Controlled/uncontrolled open state and cancelable onOpenChange(open, details).",
+        "default": "—"
       },
       {
-        "prop": "ExpandableCardTrigger",
-        "type": "Motion button props",
-        "default": "-",
-        "description": "Collapsed card button. Accepts arbitrary preview content, native button props, Motion props, refs, and classes."
-      },
-      {
-        "prop": "ExpandableCardContent",
-        "type": "Dialog.Content props",
-        "default": "showCloseButton: true",
-        "description": "Accessible expanded dialog surface. Supports custom children, overlayClassName, closeLabel, transition, Dialog events, and optional contained rendering into a local portalContainer."
+        "prop": "ExpandableCardTrigger / Content",
+        "type": "UI SDK trigger/content props",
+        "description": "Card styling and shared-layout motion with SDK-owned dialog lifecycle. Content also takes showCloseButton, closeLabel, overlayClassName.",
+        "default": "—"
       },
       {
         "prop": "ExpandableCardMedia",
         "type": "Motion span props",
-        "default": "-",
-        "description": "Optional shared-layout media primitive. Use it in both trigger and content around any image, icon, or visual."
+        "description": "Optional shared media paired by the root, disabled under reduced motion.",
+        "default": "—"
       },
       {
-        "prop": "ExpandableCardHeader / Title / Description",
-        "type": "Native and Dialog primitive props",
-        "default": "-",
-        "description": "Semantic dialog heading primitives with native prop and className passthrough."
-      },
-      {
-        "prop": "ExpandableCardBody / Footer",
-        "type": "React.ComponentProps<\"div\">",
-        "default": "-",
-        "description": "Unopinionated content regions for application-specific details and actions."
-      },
-      {
-        "prop": "ExpandableCardClose",
-        "type": "React.ComponentProps<typeof Dialog.Close>",
-        "default": "-",
-        "description": "Optional close primitive for custom action placement; supports asChild."
+        "prop": "Header / Title / Description / Body / Footer / Close",
+        "type": "Composable part props",
+        "description": "Name and describe every dialog. Close uses SDK render and action.",
+        "default": "—"
       }
     ],
     "notes": [
-      "Retains Radix Dialog focus trapping, Escape dismissal, and focus return. Always include Title and Description; do not nest interactive elements inside the trigger."
+      "SDK Dialog owns modal behavior, focus return, Escape, and presence. Motion only provides the paired card/media layout effect; reduced motion removes that effect.",
+      "Breaking change: use SDK render, container and inline instead of Radix asChild, portalContainer and contained. Open callbacks receive SDK cancellation details."
     ],
     "preview": "components/examples/expandable-card.tsx",
     "examples": [],
@@ -791,25 +816,20 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-        "@radix-ui/react-use-controllable-state",
-        "class-variance-authority",
-        "cn",
+          "cn",
         "lucide-react",
         "motion",
-        "radix-ui"
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "@navui/dialog"
+      ],
       "files": [
         {
           "source": "registry/components/expandable-card.tsx",
           "target": "components/navui/expandable-card.tsx",
           "type": "registry:ui"
-        },
-        {
-          "source": "registry/components/primitives/radix/button.tsx",
-          "target": "components/navui/primitives/radix/button.tsx",
-          "type": "registry:ui",
-          "shared": true
         },
         {
           "source": "registry/components/LICENSE",
@@ -884,10 +904,16 @@ export const componentCatalog = [
         "type": "string",
         "default": "Generated from keys",
         "description": "Accessible name for the displayed shortcut group."
+      },
+      {
+        "prop": "allowInEditable",
+        "type": "boolean",
+        "description": "Allow shortcuts inside inputs, textareas, selects and contenteditable.",
+        "default": "false"
       }
     ],
     "notes": [
-      "Global keyboard listener: choose chords that do not conflict with browser or assistive-technology shortcuts. Optional sound is opt-in and requires a browser-readable audio URL."
+      "Uses the public SDK matchesShortcut helper for exact modifier chords. Editable fields and IME composition are ignored by default; allowInEditable is an explicit opt-in. Listeners are removed on unmount."
     ],
     "preview": "components/examples/keyboard-shortcut.tsx",
     "examples": [
@@ -906,7 +932,8 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-        "cn"
+        "cn",
+        "@ui-sdk/core@0.1.0-beta.17"
       ],
       "registryDependencies": [],
       "files": [
@@ -944,7 +971,7 @@ export const componentCatalog = [
       "cursor",
       "animation"
     ],
-    "usageExample": "import { MagneticButton } from '@/components/navui/magnetic-button'\n\nexport function Example() {\n  return (\n    <MagneticButton asChild movement={8} variant=\"outline\">\n      <a href=\"/docs\">View documentation</a>\n    </MagneticButton>\n  )\n}",
+    "usageExample": "import { MagneticButton } from '@/components/navui/magnetic-button'\n\nexport function Example() {\n  return <MagneticButton movement={8} variant=\"outline\" render={<a href=\"/docs\" />}>Documentation</MagneticButton>\n}",
     "api": [
       {
         "prop": "movement",
@@ -968,11 +995,12 @@ export const componentCatalog = [
         "prop": "...props",
         "type": "React.ComponentProps<typeof Button>",
         "default": "-",
-        "description": "The complete shadcn Button API, including variant, size, asChild, refs, event handlers, disabled, and native button props."
+        "description": "The complete shadcn Button API, including variant, size, render, refs, event handlers, disabled, and native button props."
       }
     ],
     "notes": [
-      "Preserves native button semantics and Radix asChild composition. Pointer motion is disabled for touch and reduced-motion users."
+      "Pointer enhancement over canonical NavUI Button. Disabled and reduced-motion states return the wrapper to its origin.",
+      "Breaking change: use render instead of asChild. Button callbacks, refs, form props, pending, and disabled semantics use the installed SDK."
     ],
     "preview": "components/examples/magnetic-button.tsx",
     "examples": [],
@@ -984,23 +1012,19 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-        "class-variance-authority",
-        "cn",
+          "cn",
         "motion",
-        "radix-ui"
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "@navui/button"
+      ],
       "files": [
         {
           "source": "registry/components/magnetic-button.tsx",
           "target": "components/navui/magnetic-button.tsx",
           "type": "registry:ui"
-        },
-        {
-          "source": "registry/components/primitives/radix/button.tsx",
-          "target": "components/navui/primitives/radix/button.tsx",
-          "type": "registry:ui",
-          "shared": true
         },
         {
           "source": "registry/components/LICENSE",
@@ -1066,7 +1090,8 @@ export const componentCatalog = [
       }
     ],
     "notes": [
-      "The same implementation powers NavUI installation controls. Supports keyboard navigation, controlled state, partial command sets, and clipboard failure feedback. Clipboard access requires a secure context."
+      "SDK Select is the sole owner of selection, focus, keyboard, and popup presence. SDK Button owns copying/pending presses.",
+      "onValueChange(value, details) forwards SDK cancellation. An empty command set renders nothing. Clipboard errors are announced; the command remains available as text."
     ],
     "preview": "components/examples/package-manager-command.tsx",
     "examples": [],
@@ -1078,30 +1103,19 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-        "@radix-ui/react-use-controllable-state",
-        "class-variance-authority",
-        "cn",
+          "cn",
         "lucide-react",
-        "radix-ui"
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17"
       ],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "@navui/button"
+      ],
       "files": [
         {
           "source": "registry/components/package-manager-command.tsx",
           "target": "components/navui/package-manager-command.tsx",
           "type": "registry:ui"
-        },
-        {
-          "source": "registry/components/primitives/radix/button.tsx",
-          "target": "components/navui/primitives/radix/button.tsx",
-          "type": "registry:ui",
-          "shared": true
-        },
-        {
-          "source": "registry/components/primitives/radix/dropdown-menu.tsx",
-          "target": "components/navui/primitives/radix/dropdown-menu.tsx",
-          "type": "registry:ui",
-          "shared": true
         },
         {
           "source": "registry/components/LICENSE",
@@ -1138,8 +1152,8 @@ export const componentCatalog = [
       {
         "prop": "activeHref",
         "type": "string",
-        "default": "Current pathname",
-        "description": "Controlled active destination. When omitted, route navigation follows the current pathname."
+        "default": "defaultActiveHref / first item",
+        "description": "Controlled active destination. When omitted, selection starts at defaultActiveHref or the first item."
       },
       {
         "prop": "defaultActiveHref",
@@ -1173,7 +1187,7 @@ export const componentCatalog = [
       }
     ],
     "notes": [
-      "Next.js-specific: uses next/link and usePathname, so it requires the Next.js App Router. Pass activeHref for explicit selection or preventNavigation for demonstrations. Keyboard focus and reduced motion are supported."
+      "Framework-independent native links. Pass activeHref from your router for route tracking. preventNavigation demonstrates local selection. Pointer and focus effects respect reduced motion."
     ],
     "preview": "components/examples/proximity-nav.tsx",
     "examples": [],
@@ -1186,8 +1200,7 @@ export const componentCatalog = [
       "type": "registry:ui",
       "dependencies": [
         "cn",
-        "motion",
-        "next"
+        "motion"
       ],
       "registryDependencies": [],
       "files": [
@@ -1342,9 +1355,9 @@ export const componentCatalog = [
       },
       {
         "prop": "SegmentSpotlightTrigger",
-        "type": "Button props & { value; targets?; asChild? }",
+        "type": "Button props & { value; targets?; render? }",
         "default": "targets: [value]",
-        "description": "Arbitrary toolbar control. targets can highlight one or many segments; asChild supports custom controls."
+        "description": "Arbitrary toolbar control. targets can highlight one or many segments; render supports custom controls."
       },
       {
         "prop": "SegmentSpotlightGrid / Separator / Content",
@@ -1354,8 +1367,8 @@ export const componentCatalog = [
       }
     ],
     "notes": [
-      "Use positioning classes to adjust segments at each breakpoint.",
-      "Toolbar controls support focus, click, touch, and pressed-state announcements. Named color variants are retained from the original component. Respects reduced motion."
+      "Custom spatial spotlight state is retained. SDK Toolbar owns the single tab stop and arrow-key navigation; triggers remain pressed action buttons, not tabs or radio inputs.",
+      "render replaces asChild. Hover previews follow keyboard focus; click mode selects only on activation. Motion is removed under reduced motion."
     ],
     "preview": "components/examples/segment-spotlight.tsx",
     "examples": [],
@@ -1367,10 +1380,11 @@ export const componentCatalog = [
     "registry": {
       "type": "registry:ui",
       "dependencies": [
-        "@radix-ui/react-use-controllable-state",
         "cn",
         "motion",
-        "radix-ui"
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@radix-ui/react-use-controllable-state"
       ],
       "registryDependencies": [],
       "files": [
@@ -1387,9 +1401,86 @@ export const componentCatalog = [
         }
       ]
     }
+  },
+  {
+    "id": "components/tabs",
+    "registryName": "tabs",
+    "slug": "tabs",
+    "category": "foundations",
+    "status": "published",
+    "tags": [
+      "ui-sdk",
+      "tabs",
+      "accessibility"
+    ],
+    "preview": "components/examples/tabs.tsx",
+    "examples": [
+      {
+        "id": "variants",
+        "title": "Controlled and vertical",
+        "description": "Manual activation, controlled selection, disabled state, and vertical navigation.",
+        "source": "components/examples/tabs-variants.tsx"
+      }
+    ],
+    "title": "Tabs",
+    "description": "Accessible UI SDK tabs with a measured moving indicator, horizontal or vertical layouts, and subtle panel transitions.",
+    "usageExample": "import { Tabs, TabsList, TabsTab, TabsPanel, TabsIndicator } from '@/components/navui/tabs'\n\nexport function Example() {\n  return <Tabs defaultValue=\"overview\">\n    <TabsList aria-label=\"Project\">\n      <TabsTab value=\"overview\">Overview</TabsTab>\n      <TabsTab value=\"activity\">Activity</TabsTab>\n      <TabsIndicator />\n    </TabsList>\n    <TabsPanel value=\"overview\">Project overview</TabsPanel>\n    <TabsPanel value=\"activity\">Recent activity</TabsPanel>\n  </Tabs>\n}",
+    "api": [
+      {
+        "prop": "Tabs",
+        "type": "UI SDK Tabs props",
+        "description": "value/defaultValue are string or null; onValueChange(value, details) supports cancellation. activation replaces the legacy activationMode prop.",
+        "default": "—"
+      },
+      {
+        "prop": "TabsList / TabsTab",
+        "type": "UI SDK part props",
+        "description": "Name the list; pair each tab and panel by value. Supports disabled tabs and vertical orientation.",
+        "default": "—"
+      },
+      {
+        "prop": "TabsIndicator",
+        "type": "UI SDK indicator props",
+        "description": "Optional measured indicator; uses SDK position variables, including RTL.",
+        "default": "—"
+      },
+      {
+        "prop": "TabsPanel",
+        "type": "UI SDK panel props",
+        "description": "Use keepMounted to preserve panel state. SDK owns hidden/inert and exit presence.",
+        "default": "—"
+      }
+    ],
+    "notes": [
+      "Consolidates Animated Tabs. There is no separate selection, keyboard, measurement, or presence controller. Root and part props use the installed SDK API; reduced motion disables movement."
+    ],
+    "registry": {
+      "type": "registry:ui",
+      "dependencies": [
+        "@ui-sdk/core@0.1.0-beta.17",
+        "@ui-sdk/react@0.1.0-beta.17",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "source": "registry/components/tabs.tsx",
+          "target": "components/navui/tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "source": "registry/components/LICENSE",
+          "target": "components/navui/LICENSE",
+          "type": "registry:file",
+          "shared": true
+        }
+      ]
+    }
   }
 ] as const satisfies readonly ComponentCatalogEntry[];
 
 export type ComponentSlug = (typeof componentCatalog)[number]["slug"];
 
 export const registryCatalog = [...blockCatalog, ...componentCatalog];
+
+export const retiredComponents = [{ slug: "animated-tabs", replacement: "tabs" }] as const;

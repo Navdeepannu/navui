@@ -8,11 +8,11 @@ export default function MagneticButtonShowcase() {
         Feel the Magnetic Pull
       </h3>
 
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-4">
         <MagneticButton>Hover me</MagneticButton>
 
-        <MagneticButton variant="outline" movement={10} asChild>
-          <button type="button">Press me</button>
+        <MagneticButton variant="outline" movement={10} render={<button type="button" />}>
+          Press me
         </MagneticButton>
 
         <MagneticButton variant="ghost" className="gap-2">

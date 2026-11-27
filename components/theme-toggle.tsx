@@ -1,13 +1,11 @@
 "use client";
 
-import { useId } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const labelId = useId();
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
@@ -16,7 +14,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon-sm"
       className="rounded-full"
-      aria-labelledby={labelId}
+      aria-label="Toggle theme (D)"
       aria-keyshortcuts="D"
       title="Toggle theme (D)"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}

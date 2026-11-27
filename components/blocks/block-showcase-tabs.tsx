@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CodeBlock } from "@/components/documentation/code-block";
 import { useState } from "react";
 import {
   Code2,
@@ -17,7 +18,11 @@ import {
   type BlockPreviewWidth,
 } from "@/components/blocks/block-preview-frame";
 import { BlockSourceExplorer } from "@/components/blocks/block-source-explorer";
-import { PackageManagerCommand } from "@/registry/components/package-manager-command";
+import { DocumentationCommand } from "@/components/documentation/package-manager-preference";
+import {
+  type ComponentPreviewSize,
+  previewMinimumHeights,
+} from "@/components/documentation/preview-size";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "cn";
@@ -42,6 +47,8 @@ type BlockShowcaseTabsProps = {
   previewPath: string;
   commands: BlockInstallCommands;
   sourceFiles: BlockSourceFile[];
+  exampleSource?: BlockSourceFile;
+  previewSize?: ComponentPreviewSize;
 };
 
 export function BlockShowcaseTabs({
@@ -50,6 +57,8 @@ export function BlockShowcaseTabs({
   previewPath,
   commands,
   sourceFiles,
+  exampleSource,
+  previewSize,
 }: BlockShowcaseTabsProps) {
   const [activeTab, setActiveTab] = useState<BlockTab>("preview");
   const [previewWidth, setPreviewWidth] = useState<BlockPreviewWidth>("full");
@@ -66,8 +75,8 @@ export function BlockShowcaseTabs({
       onValueChange={(value) => setActiveTab(value as BlockTab)}
       className="gap-0"
     >
-      <div className="mb-3 flex min-w-0 flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
-        <div className="flex min-w-0 flex-wrap items-center gap-2">
+      <div className="relative mb-3 flex min-w-0 items-center gap-2 py-1">
+        <div className="flex shrink-0 items-center gap-2">
           <TabsList aria-label={`${title} view`}>
             <TabsTrigger value="preview">
               <Eye aria-hidden="true" data-icon="inline-start" />
@@ -110,8 +119,12 @@ export function BlockShowcaseTabs({
           </div>
         </div>
 
-        <div className="flex min-w-0 items-center gap-2">
-          <PackageManagerCommand commands={commands} />
+        <div className="ms-auto flex min-w-48 flex-1 items-center justify-end gap-2">
+          <DocumentationCommand
+            commands={commands}
+            className="showcase-command h-9 min-w-0 flex-1 overflow-hidden rounded-lg border-transparent bg-muted"
+            commandClassName="px-2 [&_code]:text-[11px] [&_svg]:size-3.5"
+          />
 
           <div className="flex h-9 shrink-0 items-center gap-0.5 rounded-lg bg-muted p-0.75">
             <Button
@@ -153,6 +166,9 @@ export function BlockShowcaseTabs({
           reloadKey={reloadKey}
           title={title}
           width={previewWidth}
+          minimumHeight={
+            previewSize ? previewMinimumHeights[previewSize] : undefined
+          }
         />
       </TabsContent>
 
@@ -160,7 +176,11 @@ export function BlockShowcaseTabs({
         value="code"
         className="flex min-h-0 min-w-0 flex-col overflow-hidden"
       >
-        <BlockSourceExplorer files={sourceFiles} />
+        {exampleSource ? (
+          <CodeBlock file={exampleSource} />
+        ) : (
+          <BlockSourceExplorer files={sourceFiles} />
+        )}
       </TabsContent>
     </Tabs>
   );

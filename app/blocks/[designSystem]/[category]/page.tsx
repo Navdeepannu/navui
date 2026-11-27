@@ -95,20 +95,11 @@ export default async function BlockCategoryPage({
       designSystem={system.id}
       className="flex min-h-0 flex-1 flex-col"
     >
-      <div className="w-full px-4 pb-4">
-        <header className="mb-[calc(var(--ui-spacing)*15-0.25px)] flex gap-x-8 gap-y-5 pt-16 max-md:flex-col md:items-end lg:h-[calc(var(--ui-spacing)*33+0.5px)] lg:pt-17">
-          <h1 className="min-w-0 text-2xl leading-tight tracking-tight text-balance text-muted-foreground">
-            <div className="flex items-start flex-col">
-              <span className="captalize text-sm pb-0.5">{system.name}</span>
-              <span className="text-foreground">
-                {category.name} section{" "}
-                <span className="text-muted-foreground">blocks</span>
-              </span>
-            </div>
-          </h1>
-          <div className="max-w-lg space-y-4 text-muted-foreground">
-            <p className="text-balance">{category.description}</p>
-          </div>
+      <div className="w-full min-w-0 pb-4">
+        <header className="flex max-w-3xl flex-col gap-3 pb-6">
+          <p className="text-sm text-muted-foreground">NavUI / Blocks</p>
+          <h1 className="text-3xl font-semibold tracking-tight">{category.name}</h1>
+          <p className="text-sm leading-6 text-muted-foreground">{category.description}</p>
         </header>
 
         {blocks.length > 0 ? (

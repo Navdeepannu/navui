@@ -110,7 +110,6 @@ run(process.execPath, [
   "@navui/checkbox",
   "@navui/switch",
   "@navui/button",
-  "@navui/package-manager-command",
   "--cwd",
   dir,
   "--yes",
@@ -122,12 +121,6 @@ const page = (
   )
 ).replaceAll("@/registry/components/", "@/components/navui/");
 await writeFile(path.join(dir, "app/page.tsx"), page);
-// Render and bundle an existing composition to verify its canonical Select dependency.
-await mkdir(path.join(dir, "app/install"));
-await writeFile(
-  path.join(dir, "app/install/page.tsx"),
-  '"use client"; import {PackageManagerCommand} from "@/components/navui/package-manager-command"; export default function Page(){return <PackageManagerCommand commands={{npm:"npx shadcn@latest add @navui/input"}}/>}',
-);
 console.log("Phase: installed components under the SAME runtime");
 run(process.execPath, ["node_modules/typescript/bin/tsc", "--noEmit"]);
 run(process.execPath, ["node_modules/next/dist/bin/next", "build"]);
@@ -178,15 +171,7 @@ try {
     if (!html.includes(`data-slot="${slot}"`))
       throw new Error(`Production response missing ${slot}`);
   }
-  const composition = await fetch(`http://127.0.0.1:${port}/install`);
-  if (
-    !composition.ok ||
-    !(await composition.text()).includes("Package manager")
-  )
-    throw new Error("Installed composition failed production rendering");
-  console.log(
-    "PASS: production HTTP rendering includes all five controls and the existing composition.",
-  );
+  console.log("PASS: production HTTP rendering includes all five controls.");
 } finally {
   if (server.exitCode === null) {
     const stopped = new Promise((resolve) => server.once("exit", resolve));

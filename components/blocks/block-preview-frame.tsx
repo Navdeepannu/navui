@@ -17,6 +17,7 @@ type BlockPreviewFrameProps = {
   reloadKey: number;
   title: string;
   width: BlockPreviewWidth;
+  minimumHeight?: number;
 };
 
 export function BlockPreviewFrame({
@@ -25,9 +26,10 @@ export function BlockPreviewFrame({
   reloadKey,
   title,
   width,
+  minimumHeight = BLOCK_PREVIEW_MIN_HEIGHT_PX,
 }: BlockPreviewFrameProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [frameHeight, setFrameHeight] = useState(BLOCK_PREVIEW_MIN_HEIGHT_PX);
+  const [frameHeight, setFrameHeight] = useState(minimumHeight);
 
   function measureLoadedPreview() {
     const previewRoot = iframeRef.current?.contentDocument?.querySelector(
@@ -38,7 +40,7 @@ export function BlockPreviewFrame({
       iframeRef.current?.contentDocument?.documentElement.scrollHeight;
 
     if (contentHeight && contentHeight > 0) {
-      setFrameHeight(clampBlockPreviewHeight(contentHeight));
+      setFrameHeight(clampBlockPreviewHeight(contentHeight, minimumHeight));
     }
   }
 
@@ -48,12 +50,12 @@ export function BlockPreviewFrame({
       if (!isBlockPreviewHeightPayload(event.data)) return;
       if (event.data.blockId !== blockId) return;
 
-      setFrameHeight(clampBlockPreviewHeight(event.data.height));
+      setFrameHeight(clampBlockPreviewHeight(event.data.height, minimumHeight));
     };
 
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
-  }, [blockId]);
+  }, [blockId, minimumHeight]);
 
   const frameWidth = width === "full" ? "100%" : `min(100%, ${width}px)`;
   const iframeHeight = Math.max(frameHeight - BLOCK_PREVIEW_CHROME_PX, 1);

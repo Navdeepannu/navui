@@ -42,7 +42,7 @@ export function ComponentExplorer({
         {matches.length} {matches.length === 1 ? "component" : "components"}
       </p>
       {matches.length ? (
-        <ul className="grid gap-x-8 gap-y-2 md:grid-cols-2">
+        <ul className="grid gap-x-8 gap-y-2 @xl:grid-cols-2">
           {matches.map((item) => (
             <li key={item.slug}>
               <Link

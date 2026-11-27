@@ -1122,34 +1122,6 @@
       ]
     },
     {
-      "name": "package-manager-command",
-      "type": "registry:ui",
-      "title": "Package Manager Command",
-      "description": "An accessible package-manager selector and copy command bar with controlled state and inline copy-status icons.",
-      "dependencies": [
-        "cn",
-        "lucide-react",
-        "@ui-sdk/core@0.1.0-beta.17",
-        "@ui-sdk/react@0.1.0-beta.17"
-      ],
-      "registryDependencies": [
-        "@navui/button",
-        "@navui/select"
-      ],
-      "files": [
-        {
-          "path": "registry/components/package-manager-command.tsx",
-          "target": "components/navui/package-manager-command.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "registry/components/LICENSE",
-          "target": "components/navui/LICENSE",
-          "type": "registry:file"
-        }
-      ]
-    },
-    {
       "name": "proximity-nav",
       "type": "registry:ui",
       "title": "Proximity Nav",
@@ -1187,32 +1159,6 @@
         {
           "path": "registry/components/rail-nav.tsx",
           "target": "components/navui/rail-nav.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "registry/components/LICENSE",
-          "target": "components/navui/LICENSE",
-          "type": "registry:file"
-        }
-      ]
-    },
-    {
-      "name": "segment-spotlight",
-      "type": "registry:ui",
-      "title": "Segment Spotlight",
-      "description": "A composable spotlight canvas for connecting floating content with an interactive toolbar in product tours, filters, workflows, and feature sections.",
-      "dependencies": [
-        "cn",
-        "motion",
-        "@ui-sdk/core@0.1.0-beta.17",
-        "@ui-sdk/react@0.1.0-beta.17",
-        "@radix-ui/react-use-controllable-state"
-      ],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "registry/components/segment-spotlight.tsx",
-          "target": "components/navui/segment-spotlight.tsx",
           "type": "registry:ui"
         },
         {

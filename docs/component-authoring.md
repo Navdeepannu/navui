@@ -99,3 +99,11 @@ through SDK. Do not suppress these warnings or invent another reset engine.
 See `docs/form-components.md` and `pnpm run consumer:verify` for the runtime-controlled
 baseline/install comparison. Browser reduced-motion verification is distinct from
 the jsdom matchMedia stub; report a missing browser preference check explicitly.
+
+## Documentation presentation
+
+Use the shared documentation template and CodeBlock renderer. Example code belongs
+in the preview’s Code tab; installable source belongs under Manual installation. Keep Usage
+minimal and contextual, examples purposeful, API references accurate, and accessibility
+separate from package dependencies. Component preview sizes are content-driven minimums;
+marketing block presentation is unchanged. See `docs/documentation-experience.md`.

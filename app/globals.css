@@ -4,7 +4,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ==========================================================
@@ -98,6 +97,8 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-code: var(--code);
+  --color-code-foreground: var(--code-foreground);
 }
 
 /* ==========================================================
@@ -205,8 +206,7 @@
      Shape
      -------------------------------------------------------- */
 
-  --radius: 0.5rem;
-
+  --radius: 0.5rem; 
   --design-radius-sm: calc(var(--radius) * 0.6);
   --design-radius-md: calc(var(--radius) * 0.8);
   --design-radius-lg: var(--radius);
@@ -218,8 +218,8 @@
      Typography
      -------------------------------------------------------- */
 
-  --design-font-sans: var(--font-inter);
-  --design-font-heading: var(--font-inter);
+  --design-font-sans: var(--font-geist);
+  --design-font-heading: var(--font-geist);
   --design-font-mono: var(--font-geist-mono);
 
   --design-font-serif:
@@ -266,6 +266,8 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+  --code: oklch(0.985 0 0);
+  --code-foreground: oklch(0.141 0.005 285.823);
 }
 
 /* ==========================================================
@@ -345,6 +347,8 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
+  --code: oklch(0.21 0.006 285.885);
+  --code-foreground: oklch(0.985 0 0);
 }
 
 /* ==========================================================
@@ -386,3 +390,80 @@
   margin-inline: auto;
   padding-inline: var(--site-gutter);
 }
+
+/* Library chrome shares one border treatment; masks stay inside the sidebar. */
+
+.library-scroll {
+  scroll-padding-block: 1rem;
+}
+.library-scroll[data-overflow="false"],
+.library-scroll:has(:focus-visible) {
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+html {
+  scroll-padding-block-start: 4rem;
+}
+[data-documentation-content] :is(h2, h3)[id] {
+  scroll-margin-block-start: 2rem;
+}
+
+.code-content {
+  max-height: 28rem;
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+.code-content:focus-visible { outline: 2px solid var(--ring); outline-offset: -3px; }
+.code-content .shiki, .code-teaser .shiki {
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 1rem;
+  background: transparent !important;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  line-height: 1.75rem;
+  tab-size: 2;
+}
+.code-content code { display: grid; min-width: 100%; counter-reset: code-line; }
+.code-content .line { min-height: 1.75rem; }
+.code-line-numbers .line::before {
+  counter-increment: code-line;
+  content: counter(code-line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-inline-end: 1.5rem;
+  text-align: end;
+  color: var(--muted-foreground);
+  opacity: .6;
+  user-select: none;
+}
+.dark :is(.code-content, .code-teaser) .shiki,
+.dark :is(.code-content, .code-teaser) .shiki span { color: var(--shiki-dark) !important; }
+.code-teaser { height: 5rem; overflow: hidden; mask-image: linear-gradient(#000, transparent); filter: blur(.3px); }
+.code-content[data-compact] .shiki { padding-block: .5rem; }
+.documentation-layout { width: 100%; }
+.documentation-layout > main { width: 100%; max-width: 52rem; margin-inline: auto; }
+@media (min-width: 768px) {
+  .documentation-layout:has([data-toc]) { grid-template-columns: minmax(0, 1fr) 8rem; }
+}
+@media (min-width: 1024px) {
+  .documentation-layout:has([data-toc]) { grid-template-columns: minmax(0, 1fr) 10rem; }
+}
+.library-proximity {
+  position: static;
+  width: 100%;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.library-proximity a { min-height: 1.75rem; font-size: 13px; line-height: 1.25rem; }
+.library-proximity a > span { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
+.code-content.code-unbounded { max-height: none; }
+
+.showcase-command { max-width: 24rem; }
+.showcase-command > button { height: 100%; min-height: 0; }
+.showcase-command > [role="combobox"] { background: transparent; padding-inline: .5rem; font-size: 12px; }

@@ -1,6 +1,6 @@
 export const BLOCK_PREVIEW_HEIGHT_MESSAGE = "navui-block-preview-height";
 export const BLOCK_PREVIEW_CHROME_PX = 10;
-export const BLOCK_PREVIEW_MIN_HEIGHT_PX = 560;
+export const BLOCK_PREVIEW_MIN_HEIGHT_PX = 680;
 
 export type BlockPreviewHeightPayload = {
   type: typeof BLOCK_PREVIEW_HEIGHT_MESSAGE;
@@ -8,10 +8,13 @@ export type BlockPreviewHeightPayload = {
   height: number;
 };
 
-export function clampBlockPreviewHeight(contentHeight: number) {
+export function clampBlockPreviewHeight(
+  contentHeight: number,
+  minimumHeight = BLOCK_PREVIEW_MIN_HEIGHT_PX,
+) {
   return Math.max(
     Math.ceil(contentHeight) + BLOCK_PREVIEW_CHROME_PX,
-    BLOCK_PREVIEW_MIN_HEIGHT_PX,
+    minimumHeight,
   );
 }
 

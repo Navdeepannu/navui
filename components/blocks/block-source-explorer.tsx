@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  CodeContent,
+  CodeFrame,
+  CodeSurface,
+} from "@/components/documentation/code-viewer";
 import { useMemo, useState } from "react";
 import { Atom, ChevronRight, Folder, FolderOpen } from "lucide-react";
 
@@ -72,10 +77,7 @@ function FileTree({
                     className="size-3.5 shrink-0"
                   />
                 ) : (
-                  <Folder
-                    aria-hidden="true"
-                    className="size-3.5 shrink-0"
-                  />
+                  <Folder aria-hidden="true" className="size-3.5 shrink-0" />
                 )}
                 <span className="truncate">{node.name}</span>
               </button>
@@ -128,27 +130,6 @@ function FileTree({
   );
 }
 
-function HighlightedSource({ file }: { file: BlockSourceFile }) {
-  return (
-    <div
-      aria-label={`Source code for ${file.target}`}
-      className={cn(
-        "min-h-0 min-w-0 flex-1 overflow-auto overscroll-contain font-mono text-[13px] leading-6 [-webkit-overflow-scrolling:touch]",
-        "[&_.shiki]:!bg-transparent",
-        "[&_.shiki]:min-w-full [&_.shiki]:w-max [&_.shiki]:py-4",
-        "[&_code]:grid [&_code]:min-w-full [&_code]:[counter-reset:line]",
-        "[&_.line]:relative [&_.line]:min-h-6 [&_.line]:w-full [&_.line]:px-4",
-        "[&_.line]:before:mr-4 [&_.line]:before:inline-block [&_.line]:before:w-5",
-        "[&_.line]:before:[counter-increment:line] [&_.line]:before:content-[counter(line)]",
-        "[&_.line]:before:text-right [&_.line]:before:text-muted-foreground/50 [&_.line]:before:select-none",
-        "dark:[&_.shiki]:!text-[var(--shiki-dark)]",
-        "dark:[&_.shiki_span]:!text-[var(--shiki-dark)]",
-      )}
-      dangerouslySetInnerHTML={{ __html: file.highlightedCode }}
-    />
-  );
-}
-
 export function BlockSourceExplorer({ files }: BlockSourceExplorerProps) {
   const tree = useMemo(
     () => buildBlockSourceTree(files.map((file) => file.target)),
@@ -189,8 +170,8 @@ export function BlockSourceExplorer({ files }: BlockSourceExplorerProps) {
   }
 
   return (
-    <div className="flex h-[min(88svh,60rem)] min-h-[24rem] w-full min-w-0 flex-col overflow-hidden rounded-xl bg-muted/60 p-1.5 shadow-inner">
-      <div className="grid h-full min-h-0 min-w-0 grid-cols-[minmax(0,1fr)] overflow-hidden rounded-lg bg-background shadow-sm md:grid-cols-[14rem_minmax(0,1fr)]">
+    <CodeFrame className="h-[min(88svh,60rem)] min-h-[24rem]">
+      <CodeSurface className="grid h-full grid-cols-[minmax(0,1fr)] md:grid-cols-[14rem_minmax(0,1fr)]">
         <aside className="hidden min-h-0 min-w-0 flex-col border-r border-border/60 bg-muted/35 md:flex">
           <div className="flex h-11 shrink-0 items-center border-b border-border/50 px-3 text-[11px] font-medium tracking-[0.12em] text-muted-foreground uppercase">
             Files
@@ -248,9 +229,14 @@ export function BlockSourceExplorer({ files }: BlockSourceExplorerProps) {
             />
           </div>
 
-          <HighlightedSource key={selectedFile.target} file={selectedFile} />
+          <CodeContent
+            key={selectedFile.target}
+            className="code-unbounded min-h-0 flex-1"
+            html={selectedFile.highlightedCode}
+            label={`Source code for ${selectedFile.target}`}
+          />
         </section>
-      </div>
-    </div>
+      </CodeSurface>
+    </CodeFrame>
   );
 }

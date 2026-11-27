@@ -20,11 +20,9 @@ import ExpandableCard from "@/components/examples/expandable-card";
 import KeyboardShortcut from "@/components/examples/keyboard-shortcut";
 import KeyboardShortcutWithSound from "@/components/examples/keyboard-shortcut-with-sound";
 import MagneticButton from "@/components/examples/magnetic-button";
-import PackageManagerCommand from "@/components/examples/package-manager-command";
 import ProximityNav from "@/components/examples/proximity-nav";
 import RailNav from "@/components/examples/rail-nav";
 import RailNavCompact from "@/components/examples/rail-nav-compact";
-import SegmentSpotlight from "@/components/examples/segment-spotlight";
 import { componentCatalog } from "@/registry/catalog";
 import type { ComponentCatalogEntry } from "@/registry/types";
 
@@ -53,11 +51,9 @@ const previews = {
   "components/examples/keyboard-shortcut.tsx": KeyboardShortcut,
   "components/examples/keyboard-shortcut-with-sound.tsx": KeyboardShortcutWithSound,
   "components/examples/magnetic-button.tsx": MagneticButton,
-  "components/examples/package-manager-command.tsx": PackageManagerCommand,
   "components/examples/proximity-nav.tsx": ProximityNav,
   "components/examples/rail-nav.tsx": RailNav,
   "components/examples/rail-nav-compact.tsx": RailNavCompact,
-  "components/examples/segment-spotlight.tsx": SegmentSpotlight,
 } satisfies Record<PreviewSource, ComponentType>;
 
 export const publishedComponents: readonly ComponentCatalogEntry[] = componentCatalog.filter(

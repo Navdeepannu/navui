@@ -1036,98 +1036,6 @@ export const componentCatalog = [
     }
   },
   {
-    "id": "components/package-manager-command",
-    "registryName": "package-manager-command",
-    "slug": "package-manager-command",
-    "title": "Package Manager Command",
-    "description": "An accessible package-manager selector and copy command bar with controlled state and inline copy-status icons.",
-    "category": "interactive",
-    "status": "published",
-    "tags": [
-      "interactive",
-      "installation",
-      "clipboard",
-      "docs",
-      "accessibility"
-    ],
-    "usageExample": "import { PackageManagerCommand } from '@/components/navui/package-manager-command'\n\nconst commands = {\n  npm: 'npx shadcn@latest add @navui/animated-tabs',\n  pnpm: 'pnpm dlx shadcn@latest add @navui/animated-tabs',\n  yarn: 'yarn dlx shadcn@latest add @navui/animated-tabs',\n  bun: 'bunx --bun shadcn@latest add @navui/animated-tabs',\n}\n\nexport function Example() {\n  return <PackageManagerCommand commands={commands} defaultValue=\"bun\" />\n}",
-    "api": [
-      {
-        "prop": "commands",
-        "type": "Partial<Record<PackageManagerId, string>>",
-        "default": "-",
-        "description": "Commands keyed by package manager. Managers without a command are omitted from the selector."
-      },
-      {
-        "prop": "value / defaultValue / onValueChange",
-        "type": "PackageManagerId / PackageManagerId / (value) => void",
-        "default": "npm",
-        "description": "Controlled or uncontrolled package-manager selection."
-      },
-      {
-        "prop": "align",
-        "type": "\"start\" | \"center\" | \"end\"",
-        "default": "\"end\"",
-        "description": "Alignment of the package-manager menu relative to the command bar."
-      },
-      {
-        "prop": "copyLabel / resetDelay",
-        "type": "string / number",
-        "default": "Contextual / 1600",
-        "description": "Customizes the accessible copy label and how long the status icon remains visible."
-      },
-      {
-        "prop": "onCopySuccess / onCopyError",
-        "type": "(command: string, packageManager: PackageManagerId) => void / (error: Error) => void",
-        "default": "-",
-        "description": "Optional callbacks for analytics or application-level clipboard handling."
-      },
-      {
-        "prop": "className / commandClassName",
-        "type": "string / string",
-        "default": "-",
-        "description": "Classes for the root and the copy-command button."
-      }
-    ],
-    "notes": [
-      "SDK Select is the sole owner of selection, focus, keyboard, and popup presence. SDK Button owns copying/pending presses.",
-      "onValueChange(value, details) forwards SDK cancellation. An empty command set renders nothing. Clipboard errors are announced; the command remains available as text."
-    ],
-    "preview": "components/examples/package-manager-command.tsx",
-    "examples": [],
-    "provenance": {
-      "repository": "https://github.com/Navdeepannu/Portfolio",
-      "commit": "c4fcc26d0fb10293cf549398e331cb5cc7ec350c",
-      "path": "src/registry/components/package-manager-command/package-manager-command.tsx"
-    },
-    "registry": {
-      "type": "registry:ui",
-      "dependencies": [
-        "cn",
-        "lucide-react",
-        "@ui-sdk/core@0.1.0-beta.17",
-        "@ui-sdk/react@0.1.0-beta.17"
-      ],
-      "registryDependencies": [
-        "@navui/button",
-        "@navui/select"
-      ],
-      "files": [
-        {
-          "source": "registry/components/package-manager-command.tsx",
-          "target": "components/navui/package-manager-command.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "source": "registry/components/LICENSE",
-          "target": "components/navui/LICENSE",
-          "type": "registry:file",
-          "shared": true
-        }
-      ]
-    }
-  },
-  {
     "id": "components/proximity-nav",
     "registryName": "proximity-nav",
     "slug": "proximity-nav",
@@ -1246,7 +1154,7 @@ export const componentCatalog = [
         "prop": "items",
         "type": "readonly RailNavItem[]",
         "default": "-",
-        "description": "Navigation entries with React labels, any link href, optional tracking targets, classes, and click handlers."
+        "description": "Navigation entries with React labels, any link href, optional heading depth, tracking targets, classes, and click handlers."
       },
       {
         "prop": "value / defaultValue / onValueChange",
@@ -1271,10 +1179,16 @@ export const componentCatalog = [
         "type": "boolean",
         "default": "false",
         "description": "Keeps selection local for embedded previews while preserving controlled active state."
+      },
+      {
+        "prop": "touchToggle",
+        "type": "boolean",
+        "default": "false",
+        "description": "Adds a compact explicit disclosure control for touch-first layouts."
       }
     ],
     "notes": [
-      "Hover or keyboard focus expands the rail. Native anchors, controlled selection, optional scroll tracking, and reduced motion are preserved. Responsive visibility is left to the consumer."
+      "Hover or keyboard focus expands the rail. Native anchors, controlled selection, optional scroll tracking, and reduced motion are preserved. Items without depth keep the original indicator lengths. Responsive visibility is left to the consumer."
     ],
     "preview": "components/examples/rail-nav-compact.tsx",
     "examples": [
@@ -1302,96 +1216,6 @@ export const componentCatalog = [
         {
           "source": "registry/components/rail-nav.tsx",
           "target": "components/navui/rail-nav.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "source": "registry/components/LICENSE",
-          "target": "components/navui/LICENSE",
-          "type": "registry:file",
-          "shared": true
-        }
-      ]
-    }
-  },
-  {
-    "id": "components/segment-spotlight",
-    "registryName": "segment-spotlight",
-    "slug": "segment-spotlight",
-    "title": "Segment Spotlight",
-    "description": "A composable spotlight canvas for connecting floating content with an interactive toolbar in product tours, filters, workflows, and feature sections.",
-    "category": "interactive",
-    "status": "published",
-    "tags": [
-      "interactive",
-      "marketing",
-      "animation",
-      "motion",
-      "accessibility"
-    ],
-    "usageExample": "import { Flag, MessageCircle } from 'lucide-react'\n\nimport {\n  SegmentSpotlight,\n  SegmentSpotlightSegment,\n  SegmentSpotlightSeparator,\n  SegmentSpotlightToolbar,\n  SegmentSpotlightTrigger,\n  SegmentSpotlightViewport,\n} from '@/components/navui/segment-spotlight'\n\nexport function Example() {\n  return (\n    <SegmentSpotlight>\n      <SegmentSpotlightViewport>\n        <SegmentSpotlightSegment value=\"comments\" variant=\"blue\" className=\"top-16 left-[15%]\">\n          Comments\n        </SegmentSpotlightSegment>\n        <SegmentSpotlightSegment value=\"flags\" variant=\"teal\" className=\"right-[15%] bottom-16\">\n          Feature flags\n        </SegmentSpotlightSegment>\n\n        <SegmentSpotlightToolbar aria-label=\"Highlight capability\" className=\"absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2\">\n          <SegmentSpotlightTrigger value=\"comments\" aria-label=\"Comments\">\n            <MessageCircle />\n          </SegmentSpotlightTrigger>\n          <SegmentSpotlightSeparator />\n          <SegmentSpotlightTrigger value=\"flags\" aria-label=\"Feature flags\">\n            <Flag />\n          </SegmentSpotlightTrigger>\n        </SegmentSpotlightToolbar>\n      </SegmentSpotlightViewport>\n    </SegmentSpotlight>\n  )\n}",
-    "api": [
-      {
-        "prop": "SegmentSpotlight",
-        "type": "React.ComponentProps<\"div\">",
-        "default": "value: null; activationMode: \"hover\"",
-        "description": "Root state provider. Supports value, defaultValue, onValueChange, activationMode (hover or click), and native div props."
-      },
-      {
-        "prop": "SegmentSpotlightViewport",
-        "type": "React.ComponentProps<\"div\">",
-        "default": "-",
-        "description": "Positioning canvas for segments, controls, grids, and custom content."
-      },
-      {
-        "prop": "SegmentSpotlightSegment",
-        "type": "Motion div props & { value; variant? }",
-        "default": "variant: \"default\"",
-        "description": "An animated target. Children, position, color variant, and Motion animation props are fully customizable."
-      },
-      {
-        "prop": "SegmentSpotlightToolbar",
-        "type": "Motion div props",
-        "default": "-",
-        "description": "Accessible toolbar container that resets hover state when interaction leaves."
-      },
-      {
-        "prop": "SegmentSpotlightTrigger",
-        "type": "Button props & { value; targets?; render? }",
-        "default": "targets: [value]",
-        "description": "Arbitrary toolbar control. targets can highlight one or many segments; render supports custom controls."
-      },
-      {
-        "prop": "SegmentSpotlightGrid / Separator / Content",
-        "type": "Native element props",
-        "default": "-",
-        "description": "Optional layout primitives for the background grid, toolbar grouping, and supporting content."
-      }
-    ],
-    "notes": [
-      "Custom spatial spotlight state is retained. SDK Toolbar owns the single tab stop and arrow-key navigation; triggers remain pressed action buttons, not tabs or radio inputs.",
-      "render replaces asChild. Hover previews follow keyboard focus; click mode selects only on activation. Motion is removed under reduced motion."
-    ],
-    "preview": "components/examples/segment-spotlight.tsx",
-    "examples": [],
-    "provenance": {
-      "repository": "https://github.com/Navdeepannu/Portfolio",
-      "commit": "c4fcc26d0fb10293cf549398e331cb5cc7ec350c",
-      "path": "src/registry/components/segment-spotlight/segment-spotlight.tsx"
-    },
-    "registry": {
-      "type": "registry:ui",
-      "dependencies": [
-        "cn",
-        "motion",
-        "@ui-sdk/core@0.1.0-beta.17",
-        "@ui-sdk/react@0.1.0-beta.17",
-        "@radix-ui/react-use-controllable-state"
-      ],
-      "registryDependencies": [],
-      "files": [
-        {
-          "source": "registry/components/segment-spotlight.tsx",
-          "target": "components/navui/segment-spotlight.tsx",
           "type": "registry:ui"
         },
         {
@@ -1869,4 +1693,4 @@ export type ComponentSlug = (typeof componentCatalog)[number]["slug"];
 
 export const registryCatalog = [...blockCatalog, ...componentCatalog];
 
-export const retiredComponents = [{ slug: "animated-tabs", replacement: "tabs" }] as const;
+export const retiredComponents = [{ slug: "animated-tabs", replacement: "tabs" }, { slug: "package-manager-command" }, { slug: "segment-spotlight" }] as const;

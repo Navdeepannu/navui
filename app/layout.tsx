@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { getLibraryNavigation } from "@/components/library/library-layout";
+
 import { Navbar } from "@/components/site/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
@@ -28,7 +30,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
+          <Navbar componentNavigation={getLibraryNavigation("components")} blockNavigation={getLibraryNavigation("blocks")} />
           {children}
         </ThemeProvider>
       </body>

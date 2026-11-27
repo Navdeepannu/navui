@@ -201,7 +201,7 @@ export function RailNav({
             onClick={() => setExpanded(!expanded)}
             className="absolute top-0 right-0 z-20 flex size-11 items-center justify-center rounded-sm text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring [@media(hover:hover)]:hidden"
           >
-            <span aria-hidden="true" className="flex flex-col items-end gap-[5px]">
+            <span aria-hidden="true" className="flex flex-col items-end gap-1.25">
               {[0, 1, 2, 3].map((index) => (
                 <span key={index} className={cn('block h-px rounded-full bg-current', index === 1 ? 'w-4' : 'w-3')} />
               ))}
@@ -220,7 +220,7 @@ export function RailNav({
             duration: shouldReduceMotion ? 0 : 0.22,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="absolute top-1/2 right-0 flex -translate-y-1/2 flex-col items-end gap-[5px]"
+          className="absolute top-1/2 right-0 flex -translate-y-1/2 flex-col items-end gap-1.25"
         >
           {items.map((item) => {
             const isActive = activeValue === item.href
@@ -238,8 +238,8 @@ export function RailNav({
                 className={cn(
                   'block h-px origin-right rounded-full',
                   item.depth === undefined
-                    ? isActive ? 'w-[18px]' : 'w-[14px]'
-                    : item.depth <= 0 ? 'w-[18px]' : item.depth === 1 ? 'w-[14px]' : item.depth === 2 ? 'w-[11px]' : 'w-[8px]',
+                    ? isActive ? 'w-4.5' : 'w-3.5'
+                    : item.depth <= 0 ? 'w-4.5' : item.depth === 1 ? 'w-3.5' : item.depth === 2 ? 'w-2.75' : 'w-2',
                   isActive || isVisible ? 'bg-foreground' : 'bg-muted-foreground',
                 )}
               />

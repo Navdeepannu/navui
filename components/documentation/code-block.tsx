@@ -28,7 +28,7 @@ export function CodeBlock({
       value={file.code}
       label={`Copy ${file.target}`}
       showLabel={false}
-      className="absolute end-2 top-2 z-10 bg-background/90"
+      className="absolute inset-e-2 top-2 z-10 bg-background/90"
     />
   );
   const content = (

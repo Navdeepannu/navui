@@ -9,7 +9,6 @@ import { componentCatalog } from "@/registry/catalog";
 import { getComponentDefinition } from "@/registry/component-previews";
 import { getBlockInstallCommands } from "@/registry/install";
 import { readExampleSource } from "@/registry/source";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 type Props = { params: Promise<{ slug: string }> };
 

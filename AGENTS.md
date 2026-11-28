@@ -58,6 +58,10 @@ render functions, callbacks and cancellation. SDK owns selection, focus, keyboar
 modality and presence. Motion may enhance visuals without duplicating those states.
 See `docs/component-authoring.md` and `docs/component-migration.md`.
 
+Use Button as the reference primitive. The authoring guide defines control sizes,
+compact and advanced documentation examples, clean consumer setup, and the
+component definition of done.
+
 Components come first; marketing blocks come later. Preserve all 45 existing Base
 blocks and their dependencies; do not redesign or migrate them in foundation work.
 Distribution uses the shadcn CLI and NavUI registry, with no separate CLI. No model

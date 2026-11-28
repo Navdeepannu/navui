@@ -1,26 +1,13 @@
-"use client";
-import Link from "next/link";
+import { PlusIcon } from "lucide-react";
 import { Button } from "@/registry/components/button";
+
 export default function ButtonExample() {
   return (
-    <section
-      aria-label="Button examples"
-      className="flex max-w-lg flex-wrap items-center justify-center gap-3 p-6"
-    >
-      <Button>Create project</Button>
-      <Button variant="outline">View details</Button>
-      <Button variant="ghost">Cancel</Button>
-      <Button disabled>Unavailable</Button>
-      <Button
-        variant="secondary"
-        onClick={() => new Promise((resolve) => setTimeout(resolve, 600))}
-        pendingAnnouncement="Running local example"
-      >
-        Try pending state
+    <div className="flex flex-wrap items-center justify-center gap-2">
+      <Button>
+        <PlusIcon aria-hidden="true" /> Add member
       </Button>
-      <Button render={<Link href="/components" />} variant="outline">
-        Browse components
-      </Button>
-    </section>
+      <Button variant="outline">Manage access</Button>
+    </div>
   );
 }

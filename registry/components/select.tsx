@@ -9,16 +9,32 @@ export type {
   ListData,
 } from "@ui-sdk/react/select";
 
+const triggerSizes = {
+  xs: "min-h-6 px-2 text-xs [&_svg]:size-3",
+  sm: "min-h-7 px-2.5",
+  default: "min-h-8 px-3",
+  lg: "min-h-10 px-4 text-sm leading-5",
+};
+
+export type SelectTriggerProps = ComponentProps<typeof Sdk.SelectTrigger> & {
+  size?: keyof typeof triggerSizes;
+};
+
 export function SelectTrigger({
+  size = "default",
   className,
   ...props
-}: ComponentProps<typeof Sdk.SelectTrigger>) {
+}: SelectTriggerProps) {
   return (
     <Sdk.SelectTrigger
       {...props}
       className={(state) =>
         cn(
-          "flex min-h-10 w-full min-w-0 items-center justify-between gap-2 rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-xs outline-none motion-safe:transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring data-disabled:cursor-not-allowed data-disabled:opacity-50 data-invalid:border-destructive [&_svg]:size-4 [&_svg]:shrink-0",
+          "flex w-full min-w-0 items-center justify-between gap-1.5 rounded-md border border-ring/85 bg-background py-0.5 text-[13px] leading-4 text-foreground outline-none pointer-coarse:min-h-11",
+          "enabled:not-data-disabled:not-data-invalid:not-aria-invalid:hover:border-ring focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+          "data-disabled:cursor-not-allowed data-disabled:border-input data-disabled:bg-muted data-disabled:text-muted-foreground data-invalid:border-destructive aria-invalid:border-destructive motion-safe:transition-colors motion-safe:duration-150",
+          "[&_svg]:size-4 [&_svg]:shrink-0",
+          triggerSizes[size],
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -86,7 +102,7 @@ export function SelectGroupLabel({
       {...props}
       className={(state) =>
         cn(
-          "px-3 py-2 text-xs font-medium text-muted-foreground",
+          "px-3 py-1.5 text-xs font-medium text-muted-foreground",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -120,7 +136,7 @@ export function SelectItem<T = string>({
       {...props}
       className={(state) =>
         cn(
-          "flex min-h-10 min-w-0 cursor-default items-center gap-3 rounded-sm px-3 py-2 text-sm wrap-anywhere outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-selected:font-medium data-disabled:opacity-50",
+          "flex min-h-8 min-w-0 cursor-default items-center gap-3 rounded-sm px-3 py-1.5 text-[13px] leading-4 wrap-anywhere outline-none pointer-coarse:min-h-11 data-highlighted:bg-accent data-highlighted:text-accent-foreground data-selected:font-medium data-disabled:opacity-50",
           typeof className === "function" ? className(state) : className,
         )
       }

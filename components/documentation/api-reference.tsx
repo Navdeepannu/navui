@@ -18,22 +18,23 @@ function PropsTable({
       tabIndex={0}
       role="region"
       aria-label={`${title} properties`}
-      className="overflow-x-auto outline-none focus-visible:outline-2 focus-visible:outline-ring"
+      className="min-w-0 outline-none focus-visible:outline-2 focus-visible:outline-ring"
     >
-      <table className="w-full min-w-[36rem] table-fixed text-start text-sm leading-6">
+      <table className="w-full table-fixed text-start text-sm leading-5">
         <caption className="sr-only">{title} properties</caption>
         <colgroup>
-          <col className="w-[24%]" />
-          <col className="w-[28%]" />
+          <col className="w-[18%]" />
+          <col className="w-[34%]" />
+          <col className="w-[19%]" />
           <col />
         </colgroup>
         <thead>
           <tr className="border-b text-xs text-muted-foreground">
-            {["Prop", "Type", "Description"].map((label) => (
+            {["Prop", "Type", "Default", "Description"].map((label) => (
               <th
                 key={label}
                 scope="col"
-                className="px-3 py-3 text-start font-medium first:ps-0"
+                className="px-1.5 py-2 text-start font-medium first:ps-0 last:pe-0 sm:px-3"
               >
                 {label}
               </th>
@@ -43,7 +44,7 @@ function PropsTable({
         <tbody>
           {props.map((prop) => (
             <tr key={prop.prop} className="border-b align-top">
-              <th scope="row" className="px-3 py-4 ps-0 text-start font-normal">
+              <th scope="row" className="py-3 pe-1.5 text-start font-normal sm:pe-3">
                 <code className="font-mono text-xs wrap-anywhere">
                   {prop.prop}
                 </code>
@@ -53,12 +54,17 @@ function PropsTable({
                   </span>
                 )}
               </th>
-              <td className="px-3 py-4">
-                <code className="font-mono text-xs wrap-anywhere text-muted-foreground">
+              <td className="px-1.5 py-3 sm:px-3">
+                <code className="font-mono text-xs wrap-anywhere text-foreground">
                   {prop.type}
                 </code>
               </td>
-              <td className="px-3 py-4 text-sm leading-6 text-muted-foreground">
+              <td className="px-1.5 py-3 sm:px-3">
+                <code className="font-mono text-xs wrap-anywhere text-muted-foreground">
+                  {prop.default === "-" ? "—" : prop.default}
+                </code>
+              </td>
+              <td className="py-3 ps-1.5 wrap-anywhere text-muted-foreground sm:ps-3">
                 {prop.description}
               </td>
             </tr>

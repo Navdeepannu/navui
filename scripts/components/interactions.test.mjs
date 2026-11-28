@@ -66,7 +66,9 @@ const key = (el, value, extra = {}) => {
 
 test("Button forwards refs, native forms, disabled and pending state", async () => {
   let calls = 0,
-    release;
+    presses = 0,
+    release,
+    reject;
   const ref = createRef();
   await mount(
     h(
@@ -82,12 +84,15 @@ test("Button forwards refs, native forms, disabled and pending state", async () 
       h(
         Button,
         {
-          onClick: () =>
-            new Promise((r) => {
-              release = r;
-            }),
+          onClick: () => {
+            presses++;
+            return new Promise((resolve, rejectPress) => {
+              release = resolve;
+              reject = rejectPress;
+            });
+          },
         },
-        "Pending",
+        (state) => (state.error ? "Retry save" : "Save"),
       ),
     ),
   );
@@ -97,11 +102,23 @@ test("Button forwards refs, native forms, disabled and pending state", async () 
   await settle(() => host.querySelector("[disabled]").click());
   assert.equal(calls, 1);
   const pending = [...host.querySelectorAll("button")][2];
-  await settle(() => pending.click());
+  await settle(() => {
+    pending.focus();
+    key(pending, "Enter");
+  });
   assert.equal(pending.getAttribute("aria-busy"), "true");
   await settle(() => pending.click());
+  assert.equal(presses, 1);
+  assert.equal(document.activeElement, pending);
+  await settle(() => reject(new Error("Save failed")));
+  assert.notEqual(pending.getAttribute("aria-busy"), "true");
+  assert.equal(pending.textContent, "Retry save");
+  await settle(() => pending.click());
+  assert.equal(presses, 2);
+  assert.equal(pending.getAttribute("aria-busy"), "true");
   await settle(() => release());
   assert.notEqual(pending.getAttribute("aria-busy"), "true");
+  assert.equal(pending.textContent, "Save");
 });
 test("Tabs own automatic/manual navigation, cancellation and inactive panel focus", async () => {
   const render = (options = {}) =>

@@ -1,7 +1,13 @@
 import Field from "@/components/examples/field";
+import FieldForm from "@/components/examples/field-form";
+import FieldLabel from "@/components/examples/field-label";
+import FieldRequired from "@/components/examples/field-required";
 import FieldStates from "@/components/examples/field-states";
 import Input from "@/components/examples/input";
+import InputAction from "@/components/examples/input-action";
+import InputSizes from "@/components/examples/input-sizes";
 import InputStates from "@/components/examples/input-states";
+import InputTypes from "@/components/examples/input-types";
 import Select from "@/components/examples/select";
 import SelectStates from "@/components/examples/select-states";
 import Checkbox from "@/components/examples/checkbox";
@@ -14,6 +20,15 @@ import AnimatedNumbers from "@/components/examples/animated-numbers";
 import Tabs from "@/components/examples/tabs";
 import TabsVariants from "@/components/examples/tabs-variants";
 import Button from "@/components/examples/button";
+import ButtonAppearance from "@/components/examples/button-appearance";
+import ButtonAsync from "@/components/examples/button-async";
+import ButtonDisabled from "@/components/examples/button-disabled";
+import ButtonForm from "@/components/examples/button-form";
+import ButtonIcons from "@/components/examples/button-icons";
+import ButtonLink from "@/components/examples/button-link";
+import ButtonPending from "@/components/examples/button-pending";
+import ButtonRounded from "@/components/examples/button-rounded";
+import ButtonSizes from "@/components/examples/button-sizes";
 import Dialog from "@/components/examples/dialog";
 import ContributionGraph from "@/components/examples/contribution-graph";
 import ExpandableCard from "@/components/examples/expandable-card";
@@ -31,9 +46,15 @@ type PreviewSource = CatalogItem["preview"] | CatalogItem["examples"][number]["s
 
 const previews = {
   "components/examples/field.tsx": Field,
+  "components/examples/field-form.tsx": FieldForm,
+  "components/examples/field-label.tsx": FieldLabel,
+  "components/examples/field-required.tsx": FieldRequired,
   "components/examples/field-states.tsx": FieldStates,
   "components/examples/input.tsx": Input,
+  "components/examples/input-action.tsx": InputAction,
+  "components/examples/input-sizes.tsx": InputSizes,
   "components/examples/input-states.tsx": InputStates,
+  "components/examples/input-types.tsx": InputTypes,
   "components/examples/select.tsx": Select,
   "components/examples/select-states.tsx": SelectStates,
   "components/examples/checkbox.tsx": Checkbox,
@@ -45,6 +66,15 @@ const previews = {
   "components/examples/tabs.tsx": Tabs,
   "components/examples/tabs-variants.tsx": TabsVariants,
   "components/examples/button.tsx": Button,
+  "components/examples/button-appearance.tsx": ButtonAppearance,
+  "components/examples/button-async.tsx": ButtonAsync,
+  "components/examples/button-disabled.tsx": ButtonDisabled,
+  "components/examples/button-form.tsx": ButtonForm,
+  "components/examples/button-icons.tsx": ButtonIcons,
+  "components/examples/button-link.tsx": ButtonLink,
+  "components/examples/button-pending.tsx": ButtonPending,
+  "components/examples/button-rounded.tsx": ButtonRounded,
+  "components/examples/button-sizes.tsx": ButtonSizes,
   "components/examples/dialog.tsx": Dialog,
   "components/examples/contribution-graph.tsx": ContributionGraph,
   "components/examples/expandable-card.tsx": ExpandableCard,

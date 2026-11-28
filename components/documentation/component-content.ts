@@ -4,7 +4,7 @@ const usageIntroductions: Record<string, string> = {
   "animated-numbers":
     "Pass the final value; add a prefix, suffix, or locale when the number needs context. Screen readers receive the final formatted value.",
   button:
-    'Use a native button for an action. Set type="submit" explicitly when submitting a form; return a Promise from onClick to show pending feedback.',
+    'Use variant to set the visual emphasis of an action. Set type="submit" to submit a form, or return a Promise from onClick to show pending feedback.',
   dialog:
     "Compose a trigger, backdrop, and content inside Dialog. Give the content a title and a description, then provide an explicit close action.",
   "contribution-graph":
@@ -21,11 +21,11 @@ const usageIntroductions: Record<string, string> = {
     "Use meaningful anchor destinations and match them to the sections in your page. The reveal effect supplements ordinary links.",
   tabs: "Match each tab and panel by value, and give the tab list an accessible name. Choose defaultValue for uncontrolled selection.",
   field:
-    "Place a label, one control, and optional supporting text inside Field. Field connects descriptions and visible errors to its control.",
+    "Place a label, one control, and optional supporting text inside Field. Install NavUI Input alongside Field to use the examples on this page.",
   input:
-    "Pair Input with a visible FieldLabel. Choose a native type and autocomplete value appropriate to the information being collected.",
+    "Choose a native type and autocomplete value for the data you need. Use a visible label in forms, or provide an accessible name when the surrounding context already identifies the input.",
   select:
-    "Provide items for selection and render the matching options. Use a visible FieldLabel; leave value empty when the user must choose.",
+    "Provide items and render the matching options. Install NavUI Field to use the example’s visible label. Set size on SelectTrigger to match neighboring controls.",
   checkbox:
     "Use a checkbox for an independent choice. Give it a stable label and a name and value when it participates in a form.",
   switch:
@@ -60,12 +60,7 @@ export const requiredProps: Record<string, readonly string[]> = {
 export function getAccessibilityNotes(
   item: ComponentCatalogEntry,
 ): readonly string[] {
-  if (item.slug === "button")
-    return [
-      "Use a descriptive visible label. Give icon-only buttons an accessible name with aria-label.",
-      "Enter and Space activate native buttons. Disabled buttons cannot activate; focusableWhenDisabled keeps an explanatory control reachable without enabling its action.",
-      "SDK pending feedback follows a returned Promise. Use pendingAnnouncement to describe longer actions to screen readers.",
-    ];
+  if (item.slug === "button") return [];
   if (item.slug === "dialog")
     return [
       "Use DialogTitle to give the dialog an accessible name and DialogDescription for supporting context.",

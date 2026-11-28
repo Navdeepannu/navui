@@ -13,7 +13,7 @@ export function Field({
       {...props}
       className={(state) =>
         cn(
-          "flex min-w-0 flex-col gap-2",
+          "flex min-w-0 flex-col gap-1.5",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -30,7 +30,7 @@ export function FieldGroup({
       {...props}
       className={(state) =>
         cn(
-          "flex min-w-0 flex-col gap-6",
+          "flex min-w-0 flex-col gap-4",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -47,7 +47,7 @@ export function FieldLabel({
       {...props}
       className={(state) =>
         cn(
-          "w-fit text-sm font-medium leading-5 data-disabled:opacity-50",
+          "w-fit text-[13px] leading-5 font-medium text-foreground data-disabled:text-muted-foreground",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -64,7 +64,7 @@ export function FieldDescription({
       {...props}
       className={(state) =>
         cn(
-          "text-sm leading-6 text-muted-foreground",
+          "text-[13px] leading-5 text-muted-foreground",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -81,7 +81,7 @@ export function FieldError({
       {...props}
       className={(state) =>
         cn(
-          "text-sm leading-6 text-destructive",
+          "text-[13px] leading-5 text-destructive",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -98,7 +98,7 @@ export function FieldSet({
       {...props}
       className={(state) =>
         cn(
-          "flex min-w-0 flex-col gap-6",
+          "flex min-w-0 flex-col gap-4",
           typeof className === "function" ? className(state) : className,
         )
       }
@@ -115,7 +115,7 @@ export function FieldLegend({
       {...props}
       className={(state) =>
         cn(
-          "mb-4 text-base font-semibold",
+          "mb-3 text-base leading-6 font-semibold text-foreground data-disabled:text-muted-foreground",
           typeof className === "function" ? className(state) : className,
         )
       }

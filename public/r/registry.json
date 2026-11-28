@@ -1196,7 +1196,7 @@
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "Labels, descriptions, errors and field sets connected by UI SDK.",
+      "description": "Connect form controls to labels, supporting text, and validation feedback.",
       "dependencies": [
         "@ui-sdk/core@0.1.0-beta.17",
         "@ui-sdk/react@0.1.0-beta.17",
@@ -1220,7 +1220,7 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "A native text input with consistent focus, invalid and disabled styling.",
+      "description": "A native input that pairs with Field and matches Button’s four control sizes.",
       "dependencies": [
         "@ui-sdk/core@0.1.0-beta.17",
         "@ui-sdk/react@0.1.0-beta.17",

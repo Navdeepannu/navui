@@ -1,4 +1,5 @@
 import { getComponentPreviewSize } from "@/components/documentation/preview-size";
+import { CompactExample } from "@/components/documentation/compact-example";
 import type { Metadata } from "next";
 import { DocumentationLayout } from "@/components/library/documentation-layout";
 import { notFound } from "next/navigation";
@@ -6,7 +7,7 @@ import { notFound } from "next/navigation";
 import { BlockShowcaseTabs } from "@/components/blocks/block-showcase-tabs";
 import { ComponentDocumentation } from "@/components/catalog/component-documentation";
 import { componentCatalog } from "@/registry/catalog";
-import { getComponentDefinition } from "@/registry/component-previews";
+import { getComponentDefinition, getComponentPreview } from "@/registry/component-previews";
 import { getBlockInstallCommands } from "@/registry/install";
 import { readExampleSource } from "@/registry/source";
 
@@ -35,7 +36,10 @@ export default async function ComponentPage({ params }: Props) {
   const examples = await Promise.all(
     item.examples.map(async (example) => ({
       ...example,
-      files: [await readExampleSource(example.source)],
+      file: await readExampleSource(example.source),
+      preview: example.presentation === "compact"
+        ? getComponentPreview(`${item.slug}--${example.id}`)?.Preview
+        : undefined,
     })),
   );
 
@@ -72,11 +76,11 @@ export default async function ComponentPage({ params }: Props) {
             >
               Examples
             </h2>
-            {examples.map((example) => (
+            {examples.map(({ preview: Preview, ...example }) => (
               <section
                 key={example.id}
                 aria-labelledby={`example-${example.id}`}
-                className="flex min-w-0 flex-col gap-4"
+                className="flex min-w-0 flex-col gap-3"
               >
                 <h3
                   id={`example-${example.id}`}
@@ -84,18 +88,24 @@ export default async function ComponentPage({ params }: Props) {
                 >
                   {example.title}
                 </h3>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  {example.description}
-                </p>
-                <BlockShowcaseTabs
-                  blockId={`${item.id}--${example.id}`}
-                  title={`${item.title}: ${example.title}`}
-                  previewPath={`/preview/components/${item.slug}--${example.id}`}
-                  commands={commands}
-                  sourceFiles={example.files}
-                  exampleSource={example.files[0]}
-                  previewSize={getComponentPreviewSize(item.slug)}
-                />
+                {example.description && (
+                  <p className="text-sm leading-6 text-muted-foreground">
+                    {example.description}
+                  </p>
+                )}
+                {Preview ? (
+                  <CompactExample file={example.file}><Preview /></CompactExample>
+                ) : (
+                  <BlockShowcaseTabs
+                    blockId={`${item.id}--${example.id}`}
+                    title={`${item.title}: ${example.title}`}
+                    previewPath={`/preview/components/${item.slug}--${example.id}`}
+                    commands={commands}
+                    sourceFiles={[example.file]}
+                    exampleSource={example.file}
+                    previewSize={getComponentPreviewSize(item.slug)}
+                  />
+                )}
               </section>
             ))}
           </section>

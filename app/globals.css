@@ -71,12 +71,12 @@
   --font-serif: var(--design-font-serif);
 
   /* Radius */
-  --radius-sm: var(--design-radius-sm);
-  --radius-md: var(--design-radius-md);
-  --radius-lg: var(--design-radius-lg);
-  --radius-xl: var(--design-radius-xl);
-  --radius-2xl: var(--design-radius-2xl);
-  --radius-3xl: var(--design-radius-3xl);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
 
   /* Shadows */
   --shadow-2xs: var(--design-shadow-2xs);
@@ -159,7 +159,7 @@
   --accent: oklch(0.94 0 0);
   --accent-foreground: oklch(0.18 0 0);
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.54 0.22 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
   /* --------------------------------------------------------
@@ -168,7 +168,7 @@
 
   --border: oklch(0.9 0 0);
   --input: oklch(0.9 0 0);
-  --ring: oklch(0.62 0 0);
+  --ring: oklch(0.58 0 0);
 
   --line: color-mix(in oklab, var(--border) 72%, var(--background));
 
@@ -206,13 +206,7 @@
      Shape
      -------------------------------------------------------- */
 
-  --radius: 0.5rem; 
-  --design-radius-sm: calc(var(--radius) * 0.6);
-  --design-radius-md: calc(var(--radius) * 0.8);
-  --design-radius-lg: var(--radius);
-  --design-radius-xl: calc(var(--radius) * 1.4);
-  --design-radius-2xl: calc(var(--radius) * 1.8);
-  --design-radius-3xl: calc(var(--radius) * 2.2);
+  --radius: 0.625rem;
 
   /* --------------------------------------------------------
      Typography
@@ -306,13 +300,13 @@
   --accent-foreground: oklch(0.96 0 0);
 
   --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
+  --destructive-foreground: oklch(0.13 0 0);
 
   /* Borders / focus */
 
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.56 0 0);
+  --ring: oklch(0.64 0 0);
 
   --line: color-mix(in oklab, var(--border) 72%, var(--background));
 

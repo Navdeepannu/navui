@@ -5,6 +5,7 @@ import { createAgent } from "@ui-sdk/react/agent";
 import { createRoot } from "react-dom/client";
 import { BlockSourceExplorer } from "../../components/blocks/block-source-explorer.tsx";
 import { CodeBlock } from "../../components/documentation/code-block.tsx";
+import { CompactExample } from "../../components/documentation/compact-example.tsx";
 import { CommandBlock } from "../../components/documentation/command-block.tsx";
 import { InstallationTabs } from "../../components/documentation/installation-tabs.tsx";
 import { DocumentationCommand } from "../../components/documentation/package-manager-preference.tsx";
@@ -77,6 +78,25 @@ test("code disclosure exposes one named scroll region only when expanded; copyin
   assert.ok(host.querySelector('[aria-label="Copied"]'));
   await settle(() => trigger.click());
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
+});
+
+test("compact examples can be copied before opening their highlighted source", async () => {
+  let copied;
+  Object.defineProperty(navigator, "clipboard", {
+    configurable: true,
+    value: { writeText: async (value) => { copied = value; } },
+  });
+  await mount(h(CompactExample, { file }, h("input", { "aria-label": "Project" })));
+  const trigger = host.querySelector("button[aria-expanded]");
+  assert.equal(trigger.getAttribute("aria-expanded"), "false");
+  assert.equal(host.querySelector(".code-content"), null);
+  assert.ok(host.querySelector('input[aria-label="Project"]'));
+  await settle(() => host.querySelector('[aria-label="Copy example.tsx"]').click());
+  assert.equal(copied, file.code);
+  assert.equal(trigger.getAttribute("aria-expanded"), "false");
+  await settle(() => trigger.click());
+  assert.equal(trigger.getAttribute("aria-expanded"), "true");
+  assert.equal(host.querySelector(".code-content .shiki").textContent, file.code);
 });
 
 test("installation tabs select CLI/manual with keyboard and commands copy the selected package manager", async () => {
@@ -210,16 +230,16 @@ test("preview sizes keep simple controls compact, custom compositions large, and
   assert.equal(getComponentPreviewSize("animated-numbers"), "default");
   assert.equal(
     clampBlockPreviewHeight(100, previewMinimumHeights.compact),
-    240,
+    400,
   );
   assert.equal(
     clampBlockPreviewHeight(900, previewMinimumHeights.compact),
     910,
   );
-  assert.equal(clampBlockPreviewHeight(100), 560);
+  assert.equal(clampBlockPreviewHeight(100), 680);
 });
 
-test("API tables expose required props and compound parts; minimal usage differs from the full demonstration", async () => {
+test("API tables expose required props and defaults with an upstream link for inherited APIs", async () => {
   const numbers = componentCatalog.find(
     (item) => item.slug === "animated-numbers",
   );
@@ -232,19 +252,26 @@ test("API tables expose required props and compound parts; minimal usage differs
     (getUsageCode(numbers).match(/<AnimatedNumber /g) ?? []).length,
     1,
   );
+  const button = componentCatalog.find((item) => item.slug === "button");
+  await act(() => root.render(h(ApiReference, { item: button })));
+  assert.deepEqual([...host.querySelectorAll("tbody th")].map((el) => el.textContent), ["variant", "size"]);
+  assert.equal(host.querySelector("tbody tr td:nth-child(3) code").textContent, '"default"');
+  assert.match(host.querySelector("a").href, /ui-sdk\.dev\/docs\/react\/components\/button$/);
+
+  const input = componentCatalog.find((item) => item.slug === "input");
+  await act(() => root.render(h(ApiReference, { item: input })));
+  assert.deepEqual([...host.querySelectorAll("tbody th")].map((el) => el.textContent), ["controlSize"]);
+  assert.match(host.querySelector("a").href, /ui-sdk\.dev\/docs\/react\/components\/input$/);
+
+  const field = componentCatalog.find((item) => item.slug === "field");
+  await act(() => root.render(h(ApiReference, { item: field })));
+  assert.equal(host.querySelector("table"), null);
+  assert.match(host.querySelector("a").href, /ui-sdk\.dev\/docs\/react\/components\/field$/);
+
   const dialog = componentCatalog.find((item) => item.slug === "dialog");
   await act(() => root.render(h(ApiReference, { item: dialog })));
-  assert.deepEqual(
-    [...host.querySelectorAll("h3")].map((el) => el.textContent),
-    [
-      "Dialog",
-      "DialogTrigger",
-      "DialogContent",
-      "DialogTitle and DialogDescription",
-      "DialogClose",
-    ],
-  );
-  assert.ok(!host.textContent.includes("Default:"));
+  assert.equal(host.querySelector("table"), null);
+  assert.match(host.querySelector("a").href, /ui-sdk\.dev\/docs\/react\/components\/dialog$/);
 });
 
 test("Components and Blocks share the inset code foundation while only Blocks exposes file navigation", async () => {
@@ -255,7 +282,7 @@ test("Components and Blocks share the inset code foundation while only Blocks ex
     '[aria-label="Copy example.tsx"]',
   );
   assert.ok(copy.classList.contains("absolute"));
-  assert.ok(copy.classList.contains("end-2"));
+  assert.ok(copy.classList.contains("inset-e-2"));
   assert.ok(copy.classList.contains("top-2"));
   assert.equal(componentSurface.querySelectorAll("pre").length, 1);
   assert.equal(componentSurface.querySelector("code[title]"), null);

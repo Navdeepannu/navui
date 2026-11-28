@@ -16,7 +16,7 @@ import { CheckIcon, ChevronDownIcon } from "lucide-react";
 const regions = ["Canada", "Europe", "United States"];
 export default function Example() {
   return (
-    <Field className="w-full max-w-sm p-6">
+    <Field className="w-full max-w-sm">
       <FieldLabel>Region</FieldLabel>
       <Select items={regions} defaultValue="Canada">
         <SelectTrigger>

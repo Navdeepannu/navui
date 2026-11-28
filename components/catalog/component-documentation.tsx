@@ -107,10 +107,6 @@ export async function ComponentDocumentation({
                   <CodeBlock file={file} collapsible />
                 </div>
               ))}
-              <p className="text-xs leading-6 text-muted-foreground">
-                The CLI includes all required files, dependencies, and license
-                notices. Examples are separate from the installed component.
-              </p>
             </>
           }
         />

@@ -7,7 +7,7 @@ unchanged by this documentation refinement.
 ## Reading order
 
 Title and description → preview → installation → usage → examples (when present)
-→ API reference → accessibility. Examples use nested headings; empty sections are
+→ API reference → component-specific accessibility notes when needed. Examples use nested headings; empty sections are
 omitted. Keep usage small and explanatory. The preview's Code tab shows the actual
 example with consumer import paths, while Manual installation contains the reusable
 implementation and its supporting files. Demo-only dependencies and assets are not
@@ -22,13 +22,17 @@ an absent default. Empty default cells do not imply that a property is required.
 
 ## Preview and code
 
-`preview-size.ts` sets compact (240px), default (360px), and large (480px) minimum
-preview heights. Content can grow beyond its minimum through the existing resize
-reporter. These values apply only to components; retained marketing block heights
-are unchanged. Add a presentation size when a new component's content needs it.
+`preview-size.ts` sets the minimum heights for the advanced component preview.
+Content can grow through the existing resize reporter. Use the advanced showcase
+for the main preview and for examples that need viewport or fullscreen controls.
 
-Example code is available in the preview's Code tab, without a second code section
-underneath the preview. UI SDK Collapsible owns disclosures used for long Manual
+Set `presentation: "compact"` on an example to render it in the page’s theme.
+The inline preview sizes to its content and provides View code and Copy actions.
+The corresponding source file supplies both the preview and the snippet. The
+source reader rewrites registry imports to consumer paths. The advanced
+showcase continues to expose example code in its Code tab.
+
+UI SDK Collapsible owns disclosures for compact examples and for long Manual
 installation and Usage snippets; decorative teasers are inert and hidden from
 assistive technology. Expanded code scrolls within 28rem. The Code tab uses the same
 renderer without a tree. Manual installation lists actual required files, with license files

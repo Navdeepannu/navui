@@ -84,7 +84,7 @@ const css = (await readFile(path.join(root, "app/globals.css"), "utf8"))
 await writeFile(
   path.join(dir, "app/globals.css"),
   css +
-    "\n:root {--design-radius-sm:4px;--design-radius-md:6px;--design-radius-lg:8px;--design-radius-xl:12px;} body {margin:0;background:var(--background);color:var(--foreground);font-family:system-ui,sans-serif}",
+    "\nbody {margin:0;background:var(--background);color:var(--foreground);font-family:system-ui,sans-serif}",
 );
 await writeFile(
   path.join(dir, "app/layout.tsx"),
@@ -167,11 +167,12 @@ try {
     "select-trigger",
     "checkbox",
     "switch",
+    "button",
   ]) {
     if (!html.includes(`data-slot="${slot}"`))
       throw new Error(`Production response missing ${slot}`);
   }
-  console.log("PASS: production HTTP rendering includes all five controls.");
+  console.log("PASS: production HTTP rendering includes all installed controls.");
 } finally {
   if (server.exitCode === null) {
     const stopped = new Promise((resolve) => server.once("exit", resolve));

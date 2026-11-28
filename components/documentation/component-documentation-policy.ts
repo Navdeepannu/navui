@@ -38,6 +38,7 @@ export const componentDocumentationPolicy = {
   button: {
     ownership: "foundation",
     uiSdkUrl: sdk("button"),
+    includeProps: ["variant", "size"],
     summary:
       "Foundation component styled on UI SDK Button.",
   },
@@ -92,11 +93,13 @@ export const componentDocumentationPolicy = {
   input: {
     ownership: "foundation",
     uiSdkUrl: sdk("input"),
+    includeProps: ["controlSize"],
     summary: "Foundation component styled on UI SDK Input.",
   },
   select: {
     ownership: "foundation",
     uiSdkUrl: sdk("select"),
+    includeProps: ["size"],
     summary: "Foundation component styled on UI SDK Select.",
   },
   checkbox: {

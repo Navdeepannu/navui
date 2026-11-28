@@ -67,8 +67,9 @@ export type ComponentCatalogEntry = {
   examples: readonly {
     id: string;
     title: string;
-    description: string;
+    description?: string;
     source: string;
+    presentation?: "compact";
   }[];
   provenance?: { repository: string; commit: string; path: string };
   registry: {

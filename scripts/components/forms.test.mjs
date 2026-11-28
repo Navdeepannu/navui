@@ -146,6 +146,29 @@ test("Input supports controlled state, cancellable changes and uncontrolled rese
   await settle(() => host.querySelector("form").reset());
   assert.equal(plain.value, "original");
 });
+
+test("Input controlSize preserves native size and SDK className and render composition", async () => {
+  const ref = createRef();
+  await mount(
+    h(Input, {
+      ref,
+      "aria-label": "Workspace ID",
+      controlSize: "xs",
+      size: 12,
+      readOnly: true,
+      className: (state) => state.readOnly ? "w-auto" : undefined,
+      render: h("input", { "data-custom-input": "" }),
+    }),
+  );
+  const input = ref.current;
+  assert.equal(input.tagName, "INPUT");
+  assert.equal(input.size, 12);
+  assert.equal(input.hasAttribute("controlsize"), false);
+  assert.equal(input.hasAttribute("data-custom-input"), true);
+  assert.equal(input.readOnly, true);
+  assert.ok(input.classList.contains("w-auto"));
+  assert.ok(input.classList.contains("h-6"));
+});
 for (const [name, Control] of [
   ["checkbox", Checkbox],
   ["switch", Switch],

@@ -562,28 +562,85 @@ export const componentCatalog = [
       "accessibility"
     ],
     "preview": "components/examples/button.tsx",
-    "examples": [],
+    "examples": [
+      {
+        "id": "appearance",
+        "title": "Action hierarchy",
+        "description": "Give publishing and deleting their own action groups.",
+        "source": "components/examples/button-appearance.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "sizes",
+        "title": "Sizes",
+        "source": "components/examples/button-sizes.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "icons",
+        "title": "Icons",
+        "description": "Use a leading icon for a familiar action. Give icon-only buttons an accessible name with aria-label.",
+        "source": "components/examples/button-icons.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "rounded",
+        "title": "Rounded",
+        "description": "Use rounded-full to give a specific action a pill shape.",
+        "source": "components/examples/button-rounded.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "disabled",
+        "title": "Disabled",
+        "description": "Explain why an action is unavailable near the button.",
+        "source": "components/examples/button-disabled.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "pending",
+        "title": "Pending action",
+        "description": "Return a Promise from onClick. UI SDK keeps focus on the button and ignores repeat presses while the save runs.",
+        "source": "components/examples/button-pending.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "async",
+        "title": "Save and retry",
+        "description": "The first save simulates a connection error. Select Save changes again to retry.",
+        "source": "components/examples/button-async.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "form",
+        "title": "Form actions",
+        "description": "This example uses NavUI Field and Input alongside native submit and reset actions.",
+        "source": "components/examples/button-form.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "link",
+        "title": "Button as a link",
+        "description": "Pass an anchor to render for native link behavior. A trailing arrow signals navigation.",
+        "source": "components/examples/button-link.tsx",
+        "presentation": "compact"
+      }
+    ],
     "title": "Button",
     "description": "A neutral UI SDK action with native form behavior, pending feedback, and composable rendering.",
-    "usageExample": "import { Button } from '@/components/navui/button'\n\nexport function Example() {\n  return <Button onClick={() => console.log('Pressed')}>Create project</Button>\n}",
+    "usageExample": "import { Button } from '@/components/navui/button'\n\nexport function Example() {\n  return <Button>Save changes</Button>\n}",
     "api": [
       {
         "prop": "variant",
-        "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\"",
+        "type": "\"default\" | \"secondary\" | \"outline\" | \"ghost\" | \"destructive\" | \"link\"",
         "description": "Semantic appearance.",
         "default": "\"default\""
       },
       {
         "prop": "size",
-        "type": "\"sm\" | \"default\" | \"lg\" | \"icon\"",
-        "description": "Control size.",
+        "type": "\"xs\" | \"sm\" | \"default\" | \"lg\" | \"icon-xs\" | \"icon-sm\" | \"icon\" | \"icon-lg\"",
+        "description": "Text buttons and square icon buttons use 24, 28, 32, or 40 pixels. The minimum target is 44 pixels on touch-first devices.",
         "default": "\"default\""
-      },
-      {
-        "prop": "render / ref / onClick",
-        "type": "UI SDK Button props",
-        "description": "Use render to compose another element; return a Promise for pending feedback. Native type, disabled, and focusableWhenDisabled are forwarded.",
-        "default": "\u2014"
       }
     ],
     "notes": [
@@ -1307,7 +1364,7 @@ export const componentCatalog = [
     "registryName": "field",
     "slug": "field",
     "title": "Field",
-    "description": "Labels, descriptions, errors and field sets connected by UI SDK.",
+    "description": "Connect form controls to labels, supporting text, and validation feedback.",
     "category": "forms",
     "status": "published",
     "tags": [
@@ -1316,39 +1373,59 @@ export const componentCatalog = [
       "field",
       "accessibility"
     ],
-    "usageExample": "\"use client\";\nimport {\n  Field,\n  FieldLabel,\n  FieldDescription,\n} from \"@/components/navui/field\";\nimport { Input } from \"@/components/navui/input\";\nexport default function Example() {\n  return (\n    <Field className=\"w-full max-w-sm p-6\" name=\"field-email\">\n      <FieldLabel>Email address</FieldLabel>\n      <Input type=\"email\" placeholder=\"you@example.com\" />\n      <FieldDescription>Used for project updates.</FieldDescription>\n    </Field>\n  );\n}\n",
-    "api": [
-      {
-        "prop": "name / disabled / invalid",
-        "type": "FieldOptions",
-        "default": "SDK default",
-        "description": "Connect one SDK control per Field. Set invalid only when the consuming application owns validation."
-      },
-      {
-        "prop": "FieldLabel / FieldDescription / FieldError",
-        "type": "SDK parts",
-        "default": "SDK default",
-        "description": "SDK manages IDs and error associations. FieldError match accepts native validity keys or a boolean."
-      },
-      {
-        "prop": "FieldGroup / FieldSet / FieldLegend",
-        "type": "SDK parts",
-        "default": "SDK default",
-        "description": "Group layout; use a field set and first-child legend for related controls."
-      }
-    ],
+    "usageExample": `import { Field, FieldDescription, FieldLabel } from "@/components/navui/field";
+import { Input } from "@/components/navui/input";
+
+export function ReportEmail() {
+  return (
+    <Field name="email">
+      <FieldLabel>Report email</FieldLabel>
+      <Input type="email" autoComplete="email" />
+      <FieldDescription>Weekly activity reports go to this address.</FieldDescription>
+    </Field>
+  );
+}`,
+    "api": [],
     "notes": [
-      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
-      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
-      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+      "Use one control per Field so the label, description, and errors describe the same input.",
+      "Group related controls with FieldSet and a FieldLegend that names the group."
     ],
     "preview": "components/examples/field.tsx",
     "examples": [
       {
+        "id": "label",
+        "title": "With a label",
+        "description": "Click the label to focus the input.",
+        "source": "components/examples/field-label.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "description",
+        "title": "With supporting text",
+        "description": "FieldDescription tells people how their email address will be used.",
+        "source": "components/examples/field.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "required",
+        "title": "Required field",
+        "description": "Set required on the input and call it out in the visible label.",
+        "source": "components/examples/field-required.tsx",
+        "presentation": "compact"
+      },
+      {
         "id": "states",
-        "title": "Practical states",
-        "description": "Validation, reset and useful control states.",
-        "source": "components/examples/field-states.tsx"
+        "title": "Validation feedback",
+        "description": "Select Validate to see FieldError respond to the browser’s email constraint. This example also uses NavUI Button.",
+        "source": "components/examples/field-states.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "report-settings",
+        "title": "Report settings form",
+        "description": "Pair Input with NavUI Select for report delivery and NavUI Button for submit and reset. The select uses Lucide icons.",
+        "source": "components/examples/field-form.tsx",
+        "presentation": "compact"
       }
     ],
     "registry": {
@@ -1379,7 +1456,7 @@ export const componentCatalog = [
     "registryName": "input",
     "slug": "input",
     "title": "Input",
-    "description": "A native text input with consistent focus, invalid and disabled styling.",
+    "description": "A native input that pairs with Field and matches Button’s four control sizes.",
     "category": "forms",
     "status": "published",
     "tags": [
@@ -1388,39 +1465,66 @@ export const componentCatalog = [
       "input",
       "accessibility"
     ],
-    "usageExample": "\"use client\";\nimport {\n  Field,\n  FieldLabel,\n  FieldDescription,\n} from \"@/components/navui/field\";\nimport { Input } from \"@/components/navui/input\";\nexport default function Example() {\n  return (\n    <Field className=\"w-full max-w-sm p-6\" name=\"input-email\">\n      <FieldLabel>Email address</FieldLabel>\n      <Input type=\"email\" placeholder=\"you@example.com\" />\n      <FieldDescription>Used for project updates.</FieldDescription>\n    </Field>\n  );\n}\n",
+    "usageExample": `import { Input } from "@/components/navui/input";
+
+export function WorkEmail() {
+  return (
+    <Input
+      name="email"
+      aria-label="Work email"
+      type="email"
+      autoComplete="email"
+      placeholder="you@example.com"
+    />
+  );
+}`,
     "api": [
       {
-        "prop": "value / defaultValue / onValueChange",
-        "type": "string / (value, details) => void",
-        "default": "SDK default",
-        "description": "Controlled or uncontrolled. Reset controlled text in the consuming form reset handler. details.cancel() rejects edits."
-      },
-      {
-        "prop": "ref / type / required / disabled / readOnly",
-        "type": "Native input props",
-        "default": "SDK default",
-        "description": "Native form participation and forwarded input ref."
-      },
-      {
-        "prop": "className / render",
-        "type": "SDK part callbacks",
-        "default": "SDK default",
-        "description": "Callbacks receive SDK input state; render forwards native props and ref."
+        "prop": "controlSize",
+        "type": "\"xs\" | \"sm\" | \"default\" | \"lg\"",
+        "default": "\"default\"",
+        "description": "Sets the input height to 24, 28, 32, or 40 pixels. Match Button and SelectTrigger’s size prop to align them. The native numeric size attribute remains available."
       }
     ],
     "notes": [
-      "Use a visible associated label. Field wires labels, descriptions and visible errors without manual IDs.",
-      "Validation policy belongs to the consuming form. Reset is native; controlled controls reset their state in the consuming form.",
-      "Styles use neutral semantic tokens. Motion is CSS only and gated by prefers-reduced-motion."
+      "Give each input a visible label where possible. A placeholder is only a hint.",
+      "Use readOnly for values people may need to focus, copy, or submit. Use disabled to exclude a control from keyboard navigation and form submission."
     ],
     "preview": "components/examples/input.tsx",
     "examples": [
       {
+        "id": "default",
+        "title": "Default input",
+        "source": "components/examples/input.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "sizes",
+        "title": "Sizes",
+        "description": "Pair Input’s controlSize with NavUI Button’s size to align both controls.",
+        "source": "components/examples/input-sizes.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "types",
+        "title": "Native input types",
+        "description": "Email, URL, telephone, and number inputs keep their native keyboards and controls. This example uses NavUI Field for labels.",
+        "source": "components/examples/input-types.tsx",
+        "presentation": "compact"
+      },
+      {
         "id": "states",
-        "title": "Practical states",
-        "description": "Validation, reset and useful control states.",
-        "source": "components/examples/input-states.tsx"
+        "title": "Disabled and read-only",
+        "description": "Tab to the read-only value to select and copy it. Both inputs use NavUI Field for their labels.",
+        "source": "components/examples/input-states.tsx",
+        "presentation": "compact"
+      },
+      {
+        "id": "action",
+        "title": "With an action button",
+        "description": "Rename the project by pressing Enter or selecting Rename. The example uses NavUI Field and Button.",
+        "source": "components/examples/input-action.tsx",
+        "presentation": "compact"
       }
     ],
     "registry": {
@@ -1463,34 +1567,10 @@ export const componentCatalog = [
     "usageExample": "\"use client\";\nimport {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectItemIndicator,\n} from \"@/components/navui/select\";\nimport {\n  Field,\n  FieldLabel,\n} from \"@/components/navui/field\";\nimport { CheckIcon, ChevronDownIcon } from \"lucide-react\";\nconst regions = [\"Canada\", \"Europe\", \"United States\"];\nexport default function Example() {\n  return (\n    <Field className=\"w-full max-w-sm p-6\">\n      <FieldLabel>Region</FieldLabel>\n      <Select items={regions} defaultValue=\"Canada\">\n        <SelectTrigger>\n          <SelectValue />\n          <ChevronDownIcon aria-hidden=\"true\" />\n        </SelectTrigger>\n        <SelectContent sideOffset={6}>\n          <SelectGroup>\n            {regions.map((value) => (\n              <SelectItem key={value} value={value}>\n                {value}\n                <SelectItemIndicator>\n                  <CheckIcon aria-hidden=\"true\" />\n                </SelectItemIndicator>\n              </SelectItem>\n            ))}\n          </SelectGroup>\n        </SelectContent>\n      </Select>\n    </Field>\n  );\n}\n",
     "api": [
       {
-        "prop": "Select<T, Multiple>",
-        "type": "SDK SelectProps<T, Multiple>",
-        "default": "SDK default",
-        "description": "Original generic root: single value T | null; multiple values T[]. Keep items on root for SSR labels."
-      },
-      {
-        "prop": "value / defaultValue / onValueChange",
-        "type": "T | null or T[] / change callback",
-        "default": "SDK default",
-        "description": "SDK owns selection, cancellation and reset; reset controlled values in the consuming form."
-      },
-      {
-        "prop": "SelectTrigger / SelectValue",
-        "type": "SDK part props",
-        "default": "SDK default",
-        "description": "Name via FieldLabel. Value supports placeholder, maxLabels and state callbacks."
-      },
-      {
-        "prop": "SelectContent / SelectGroup / SelectItem<T>",
-        "type": "SDK part props",
-        "default": "SDK default",
-        "description": "Scrollable popup and wrapped options. Disabled items are skipped. Content supports positioning and presence props."
-      },
-      {
-        "prop": "SelectItemIndicator / SelectGroupLabel",
-        "type": "SDK parts",
-        "default": "SDK default",
-        "description": "Compose indicators and named groups. Indicators accept children and state callbacks."
+        "prop": "size",
+        "type": "\"xs\" | \"sm\" | \"default\" | \"lg\"",
+        "default": "\"default\"",
+        "description": "Set on SelectTrigger to match Button and Input at 24, 28, 32, or 40 pixels."
       }
     ],
     "notes": [
@@ -1502,9 +1582,10 @@ export const componentCatalog = [
     "examples": [
       {
         "id": "states",
-        "title": "Practical states",
-        "description": "Validation, reset and useful control states.",
-        "source": "components/examples/select-states.tsx"
+        "title": "Report export options",
+        "description": "Choose a workspace and multiple export formats. Reset restores the original selection. This example uses NavUI Field and Button.",
+        "source": "components/examples/select-states.tsx",
+        "presentation": "compact"
       }
     ],
     "registry": {

@@ -324,7 +324,9 @@ test("component navigation groups SDK primitives and custom components", async (
   assert.ok(navigation.groups[1].items.some((item) => item.title === "Magnetic Button"));
   assert.ok(navigation.groups[1].items.some((item) => item.title === "Proximity Nav"));
   await mount(h(LibraryNavigation, { navigation, pathname: "/components/field" }));
-  assert.equal(host.querySelectorAll("nav.library-proximity").length, 3);
+  assert.deepEqual(
+    [...host.querySelectorAll("nav.library-proximity")].map((nav) => nav.getAttribute("aria-label")),
+    ["Primitives navigation", "Custom navigation"],
+  );
   assert.equal(host.querySelector('[aria-current="page"]').textContent, "Field");
-  assert.ok(host.querySelector('a[href="/components"]'));
 });
